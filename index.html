@@ -1,94 +1,554 @@
 <!DOCTYPE html>
 <html>
-<title>Davis Brown</title>
-<!-- <link rel="icon" type="image/ico" href="assets/cactus.png" /> -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<bodclass="w3-content" style="max-width:1300px">
+  <head>
+    <title>Davis Brown</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --primary-color: #191970;
+        --accent-color: #4169e1;
+        --highlight-color: #fff3b0;
+        --light-bg: #f9f9f9;
+        --border-color: #e0e0e0;
+      }
+      
+      body {
+        font-family: 'Open Sans', sans-serif;
+        line-height: 1.6;
+        color: #222;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      
+      .mono-font {
+        font-family: 'Cutive Mono', monospace;
+        font-weight: 600;
+      }
+      
+      a {
+        color: var(--accent-color);
+        transition: color 0.3s, text-decoration 0.3s;
+        text-decoration: none;
+      }
+      
+      a:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+      }
+      
+      .sidebar {
+        background-color: var(--light-bg);
+        box-shadow: 0 0 10px rgba(0,0,0,0.03);
+        border-right: 1px solid var(--border-color);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .sidebar::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 30% 40%, rgba(65, 105, 225, 0.05), transparent 70%);
+        z-index: 0;
+      }
+      
+      .profile-img {
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+        position: relative;
+        z-index: 1;
+      }
+      
+      .profile-img:hover {
+        transform: scale(1.02);
+      }
+      
+      .social-links a {
+        margin: 0 8px;
+        font-size: 1.2rem;
+        color: var(--primary-color);
+        transition: opacity 0.3s;
+      }
+      
+      .social-links a:hover {
+        opacity: 0.7;
+        text-decoration: none;
+      }
+      
+      .main-content {
+        padding: 3rem 2rem;
+      }
+      
+      .section-title {
+        position: relative;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      
+      .highlight {
+        background-color: var(--highlight-color);
+        padding: 0.2rem 0.5rem;
+        border-radius: 2px;
+        font-weight: 700;
+        font-size: 1.25rem;
+      }
+      
+      .paper-list {
+        margin-top: 15px;
+      }
+      
+      .paper-item {
+        margin-bottom: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px dashed var(--border-color);
+        transition: transform 0.2s;
+      }
+      
+      .paper-item:hover {
+        transform: translateX(3px);
+      }
+      
+      .paper-year {
+        font-size: 0.9rem;
+        color: #444;
+        vertical-align: top;
+        padding-right: 10px;
+        font-weight: 600;
+        width: 70px;
+      }
+      
+      .paper-content {
+        padding-left: 5px;
+      }
+      
+      .paper-title {
+        font-size: 1.1rem;
+        display: block;
+        margin-bottom: 2px;
+        line-height: 1.3;
+        font-weight: 600;
+      }
+      
+      .paper-authors {
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 2px;
+        font-weight: 500;
+        line-height: 1.3;
+      }
+      
+      .toggle-link, .toggle-link-inline {
+        font-family: 'Cutive Mono', monospace;
+        color: var(--accent-color);
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        font-size: 1.05rem;
+      }
+      
+      .toggle-link {
+        padding: 5px 0;
+      }
+      
+      .toggle-link-inline {
+        vertical-align: middle;
+        font-size: 1rem;
+      }
+      
+      .toggle-link::after, .toggle-link-inline::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--accent-color);
+        transform: scaleX(0.3);
+        transform-origin: bottom left;
+        transition: transform 0.3s;
+      }
+      
+      .toggle-link:hover::after, .toggle-link-inline:hover::after {
+        transform: scaleX(1);
+      }
+      
+      .older-works {
+        transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+      }
+      
+      .older-works.visible {
+        max-height: 800px;
+        opacity: 1;
+      }
+      
+      .bio {
+        margin-bottom: 2rem;
+        position: relative;
+        font-size: 1.1rem;
+      }
+      
+      .bio a {
+        font-weight: 600;
+      }
+      
+      .description-toggle {
+        color: var(--accent-color);
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 500;
+        opacity: 0.9;
+        margin-top: 0;
+        display: inline-block;
+      }
+      
+      .description-toggle:hover {
+        text-decoration: underline;
+      }
+      
+      .paper-description {
+        font-size: 0.95rem;
+        margin-top: 5px;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.3s ease-out, opacity 0.3s, padding 0.3s;
+        background-color: rgba(240, 240, 240, 0.3);
+        border-radius: 3px;
+        padding-left: 5px;
+        padding-right: 5px;
+        line-height: 1.4;
+      }
+      
+      .paper-description.visible {
+        max-height: 800px;
+        opacity: 1;
+        padding: 10px;
+      }
+      
+      .paper-description img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 10px auto;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      .description-content {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      @media (min-width: 768px) {
+        .description-content {
+          flex-direction: row;
+          align-items: flex-start;
+        }
+        
+        .description-content img {
+          max-width: 200px;
+          margin-right: 15px;
+          margin-top: 0;
+        }
+      }
+      
+      @media (max-width: 992px) {
+        .sidebar {
+          height: auto !important;
+          text-align: center;
+          padding-bottom: 2rem;
+        }
+        
+        .main-content {
+          padding: 2rem 1.5rem;
+        }
+      }
 
-  <!-- First Grid: Logo & About -->
-  <div class="w3-row">
-    <div class="w3-third w3-white w3-container w3-center" style="height:550px">
-      <div class="w3-padding-48">
-        <h1 style="font-family: 'Cutive Mono', monospace;">Davis Brown</h1>
+      #back-to-top {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--primary-color);
+        color: white;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.3s;
+        z-index: 100;
+      }
+      
+      #back-to-top:hover {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body class="w3-content" style="max-width:1300px">
+    <!-- First Grid: Sidebar & Main Content -->
+    <div class="w3-row">
+      <!-- Sidebar with Profile -->
+      <div class="w3-third sidebar w3-container w3-center" style="height:100vh">
+        <div class="w3-padding-64">
+          <h1>Davis Brown</h1>
+          <img src="assets/headshot.jpeg" class="profile-img w3-margin w3-square" alt="Davis Brown" style="width:70%">
+          
+          <div class="social-links w3-padding-16">
+            <a href="https://twitter.com/davisbrownr" target="_blank" title="Twitter">
+              <i class="fab fa-twitter"></i> <span class="mono-font">Twitter</span>
+            </a>
+            <a href="https://scholar.google.com/citations?hl=en&user=zQEbpYYAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" title="Google Scholar">
+              <i class="fas fa-graduation-cap"></i> <span class="mono-font">Scholar</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main Content Area -->
+      <div class="w3-twothird w3-container main-content">
+        <!-- Bio Section -->
+        <div class="bio">
+          <p class="mono-font"> 
+            I am a first-year PhD student at the University of Pennsylvania advised by 
+            <a href="https://riceric22.github.io/">Eric Wong</a> and 
+            <a href="https://www.seas.upenn.edu/~hassani/">Hamed Hassani</a>, with research interests in AI safety, security, and the science of deep learning. 
+            I'm also a research scientist in the National Security Directorate at 
+            <a href="https://www.pnnl.gov/">Pacific Northwest National Lab</a>.
+          </p>
+          <p class="mono-font">
+            <a href="papers.html">Here is some research</a> I think is underrated.
+          </p>
+          <p class="mono-font">
+            In my free time, I like to run, ski, scroll the arxiv, and 
+            <a href="https://www.goodreads.com/user/show/98635701-davis-brown">(re-)read</a> Robert Caro's biographies.
+          </p>
+        </div>
+        
+        <!-- Recent Papers Section -->
+        <div class="section-title">
+          <span class="highlight mono-font">Recent Papers</span>&nbsp;&nbsp;&nbsp;<span class="toggle-link-inline" id="older-work-toggle" style="margin-left: 30px; font-size: 1.2rem;">Some older work</span>
+        </div>
+        
+        <div class="paper-list">
+          <!-- Paper 1 -->
+          <div class="paper-item w3-row">
+            <div class="w3-col" style="width:70px">
+              <div class="paper-year">2025</div>
+            </div>
+            <div class="w3-rest paper-content">
+              <a href="https://arxiv.org/abs/2503.01986" class="paper-title" target="_blank">
+                Adaptively evaluating models with task elicitation
+              </a>
+              <div class="paper-authors">
+                <b>Davis Brown</b>, Prithvi Balehannina, Helen Jin, Shreya Havaldar, Hamed Hassani, Eric Wong
+              </div>
+              <div class="description-toggle" data-target="desc1">
+                Show description
+              </div>
+              <div id="desc1" class="paper-description">
+                <div class="description-content">
+                  <img src="assets/cluster_visualization_attempt_super_tiny.jpeg" alt="Task elicitation visualization" />
+                  <div>
+                      Language models have a 'jagged frontier' of capabilities and behaviors, where they are superhuman at some tasks and brittle in others. We map this frontier by adaptively probing the model under evaluation with new tasks. We term this procedure as <i>task elicitation</i>, and provide results for truthfulness, forecasting, social harms, and more. 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Paper 2 -->
+          <div class="paper-item w3-row">
+            <div class="w3-col" style="width:70px">
+              <div class="paper-year">2025</div>
+            </div>
+            <div class="w3-rest paper-content">
+              <a href="https://openreview.net/forum?id=KQ1gI5qzAf" class="paper-title" target="_blank">
+                Machine Learning meets Algebraic Combinatorics: A Suite of Datasets Capturing Research-level Conjecturing Ability in Pure Mathematics
+              </a>
+              <div class="paper-authors">
+                {Herman Chau, Helen Jenne, <b>Davis Brown</b>}, Jesse He, Mark Raugas, Sara C. Billey, Henry Kvinge
+              </div>
+              <div class="description-toggle" data-target="desc2">
+                Show description
+              </div>
+              <div id="desc2" class="paper-description">
+                <div class="description-content">
+                  <img src="assets/algcom_smaller2.jpg" alt="Semistandard Young tableaux" style="width: 30%; height: auto;" />
+                  <div>
+                      A dataset of problems designed to test the ability of models to generate new conjectures in research-level algebraic combinatorics. Many of the problems we select are currently open, and should post a strong challenge to both frontier models and mathematicians using models-as-tools. For each problem, we provide both a large amount of associated data and train narrow models to serve as baselines.
+                  </div>
+                </div>
 
-        <img src="assets/headshot.jpeg" class="w3-margin w3-square" alt="Person" style="width:60%">
-      </div>
-      <div class="w3-padding-2">
-        <a style="font-family: 'Cutive Mono', monospace; text-decoration: none" href="https://twitter.com/davisbrownr">
-          &nbsp; Twitter</a>
-        <a style="font-family: 'Cutive Mono', monospace; text-decoration: none"
-          href="https://scholar.google.com/citations?hl=en&user=zQEbpYYAAAAJ&view_op=list_works&sortby=pubdate">
-          &nbsp; Google Scholar</a>
-      </div>
-    </div>
-    <div class="w3-twothird w3-white w3-container" style="height:700px">
-      <div class="w3-padding-64 w3-center">
-        <div class="w3-left-align w3-padding-small">
-          <p style="font-family: 'Cutive Mono', monospace; margin-top: 0%; margin-right: 80px"> 
-            I am a first-year PhD student at the University of Pennsylvania advised by <a href="https://riceric22.github.io/">Eric Wong</a> and <a href="https://www.seas.upenn.edu/~hassani/">Hamed Hassani</a>, with research interests in AI safety, security, and the science of deep learning. 
-            I'm also a research scientist in the National Security Directorate at <a href="https://www.pnnl.gov/">Pacific Northwest National Lab</a>.
-            <br><br>
-            I've most recently been thinking about a) evals and b) and some topics in <a href="https://openreview.net/forum?id=j9IMNLGXi8">AI security</a> and control.
-            I also have recent work <a href="https://openreview.net/forum?id=KQ1gI5qzAf">evaluating models</a> on open math problems.
-            <a href="papers.html"> Here is some research</a> I think is underrated.
-            <br><br>
-            In my free time, I like to run, ski, scroll the arxiv, and <a href="https://www.goodreads.com/user/show/98635701-davis-brown">(re-)read</a> Robert Caro's biographies.
-            </p>
-          <p style="font-family: 'Cutive Mono', monospace; margin-right: 80px" <p
-            style="font-family: 'Cutive Mono', monospace; margin-right: 80px">
-            <span style="background-color: #fff3b0; font-size: large;">
-              <b>Some Papers</b>
-            </span> 
-            &nbsp
-            <span style="font-size: large;">
-                (<a href="https://scholar.google.com/citations?hl=en&user=zQEbpYYAAAAJ&view_op=list_works&sortby=pubdate" target="_blank">All Papers</a>)
-            </span> 
-            &nbsp
-          </p>
-          </p>
-          <table style="width:100%">
-            <tr>
-              <td style="text-align:right; padding-right:10px; font-size:0.8em; ">EMNLP '23</td>
-              <td style="text-align:left; font-size:0.95em"><a href="https://arxiv.org/abs/2310.14993"
-                  style="color:#191970" target="_blank">Understanding the Inner Workings of Language Models Through Representation Dissimilarity </a>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td style="padding-bottom:4px; text-align:left; font-size:0.95em"><b>Davis Brown</b>,
-                  Charles Godfrey, Nicholas Konz, Jonathan Tu, Henry Kvinge 
-              </td>
-            </tr>
-            <tr>
-              <td style="text-align:right; padding-right:10px; font-size:0.8em; ">HiLD ICML '23</td>
-              <td style="text-align:left; font-size:0.95em"><a href="https://arxiv.org/abs/2307.12941"
-                  style="color:#191970" target="_blank">On Privileged and Convergent Bases in Neural Network Representations </a>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td style="padding-bottom:4px; text-align:left; font-size:0.95em">{<b>Davis Brown</b>,
-                  Nikhil Vyas}, Yamini Bansal 
-              </td>
-            </tr>
-            <tr>
-              <td style="text-align:right; padding-right:10px; font-size:0.8em; ">NeurIPS '22</td>
-              <td style="text-align:left; font-size:0.95em"><a href="https://arxiv.org/abs/2205.14258"
-                  style="color:#191970" target="_blank">On the Symmetries of Deep Learning Models and their Internal
-                  Representations</a>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td style="padding-bottom:4px; text-align:left; font-size:0.95em">{Charles Godfrey, <b>Davis Brown</b>},
-                Tegan Emerson, Henry Kvinge
-              </td>
-            </tr>
-          </table>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Paper 3 -->
+          <div class="paper-item w3-row">
+            <div class="w3-col" style="width:70px">
+              <div class="paper-year">2024</div>
+            </div>
+            <div class="w3-rest paper-content">
+              <a href="https://openreview.net/forum?id=j9IMNLGXi8" class="paper-title" target="_blank">
+                How Does LLM Compression Affect Weight Exfiltration Attacks?
+              </a>
+              <div class="paper-authors">
+                <b>Davis Brown</b>, JP Rivera, Mantas Mazeika
+              </div>
+              <div class="description-toggle" data-target="desc3">
+                Show description
+              </div>
+              <div id="desc3" class="paper-description">
+                <div class="description-content">
+                  <img src="assets/exfil.png" alt="Model exfiltration diagram. Higher decompression costs enable smaller weights." style="width: 30%; height: auto;" />
+                  <div>
+                    Models can be compressed far more than the standard 4 bits-per-parameters if one is willing to do a bit of additional training to 'decompress' them afterwards. This increases the risk of model weight exfiltration.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Older Work Section with Toggle -->
+        <div>
+          <div id="olderWork" class="older-works">
+            <div class="paper-list">
+              <!-- Older Paper 1 -->
+              <div class="paper-item w3-row">
+                <div class="w3-col" style="width:70px">
+                  <div class="paper-year">EMNLP '23</div>
+                </div>
+                <div class="w3-rest paper-content">
+                  <a href="https://arxiv.org/abs/2310.14993" class="paper-title" target="_blank">
+                    Understanding the Inner Workings of Language Models Through Representation Dissimilarity
+                  </a>
+                  <div class="paper-authors">
+                    <b>Davis Brown</b>, Charles Godfrey, Nicholas Konz, Jonathan Tu, Henry Kvinge
+                  </div>
+                  <div class="description-toggle" data-target="desc4">
+                    Show description
+                  </div>
+                  <div id="desc4" class="paper-description">
+                    Applies methods to compare the hidden layers between different language models. We show that these measures can identify and locate generalization properties of models that are invisible via in-distribution test set performance.
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Older Paper 2 -->
+              <div class="paper-item w3-row">
+                <div class="w3-col" style="width:70px">
+                  <div class="paper-year">HiLD ICML '23</div>
+                </div>
+                <div class="w3-rest paper-content">
+                  <a href="https://arxiv.org/abs/2307.12941" class="paper-title" target="_blank">
+                    On Privileged and Convergent Bases in Neural Network Representations
+                  </a>
+                  <div class="paper-authors">
+                    {<b>Davis Brown</b>, Nikhil Vyas}, Yamini Bansal
+                  </div>
+                  <div class="description-toggle" data-target="desc5">
+                    Show description
+                  </div>
+                  <div id="desc5" class="paper-description">
+                    The neuron basis of neural networks 'matters,' in that it is necessary to have one. However, it does not matter that much, in that the basis is inconsistent across training runs.
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Older Paper 3 -->
+              <div class="paper-item w3-row">
+                <div class="w3-col" style="width:70px">
+                  <div class="paper-year">NeurIPS '22</div>
+                </div>
+                <div class="w3-rest paper-content">
+                  <a href="https://arxiv.org/abs/2205.14258" class="paper-title" target="_blank">
+                    On the Symmetries of Deep Learning Models and their Internal Representations
+                  </a>
+                  <div class="paper-authors">
+                    {Charles Godfrey, <b>Davis Brown</b>}, Tegan Emerson, Henry Kvinge
+                  </div>
+                  <div class="description-toggle" data-target="desc6">
+                    Show description
+                  </div>
+                  <div id="desc6" class="paper-description">
+We characterize how activation functions lead to certain symmetries. Then, we provide some experiments on <i>model stitching</i>, where we 'glue' together different hidden layers of models by learning permutations between their respective neurons-- this works surprisingly well.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
+    
+    <!-- Back to Top Button -->
+    <div id="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      // Toggle Older Work
+      document.getElementById('older-work-toggle').addEventListener('click', function() {
+        var elem = document.getElementById("olderWork");
+        elem.classList.toggle("visible");
+        
+        // Change text based on current state
+        if (elem.classList.contains("visible")) {
+          this.textContent = "Hide older work";
+        } else {
+          this.textContent = "Some older work";
+        }
+      });
+      
+      // Toggle Paper Descriptions
+      document.querySelectorAll('.description-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function() {
+          const targetId = this.getAttribute('data-target');
+          const descElement = document.getElementById(targetId);
+          
+          descElement.classList.toggle('visible');
+          
+          // Update toggle text
+          if (descElement.classList.contains('visible')) {
+            this.textContent = 'Hide description';
+          } else {
+            this.textContent = 'Show description';
+          }
+        });
+      });
+      
+      // Back to Top Button
+      window.onscroll = function() {scrollFunction()};
+      
+      function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          document.getElementById("back-to-top").style.display = "block";
+        } else {
+          document.getElementById("back-to-top").style.display = "none";
+        }
+      }
+      
+      document.getElementById('back-to-top').addEventListener('click', function() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      });
+    </script>
+  </body>
+</html>
