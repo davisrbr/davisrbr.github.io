@@ -66,6 +66,11 @@
     transform: translateX(5px);
   }
 
+  .versions-container {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
   .paper-item {
     margin-bottom: 0px;
     padding-bottom: 0px;
@@ -104,11 +109,6 @@
     opacity: 1;
     padding: 10px;
   }
-
-  .versions-container {
-    margin-top: 15px;
-    margin-bottom: 20px;
-  }
 </style>
 <body class="w3-content" style="max-width:1300px">
 
@@ -116,7 +116,7 @@
     <div class="w3-third sidebar w3-container w3-center" style="height:550px">
       <div class="w3-padding-48">
         <h2 class="mono-font">Underrated Papers</h2>
-        <div class="mono-font">(March 2025 edition)</div>
+        <div class="mono-font">(December 2024 edition)</div>
       </div>
       <div class="versions-container">
         <div class="mono-font">Versions:</div>
@@ -134,7 +134,7 @@
       <div class="w3-padding-64 w3-center">
         <div class="w3-left-align w3-padding-small">
           <p class="mono-font" style="margin-top: 0%; margin-right: 80px; font-size: 1rem;">
-             Collecting some work here that I think is not as well known as it should be (as of 03/07/25) in either academia, government, or the AI safety community. I plan to refresh this list every few months.
+             Collecting some work here that I think is not as well known as it should be (as of 12/6/24) in either academia, government, or the AI safety community. I plan to refresh this list every few months.
           </p>
 
           <p class="mono-font" style="margin-right: 80px">
@@ -144,6 +144,12 @@
           </p>
           <ul style="padding-left: 20px;">
             <li class="paper-item">
+              <a href="https://arxiv.org/abs/2308.09543" style="color:#191970" target="_blank">Latent State Models of Training Dynamics</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Michael Y. Hu, Angelica Chen, Naomi Saphra, Kyunghyun Cho (2023)</span>
+              <br/>
+            </li>
+            <li style="margin-bottom: 10px;">
               <a href="https://arxiv.org/abs/2404.11534" style="color:#191970" target="_blank">Decomposing and Editing Predictions by Modeling Model Computation</a>
               <br/>
               <span style="font-size: 0.9em; color: #666;">Harshay Shah, Andrew Ilyas, Aleksander Madry (2024)</span>
@@ -152,48 +158,50 @@
                 Why this is notable
               </div>
               <div id="desc2" class="paper-description">
-                 Introduces a task for training interpretability/editing methods called <i>component modeling</i>, where a meta-model is trained to predict the effect of ablating individual model components for a single example. It would be great to see serious follow-up work attempting to extend component modeling to larger models. My guess is that despite its promise, this line of work is neglected because it's engineering-heavy and isn't fully de-risked (e.g. not sure how well it will scale, how to improve sampling, etc.)
+                Along with the above paper, this introduces an approach for learning models of model behavior beyond just reconstructing activations or probing. In general, I think 'meta-models' are neglected in interpretability / science of DL.
               </div>
             </li>
-            <li class="paper-item">
-              <a href="https://arxiv.org/abs/2502.16797" style="color:#191970" target="_blank">Forecasting Rare Language Model Behaviors</a>
+            <li style="margin-bottom: 10px;">
+              <a href="https://arxiv.org/abs/2305.12827" style="color:#191970" target="_blank">Task Arithmetic in the Tangent Space: Improved Editing of Pre-Trained Models</a>
               <br/>
-              <span style="font-size: 0.9em; color: #666;">Erik Jones, Meg Tong, Jesse Mu, Mohammed Mahfoud, Jan Leike, Roger Grosse, Jared Kaplan, William Fithian, Ethan Perez, Mrinank Sharma (2025)</span>
-              <br/>
-              <div class="description-toggle" data-target="desc3">
-                Why this is notable
-              </div>
-              <div id="desc3" class="paper-description">
-                Could also plausibly fall under "Elicitation" category, but I'm including in the science of DL category because of the new scaling laws-- for elicitation / a 'most-effective jailbreak' and the generally high forecastibility of elicitation and behavior. Quite excited to see working building on this, particularly around experiments for distribution shifts at deployment time and for better, less costly, less biased methods around usefulness/correctness and jailbreaking.
-              </div>
+              <span style="font-size: 0.9em; color: #666;">Guillermo Ortiz-Jimenez, Alessandro Favero, Pascal Frossard (2023)</span>
             </li>
-            <li class="paper-item">
-              <a href="https://arxiv.org/abs/2502.17578" style="color:#191970" target="_blank">How Do Large Language Monkeys Get Their Power (Laws)?</a>
+            <li style="margin-bottom: 10px;">
+              <a href="https://arxiv.org/abs/2102.13042" style="color:#191970" target="_blank">Loss Surface Simplexes for Mode Connecting Volumes and Fast Ensembling</a>
               <br/>
-              <span style="font-size: 0.9em; color: #666;">Rylan Schaeffer, Joshua Kazdan, John Hughes, Jordan Juravsky, Sara Price, Aengus Lynch, Erik Jones, Robert Kirk, Azalia Mirhoseini, Sanmi Koyejo (2025)</span>
+              <span style="font-size: 0.9em; color: #666;">Gregory W. Benton, Wesley J. Maddox, Sanae Lotfi, Andrew Gordon Wilson (2021)</span>
             </li>
           </ul>
-
           <p class="mono-font" style="margin-right: 80px">
             <span class="highlight">
               Scaling Laws and Compute
             </span>
           </p>
           <ul style="padding-left: 20px;">
-            <li class="paper-item">
+            <li style="margin-bottom: 10px;">
+              <a href="https://arxiv.org/abs/2405.10938" style="color:#191970" target="_blank">Observational Scaling Laws and the Predictability of Language Model Performance</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Yangjun Ruan, Chris J. Maddison, Tatsunori Hashimoto (2024)</span>
+            </li>
+            <li style="margin-bottom: 10px;">
               <a href="https://arxiv.org/abs/2401.00448" style="color:#191970" target="_blank">Beyond Chinchilla-Optimal: Accounting for Inference in Language Model Scaling Laws</a>
               <br/>
               <span style="font-size: 0.9em; color: #666;">Nikhil Sardana, Jacob Portes, Sasha Doubov, Jonathan Frankle (2023)</span>
             </li>
-            <li class="paper-item">
+            <li style="margin-bottom: 10px;">
+              <a href="https://arxiv.org/abs/2303.13506" style="color:#191970" target="_blank">The Quantization Model of Neural Scaling</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Eric J. Michaud, Ziming Liu, Uzay Girit, Max Tegmark (2023)</span>
+            </li>
+            <li style="margin-bottom: 10px;">
               <a href="https://epoch.ai/blog/optimally-allocating-compute-between-inference-and-training" style="color:#191970" target="_blank">Optimally Allocating Compute Between Inference and Training</a>
               <br/>
               <span style="font-size: 0.9em; color: #666;">Ege Erdil (2024)</span>
               <br/>
-              <div class="description-toggle" data-target="desc4">
+              <div class="description-toggle" data-target="desc3">
                 Why this is notable
               </div>
-              <div id="desc4" class="paper-description">
+              <div id="desc3" class="paper-description">
                 The core argument of this piece, that we should expect investment parity between inference and training, is an underrated starting point for thinking about scaling policies (even if this turns out to be incorrect due to reasoning models).
               </div>
             </li>
@@ -205,15 +213,30 @@
             </span>
           </p>
           <ul style="padding-left: 20px;">
-            <li class="paper-item">
+            <li style="margin-bottom: 10px;">
               <a href="https://arxiv.org/abs/2406.14595" style="color:#191970" target="_blank">Adversaries Can Misuse Combinations of Safe Models</a>
               <br/>
               <span style="font-size: 0.9em; color: #666;">Erik Jones, Anca Dragan, Jacob Steinhardt (2024)</span>
             </li>
-            <li class="paper-item">
+            <li style="margin-bottom: 10px;">
               <a href="https://arxiv.org/abs/2405.19550" style="color:#191970" target="_blank">Stress-Testing Capability Elicitation With Password-Locked Models</a>
               <br/>
               <span style="font-size: 0.9em; color: #666;">Ryan Greenblatt, Fabien Roger, Dmitrii Krasheninnikov, David Krueger (2024)</span>
+            </li>
+            <li style="margin-bottom: 10px;">
+              <a href="https://arxiv.org/abs/2312.01037" style="color:#191970" target="_blank">Eliciting Latent Knowledge from Quirky Language Models</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Alex Mallen, Madeline Brumley, Julia Kharchenko, Nora Belrose (2024)</span>
+            </li>
+            <li style="margin-bottom: 10px;">
+              <a href="https://transluce.org/automated-elicitation" style="color:#191970" target="_blank">Eliciting Language Model Behaviors with Investigator Agents</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Translucent (2024)</span>
+            </li>
+            <li style="margin-bottom: 10px;">
+              <a href="https://www.alignmentforum.org/posts/ioPnHKFyy4Cw2Gr2x/mechanistically-eliciting-latent-behaviors-in-language-1" style="color:#191970" target="_blank">Mechanistically Eliciting Latent Behaviors in Language Models</a> and <a href="https://www.alignmentforum.org/posts/fSRg5qs9TPbNy3sm5/deep-causal-transcoding-a-framework-for-mechanistically" style="color:#191970" target="_blank">Deep Causal Transcoding: A Framework for Mechanistically Eliciting Latent Behaviors in Language Models</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Andrew Mack, Alex Turner (2024)</span>
             </li>
           </ul>
 
@@ -223,22 +246,27 @@
             </span>
           </p>
           <ul style="padding-left: 20px;">
-            <li class="paper-item">
-              <a href="https://arxiv.org/abs/2412.12480" style="color:#191970" target="_blank">Subversion Strategy Eval: Evaluating AI's stateless strategic capabilities against control protocols</a>
+            <li style="margin-bottom: 10px;">
+              <a href="https://www.rand.org/pubs/research_reports/RRA2849-1.html" style="color:#191970" target="_blank">Securing AI Model Weights</a>
               <br/>
-              <span style="font-size: 0.9em; color: #666;">Alex Mallen, Charlie Griffin, Alessandro Abate, Buck Shlegeris (2024)</span>
+              <span style="font-size: 0.9em; color: #666;">Sella Nevo, Dan Lahav, Ajay Karpur, Yogev Bar-On, Henry Alexander Bradley, Jeff Alstott (2024)</span>
             </li>
-            <li class="paper-item">
-              <a href="https://github.com/UKGovernmentBEIS/control-arena" style="color:#191970" target="_blank">ControlArena (pre-release)</a>
+            <li style="margin-bottom: 10px;">
+              <a href="https://www.alignmentforum.org/posts/rf66R4YsrCHgWx9RG/preventing-model-exfiltration-with-upload-limits" style="color:#191970" target="_blank">Preventing Model Exfiltration with Upload Limits</a>
               <br/>
-              <span style="font-size: 0.9em; color: #666;">UK AISI (2025)</span>
+              <span style="font-size: 0.9em; color: #666;">Ryan Greenblatt (2024)</span>
             </li>
-            <li class="paper-item">
+            <li style="margin-bottom: 10px;">
+              <a href="https://arxiv.org/abs/2408.08926" style="color:#191970" target="_blank">Cybench: A Framework for Evaluating Cybersecurity Capabilities and Risks of Language Models</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Andy K. Zhang [...] Percy Liang (2024)</span>
+            </li>
+            <li style="margin-bottom: 10px;">
               <a href="https://redwoodresearch.substack.com/p/a-basic-systems-architecture-for" style="color:#191970" target="_blank">A basic systems architecture for AI agents that do autonomous research</a>
               <br/>
               <span style="font-size: 0.9em; color: #666;">Buck Shlegeris (2024)</span>
             </li>
-            <li class="paper-item">
+            <li style="margin-bottom: 10px;">
               <a href="https://xbow.com/blog/xbow-scoold-vuln/" style="color:#191970" target="_blank">How XBOW found a Scoold authentication bypass</a>
               <br/>
               <span style="font-size: 0.9em; color: #666;">Nico Waisman, Brendan Dolan-Gavitt (2024)</span>
@@ -251,27 +279,30 @@
             </span>
           </p>
           <ul style="padding-left: 20px;">
-            <li class="paper-item">
-              <a href="https://arxiv.org/abs/2502.03461" style="color:#191970" target="_blank">Do Large Language Model Benchmarks Test Reliability?</a>
-              <br/>
-              <span style="font-size: 0.9em; color: #666;">Joshua Vendrow, Edward Vendrow, Sara Beery, Aleksander Madry (2025)</span>
-              <br/>
-              <div class="description-toggle" data-target="desc5">
-                Why this is notable
-              </div>
-              <div id="desc5" class="paper-description">
-                Offers an operationalization of reliability for LLMs (consistently giving correct answers on existing 'saturated' benchmarks), and shows that existing benchmarks are not good at testing for this due to mislabeling and incoherent wording. Provide updated 'platinum' versions of existing benchmarks that can test for this.
-              </div>
-            </li>
-            <li class="paper-item">
+            <li style="margin-bottom: 10px;">
               <a href="https://arxiv.org/abs/2409.16125" style="color:#191970" target="_blank">Analyzing Probabilistic Methods for Evaluating Agent Capabilities</a>
               <br/>
               <span style="font-size: 0.9em; color: #666;">Axel Højmark, Govind Pimpale, Arjun Panickssery, Marius Hobbhahn, Jérémy Scheurer (2024)</span>
             </li>
-            <li class="paper-item">
-              <a href="https://arxiv.org/abs/2412.18544" style="color:#191970" target="_blank">Consistency Checks for Language Model Forecasters</a>
+            <li style="margin-bottom: 10px;">
+              <a href="https://arxiv.org/abs/2212.10561" style="color:#191970" target="_blank">Parsel: Algorithmic Reasoning with Language Models by Composing Decompositions</a>
               <br/>
-              <span style="font-size: 0.9em; color: #666;">Daniel Paleka, Abhimanyu Pallavi Sudhir, Alejandro Alvarez, Vineeth Bhat, Adam Shen, Evan Wang, Florian Tramèr (2024)</span>
+              <span style="font-size: 0.9em; color: #666;">Eric Zelikman, Qian Huang, Gabriel Poesia, Noah D. Goodman, Nick Haber (2023)</span>
+            </li>
+            <li style="margin-bottom: 10px;">
+              <a href="https://openreview.net/forum?id=3so6NRQZfG" style="color:#191970" target="_blank">Consistency Checks for Language Model Forecasters</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Abhimanyu Pallavi Sudhir, Alejandro Alvarez, Adam Shen, Daniel Paleka (2024)</span>
+            </li>
+            <li style="margin-bottom: 10px;">
+              <a href="https://openreview.net/forum?id=XSeN6xZtZ9" style="color:#191970" target="_blank">Large Language Model Benchmarks Do Not Test Reliability</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Joshua Vendrow, Edward Vendrow, Sara Beery, Aleksander Madry (2024)</span>
+            </li>
+            <li style="margin-bottom: 10px;">
+              <a href="https://arxiv.org/abs/2409.00844" style="color:#191970" target="_blank">Report Cards: Qualitative Evaluation of Language Models Using Natural Language Summaries</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Blair Yang, Fuyang Cui, Keiran Paster, Jimmy Ba, Pashootan Vaezipoor, Silviu Pitis, Michael R. Zhang (2024)</span>
             </li>
           </ul>
         </div>

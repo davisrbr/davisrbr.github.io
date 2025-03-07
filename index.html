@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
       :root {
         --primary-color: #191970;
@@ -17,16 +17,16 @@
       }
       
       body {
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Lora', serif;
         line-height: 1.6;
         color: #222;
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 400;
       }
       
       .mono-font {
-        font-family: 'Cutive Mono', monospace;
-        font-weight: 600;
+        font-family: 'IBM Plex Mono', monospace;
+        font-weight: 400;
       }
       
       a {
@@ -305,15 +305,15 @@
       <!-- Sidebar with Profile -->
       <div class="w3-third sidebar w3-container w3-center" style="height:100vh">
         <div class="w3-padding-64">
-          <h1>Davis Brown</h1>
+          <h1 class="mono-font">Davis Brown</h1>
           <img src="assets/headshot.jpeg" class="profile-img w3-margin w3-square" alt="Davis Brown" style="width:70%">
           
           <div class="social-links w3-padding-16">
             <a href="https://twitter.com/davisbrownr" target="_blank" title="Twitter">
-              <i class="fab fa-twitter"></i> <span class="mono-font">Twitter</span>
+              <i class="fab fa-twitter"></i> <span class="mono-font" style="font-size: 0.9rem;">Twitter</span>
             </a>
             <a href="https://scholar.google.com/citations?hl=en&user=zQEbpYYAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" title="Google Scholar">
-              <i class="fas fa-graduation-cap"></i> <span class="mono-font">Scholar</span>
+              <i class="fas fa-graduation-cap"></i> <span class="mono-font" style="font-size: 0.9rem;">Scholar</span>
             </a>
           </div>
         </div>
@@ -325,23 +325,24 @@
         <div class="bio">
           <p class="mono-font"> 
             I am a first-year PhD student at the University of Pennsylvania advised by 
-            <a href="https://riceric22.github.io/">Eric Wong</a> and 
-            <a href="https://www.seas.upenn.edu/~hassani/">Hamed Hassani</a>, with research interests in AI safety, security, and the science of deep learning. 
+            <a href="https://riceric22.github.io/" target="_blank">Eric Wong</a> and 
+            <a href="https://www.seas.upenn.edu/~hassani/" target="_blank">Hamed Hassani</a>, with research interests in AI safety, security, and the science of deep learning. 
             I'm also a research scientist in the National Security Directorate at 
-            <a href="https://www.pnnl.gov/">Pacific Northwest National Lab</a>.
+            <a href="https://www.pnnl.gov/" target="_blank">Pacific Northwest National Lab</a>.
           </p>
-          <p class="mono-font">
-            <a href="papers.html">Here is some research</a> I think is underrated.
-          </p>
+          <ul class="mono-font" style="list-style-type: disc; padding-left: 20px;">
+            <li>I've most recently been thinking about a) evals and b) AI control and security. Please do reach out if you'd like to chat!</li>
+            <li><a href="papers.html">Here is some research</a> I think is underrated (last updated 3/7/25).</li>
+          </ul>
           <p class="mono-font">
             In my free time, I like to run, ski, and 
-            <a href="https://www.goodreads.com/user/show/98635701-davis-brown">(re-)read</a> Robert Caro's biographies.
+            <a href="https://www.goodreads.com/user/show/98635701-davis-brown" target="_blank">(re-)read</a> Robert Caro's biographies.
           </p>
         </div>
         
         <!-- Recent Papers Section -->
         <div class="section-title">
-          <span class="highlight mono-font">Recent Papers</span>&nbsp;&nbsp;&nbsp;<span class="toggle-link-inline" id="older-work-toggle" style="margin-left: 30px; font-size: 1.2rem;">Some older work</span>
+          <span class="highlight mono-font" style="font-size: 1.25rem;">Recent Papers</span>
         </div>
         
         <div class="paper-list">
@@ -388,9 +389,9 @@
               </div>
               <div id="desc2" class="paper-description">
                 <div class="description-content">
-                  <img src="assets/algcom_smaller2.jpg" alt="Semistandard Young tableaux" style="width: 30%; height: auto;" />
+                  <img src="assets/algcom_smaller2.jpg" alt="Semistandard Young tableaux" style="width: 45%; height: auto;" />
                   <div>
-                      A dataset of problems designed to test the ability of models to generate new conjectures in research-level algebraic combinatorics. Many of the problems we select are currently open, and should pose a strong challenge to both frontier models and mathematicians using models-as-tools. For each problem, we provide both a large amount of associated data and train narrow models to serve as baselines.
+                      A dataset of problems to test the ability of models to generate new conjectures in research-level algebraic combinatorics. Many of the problems we select are currently open, and should pose a strong challenge to both frontier models and mathematicians using models-as-tools. For each problem, we provide both a large amount of associated data and train narrow models to serve as baselines.
                   </div>
                 </div>
 
@@ -415,7 +416,7 @@
               </div>
               <div id="desc3" class="paper-description">
                 <div class="description-content">
-                  <img src="assets/exfil.png" alt="Model exfiltration diagram. Higher decompression costs enable smaller weights." style="width: 30%; height: auto;" />
+                  <img src="assets/exfil.png" alt="Model exfiltration diagram. Higher decompression costs enable smaller weights." />
                   <div>
                     Models can be compressed far more than the standard 4 bits-per-parameters if one is willing to do a bit of additional training to 'decompress' them afterwards. This increases the risk of model weight exfiltration.
                   </div>
@@ -424,6 +425,9 @@
             </div>
           </div>
         </div>
+        
+        <!-- Older Work Toggle -->
+        <div class="toggle-link" id="older-work-toggle" style="margin-top: 20px; margin-bottom: 10px; font-size: 1.25rem;">Some older work</div>
         
         <!-- Older Work Section with Toggle -->
         <div>
