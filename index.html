@@ -265,15 +265,27 @@
         }
       }
       
-      @media (max-width: 992px) {
-        .sidebar {
-          height: auto !important;
-          text-align: center;
-          padding-bottom: 2rem;
+      @media screen and (min-width: 993px) {
+        .w3-row {
+          display: flex;
         }
         
-        .main-content {
-          padding: 2rem 1.5rem;
+        .sidebar {
+          position: relative;
+          flex: 0 0 33.33%;
+          min-height: 100vh;
+          align-self: stretch;
+        }
+        
+        .w3-twothird {
+          flex: 0 0 66.66%;
+        }
+      }
+      
+      @media screen and (max-width: 992px) {
+        .sidebar {
+          height: auto !important;
+          padding-bottom: 2rem;
         }
       }
 
@@ -300,11 +312,11 @@
       }
     </style>
   </head>
-  <body class="w3-content" style="max-width:1300px">
+  <body class="w3-content" style="max-width:2500px">
     <!-- First Grid: Sidebar & Main Content -->
     <div class="w3-row">
       <!-- Sidebar with Profile -->
-      <div class="w3-third sidebar w3-container w3-center" style="height:100vh">
+      <div class="w3-third sidebar w3-container w3-center">
         <div class="w3-padding-64">
           <h1 class="mono-font" style="font-size: 2rem;">Davis Brown</h1>
           <img src="assets/headshot.jpeg" class="profile-img w3-margin w3-square" alt="Davis Brown" style="width:70%">
@@ -333,7 +345,7 @@
           </p>
           <ul class="mono-font" style="list-style-type: disc; padding-left: 20px;">
             <li>I've most recently been thinking about a) evals and b) AI control and security. Please do reach out if you'd like to chat!</li>
-            <li><a href="papers.html">Here is some research</a> I think is underrated (last updated 3/7/25).</li>
+            <li><a href="papers.html">Here is some research (last updated Mar '25)</a> (not my own) that I think is worth highlighting.</li>
           </ul>
           <p class="mono-font">
             In my free time, I like to run, ski, and 

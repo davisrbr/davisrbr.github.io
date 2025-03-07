@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Underrated Papers</title>
+<title>Highlighted Papers</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -67,8 +67,8 @@
   }
 
   .versions-container {
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 15px;
+    margin-bottom: 10px;
   }
 
   .paper-item {
@@ -109,20 +109,48 @@
     opacity: 1;
     padding: 10px;
   }
+
+  .nav-links a.active {
+    font-weight: 700; /* Bolder than regular text */
+    color: var(--primary-color); /* Use the darker primary color */
+  }
+
+  /* Add these responsive styles */
+  @media screen and (min-width: 993px) {
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh; /* Full viewport height on desktop */
+      overflow-y: auto; /* In case the sidebar content is longer than viewport */
+      flex: 0 0 20%; /* Make sidebar narrower (25% instead of 33.33%) */
+      width: 20%; /* Explicit width setting */
+    }
+    
+    .w3-twothird {
+      flex: 0 0 80%; /* Adjust main content to fill remaining space */
+      width: 80%; /* Explicit width setting */
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+    .sidebar {
+      height: auto !important;
+      padding-bottom: 1.5rem;
+    }
+  }
 </style>
-<body class="w3-content" style="max-width:1300px">
+<body class="w3-content" style="max-width:2500px">
 
   <div class="w3-row">
-    <div class="w3-third sidebar w3-container w3-center" style="height:550px">
-      <div class="w3-padding-48">
-        <h2 class="mono-font">Underrated Papers</h2>
-        <div class="mono-font">(December 2024 edition)</div>
+    <div class="w3-third sidebar w3-container w3-center">
+      <div class="w3-padding-24">
+        <h4 class="mono-font">Highlighted Papers</h4>
       </div>
       <div class="versions-container">
-        <div class="mono-font">Versions:</div>
+        <div class="mono-font" style="font-size: 1.15rem;">Versions</div>
         <div class="nav-links">
-          <a href="papers.html" class="mono-font">Current (Mar '25)</a>
-          <a href="dec_papers.html" class="mono-font">December '24</a>
+          <a href="papers.html" class="mono-font">March '25</a>
+          <a href="dec_papers.html" class="mono-font active">December '24</a>
         </div>
       </div>
       <div style="margin-top: 30px;"></div>
@@ -133,8 +161,9 @@
     <div class="w3-twothird w3-white w3-container">
       <div class="w3-padding-64 w3-center">
         <div class="w3-left-align w3-padding-small">
+          <h3 class="mono-font">Highlighted Papers: December 2024 edition</h3>
           <p class="mono-font" style="margin-top: 0%; margin-right: 80px; font-size: 1rem;">
-             Collecting some work here that I think is not as well known as it should be (as of 12/6/24) in either academia, government, or the AI safety community. I plan to refresh this list every few months.
+             Collecting research that I think is not as well known as it should be (as of 12/6/24) in either academia, government, or the AI safety community. This list is updated every few months.
           </p>
 
           <p class="mono-font" style="margin-right: 80px">

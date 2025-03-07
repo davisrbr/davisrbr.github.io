@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Underrated Papers</title>
+<title>Highlighted Papers</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -107,21 +107,48 @@
 
   .versions-container {
     margin-top: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+  }
+
+  .nav-links a.active {
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+
+  @media screen and (min-width: 993px) {
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh; /* Full viewport height on desktop */
+      overflow-y: auto; /* In case the sidebar content is longer than viewport */
+      flex: 0 0 20%; /* Make sidebar narrower (25% instead of 33.33%) */
+      width: 20%; /* Explicit width setting */
+    }
+    
+    .w3-twothird {
+      flex: 0 0 80%; /* Adjust main content to fill remaining space */
+      width: 80%; /* Explicit width setting */
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+    .sidebar {
+      height: auto !important;
+      padding-bottom: 1.5rem;
+    }
   }
 </style>
-<body class="w3-content" style="max-width:1300px">
+<body class="w3-content" style="max-width:2500px">
 
   <div class="w3-row">
-    <div class="w3-third sidebar w3-container w3-center" style="height:550px">
-      <div class="w3-padding-48">
-        <h2 class="mono-font">Underrated Papers</h2>
-        <div class="mono-font">(March 2025 edition)</div>
+    <div class="w3-third sidebar w3-container w3-center">
+      <div class="w3-padding-24">
+        <h4 class="mono-font">Highlighted Papers</h4>
       </div>
       <div class="versions-container">
-        <div class="mono-font">Versions:</div>
+        <div class="mono-font" style="font-size: 1.15rem;">Versions</div>
         <div class="nav-links">
-          <a href="papers.html" class="mono-font">Current (Mar '25)</a>
+          <a href="papers.html" class="mono-font active">March '25</a>
           <a href="dec_papers.html" class="mono-font">December '24</a>
         </div>
       </div>
@@ -133,8 +160,9 @@
     <div class="w3-twothird w3-white w3-container">
       <div class="w3-padding-64 w3-center">
         <div class="w3-left-align w3-padding-small">
+          <h3 class="mono-font">Highlighted Papers: March 2025 edition</h3>
           <p class="mono-font" style="margin-top: 0%; margin-right: 80px; font-size: 1rem;">
-             Collecting some work here that I think is not as well known as it should be (as of 03/07/25) in either academia, government, or the AI safety community. I plan to refresh this list every few months.
+             Collecting research that I think is not as well known as it should be (as of 03/07/25) in either academia, government, or the AI safety community. This list is updated every few months.
           </p>
 
           <p class="mono-font" style="margin-right: 80px">
@@ -152,7 +180,7 @@
                 Why this is notable
               </div>
               <div id="desc2" class="paper-description">
-                 Introduces a task for training interpretability/editing methods called <i>component modeling</i>, where a meta-model is trained to predict the effect of ablating individual model components for a single example. It would be great to see serious follow-up work attempting to extend component modeling to larger models. My guess is that despite its promise, this line of work is neglected because it's engineering-heavy and isn't fully de-risked (e.g. not sure how well it will scale, how to improve sampling, etc.)
+                 Introduces a task for training interpretability/editing methods called <i>component modeling</i>, where a meta-model is trained to predict the effect of ablating individual model components for a single example. It would be great to see serious follow-up work attempting to scale component modeling to larger models. My guess is that despite its promise, this line of work is neglected because it's engineering-heavy and isn't fully de-risked (e.g. it's not clear how well it will scale, how to improve sampling, etc.).
               </div>
             </li>
             <li class="paper-item">
@@ -164,13 +192,18 @@
                 Why this is notable
               </div>
               <div id="desc3" class="paper-description">
-                Could also plausibly fall under "Elicitation" category, but I'm including in the science of DL category because of the new scaling laws-- for elicitation / a 'most-effective jailbreak' and the generally high forecastibility of elicitation and behavior. Quite excited to see working building on this, particularly around experiments for distribution shifts at deployment time and for better, less costly, less biased methods around usefulness/correctness and jailbreaking.
+                Could also plausibly fall under "Elicitation" category, but I'm including in the science of DL category because of the new phenomena-- scaling laws, for elicitation / a 'most-effective jailbreak' and the generally high forecastability of elicitation and behavior. Quite excited to see how this line-of-research develops, particularly around experiments for distribution shifts at deployment time and for better, less costly, less biased methods around what they term as usefulness and correctness, as well as jailbreaking.
               </div>
             </li>
-            <li class="paper-item">
+            <!-- <li class="paper-item">
               <a href="https://arxiv.org/abs/2502.17578" style="color:#191970" target="_blank">How Do Large Language Monkeys Get Their Power (Laws)?</a>
               <br/>
               <span style="font-size: 0.9em; color: #666;">Rylan Schaeffer, Joshua Kazdan, John Hughes, Jordan Juravsky, Sara Price, Aengus Lynch, Erik Jones, Robert Kirk, Azalia Mirhoseini, Sanmi Koyejo (2025)</span>
+            </li> -->
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2503.02113" style="color:#191970" target="_blank">Deep Learning is Not So Mysterious or Different</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Andrew Gordon Wilson (2025)</span>
             </li>
           </ul>
 
@@ -180,6 +213,11 @@
             </span>
           </p>
           <ul style="padding-left: 20px;">
+            <li class="paper-item">
+              <a href="https://epoch.ai/data-insights/biology-models-trends" style="color:#191970" target="_blank">Biology AI models are scaling 2-4x per year after rapid growth from 2019-2021</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Pablo Villalobos, David Atanasov (2025)</span>
+            </li>
             <li class="paper-item">
               <a href="https://arxiv.org/abs/2401.00448" style="color:#191970" target="_blank">Beyond Chinchilla-Optimal: Accounting for Inference in Language Model Scaling Laws</a>
               <br/>
@@ -260,7 +298,7 @@
                 Why this is notable
               </div>
               <div id="desc5" class="paper-description">
-                Offers an operationalization of reliability for LLMs (consistently giving correct answers on existing 'saturated' benchmarks), and shows that existing benchmarks are not good at testing for this due to mislabeling and incoherent wording. Provide updated 'platinum' versions of existing benchmarks that can test for this.
+                Offers an operationalization of reliability for LLMs (consistently giving correct answers on existing 'saturated' benchmarks), and shows that existing benchmarks are not good at testing for this due to mislabeling and incoherent wording. Provides updated 'platinum' versions of existing benchmarks that can test for this.
               </div>
             </li>
             <li class="paper-item">
