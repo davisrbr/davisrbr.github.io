@@ -284,9 +284,16 @@
               <span style="font-size: 0.9em; color: #666;">Erik Jones, Anca Dragan, Jacob Steinhardt (2024)</span>
             </li>
             <li class="paper-item">
-              <a href="https://arxiv.org/abs/2405.19550" style="color:#191970" target="_blank">Stress-Testing Capability Elicitation With Password-Locked Models</a>
+              <a href="https://arxiv.org/abs/2407.02551" style="color:#191970" target="_blank">Breach By A Thousand Leaks: Unsafe Information Leakage in `Safe' AI Responses</a>
               <br/>
-              <span style="font-size: 0.9em; color: #666;">Ryan Greenblatt, Fabien Roger, Dmitrii Krasheninnikov, David Krueger (2024)</span>
+              <span style="font-size: 0.9em; color: #666;">David Glukhov, Ziwen Han, Ilia Shumailov, Vardan Papyan, Nicolas Papernot (2024)</span>
+              <br/>
+              <div class="description-toggle" data-target="descglukhov">
+                Why this is notable
+              </div>
+              <div id="descglukhov" class="paper-description">
+                This paper, and the Jones paper above it, point out a fundamental limitation of pointwise defenses: they cannot pick up on distributed harm (eg when a 'harmful' question is decomposed into multiple 'harmless' questions). These lines of work are kind of dual to the 'pointwise-undetectable' attacks on finetuning APIs, <a href="https://arxiv.org/abs/2502.14828" target="_blank">notably the recent one from Xander Davies/UK AISI </a>. This paper/Jones point out that even if an attacker does not have access to the finetuning API extracting diffuse but useful information from a model is still quite easy.
+              </div>
             </li>
             <li class="paper-item">
               <a href="https://joecarlsmith.com/2025/02/19/when-should-we-worry-about-ai-power-seeking" style="color:#191970" target="_blank">When should we worry about AI power-seeking?</a>
