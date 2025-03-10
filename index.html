@@ -46,7 +46,7 @@
         box-shadow: 0 0 10px rgba(0,0,0,0.03);
         border-right: 1px solid var(--border-color);
         position: relative;
-        overflow: hidden;
+        z-index: 1;
       }
       
       .sidebar::before {
@@ -57,7 +57,7 @@
         right: 0;
         bottom: 0;
         background: radial-gradient(circle at 30% 40%, rgba(65, 105, 225, 0.05), transparent 70%);
-        z-index: 0;
+        z-index: -1;
       }
       
       .profile-img {
@@ -267,25 +267,37 @@
       
       @media screen and (min-width: 993px) {
         .w3-row {
-          display: flex;
+          display: flex !important;
+          flex-wrap: nowrap !important;
         }
         
         .sidebar {
-          position: relative;
-          flex: 0 0 25%;
-          min-height: 100vh;
-          align-self: stretch;
+          position: sticky !important;
+          top: 0 !important;
+          height: 100vh !important;
+          overflow-y: auto !important;
+          flex: 0 0 25% !important;
+          max-width: 25% !important;
+          padding-bottom: 0 !important;
         }
         
         .w3-twothird {
-          flex: 0 0 75%;
+          flex: 0 0 75% !important;
+          max-width: 75% !important;
         }
       }
       
       @media screen and (max-width: 992px) {
         .sidebar {
+          position: relative !important;
           height: auto !important;
-          padding-bottom: 2rem;
+          width: 100% !important;
+          max-width: 100% !important;
+          overflow: visible !important;
+        }
+        
+        .w3-row {
+          display: block !important;
         }
       }
 
@@ -309,6 +321,27 @@
       
       #back-to-top:hover {
         opacity: 1;
+      }
+
+      /* Override any conflicting w3.css styles */
+      .w3-content {
+        width: 100% !important;
+        max-width: 2500px !important;
+      }
+
+      /* Desktop - larger screens */
+      @media screen and (min-width: 993px) {
+        .profile-img {
+          width: 65% !important; /* Keep the original percentage for desktop */
+        }
+      }
+
+      /* Mobile and smaller screens */
+      @media screen and (max-width: 992px) {
+        .profile-img {
+          width: 180px !important; /* Fixed width for mobile */
+          max-width: 50% !important; /* Percentage fallback to ensure it's never too large */
+        }
       }
     </style>
   </head>
@@ -349,7 +382,7 @@
               <span class="paper-feed-link">
                 I curate a <a href="papers.html" target="_blank"><i class="fas fa-book-open" style="font-size: 0.9rem; color: var(--accent-color); margin-left: 4px; margin-right: 4px;"></i></a>
               </span> 
-              <a href="papers.html" target="_blank" style="font-weight: 500;">Paper Feed of research</a> that I think deserves more attention.
+              <a href="papers.html" target="_blank" style="font-weight: 500;">Paper Feed of research</a> I've found interesting and think may deserve more attention.
             </li>
           </ul>
           <p class="mono-font">
