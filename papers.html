@@ -43,8 +43,6 @@
     background-color: var(--light-bg);
     box-shadow: 0 0 10px rgba(0,0,0,0.03);
     border-right: 1px solid var(--border-color);
-    position: relative;
-    overflow: hidden;
   }
 
   .highlight {
@@ -115,25 +113,30 @@
     color: var(--primary-color);
   }
 
+  /* Desktop - larger screens */
   @media screen and (min-width: 993px) {
     .sidebar {
       position: sticky;
       top: 0;
-      height: 100vh; /* Full viewport height on desktop */
-      overflow-y: auto; /* In case the sidebar content is longer than viewport */
-      flex: 0 0 20%; /* Make sidebar narrower (25% instead of 33.33%) */
-      width: 20%; /* Explicit width setting */
+      height: 100vh;
+      overflow-y: auto;
+      flex: 0 0 20%;
+      width: 20%;
     }
     
     .w3-twothird {
-      flex: 0 0 80%; /* Adjust main content to fill remaining space */
-      width: 80%; /* Explicit width setting */
+      flex: 0 0 80%;
+      width: 80%;
     }
   }
-  
+
+  /* Mobile and smaller screens */
   @media screen and (max-width: 992px) {
     .sidebar {
-      height: auto !important;
+      position: static;
+      height: auto;
+      width: 100%;
+      overflow: visible;
       padding-bottom: 1.5rem;
     }
   }
@@ -163,10 +166,10 @@
           <h3 class="mono-font">Paper Feed: March 2025</h3>
           <div class="intro-note mono-font" style="margin-top: 1rem; margin-right: 80px; background-color: var(--light-bg); padding: 0.7rem; border-radius: 4px; border-left: 3px solid var(--accent-color);">
             <p style="margin: 0 0 0.5rem 0; font-size: 1rem;">
-              Collecting research that deserves more attention (as of 03/09/25) from academia, government, or the AI safety community.
+              Highlighting research I find interesting and think may deserve more attention (as of 03/10/25) from academia, government, or the AI safety community.
             </p>
             <p style="margin: 0; font-size: 1rem;">
-              I refresh this list every few months.
+              I refresh this list every few months, though updates may occur more frequently.
             </p>
           </div>
 
@@ -257,11 +260,16 @@
               <br/>
               <span style="font-size: 0.9em; color: #666;">Andrew Gordon Wilson (2025)</span>
             </li>
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2501.18812" style="color:#191970" target="_blank">Estimating the Probability of Sampling a Trained Neural Network at Random</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Adam Scherlis, Nora Belrose (2025)</span>
+            </li>
           </ul>
 
           <p class="mono-font" style="margin-right: 80px">
             <span class="highlight">
-              Scaling Laws and Compute
+              Scaling and Compute
             </span>
           </p>
           <ul style="padding-left: 20px;">
@@ -274,7 +282,7 @@
                 Why this is notable
               </div>
               <div id="desc4" class="paper-description">
-                An initial compelling argument for why AIs will likely have increasing returns to scale, over and above that attained by human workers: the ability to trade off between training and inference compute, ie "train once and deploy many." As these authors have previously noted <a href="https://epoch.ai/blog/optimally-allocating-compute-between-inference-and-training">elsewhere</a>, the strength of this effect depends on the actual technique used.
+                A compelling first-pass argument for why AIs will likely have increasing returns to scale, over and above that attained by human workers: the ability to trade off between training and inference compute, ie "train once and deploy many." As these authors have previously noted <a href="https://epoch.ai/blog/optimally-allocating-compute-between-inference-and-training">elsewhere</a>, the strength of this effect depends on the actual technique used.
               </div>
             </li>
             <li class="paper-item">
@@ -299,6 +307,13 @@
               <a href="https://arxiv.org/abs/2406.14595" style="color:#191970" target="_blank">Adversaries Can Misuse Combinations of Safe Models</a>
               <br/>
               <span style="font-size: 0.9em; color: #666;">Erik Jones, Anca Dragan, Jacob Steinhardt (2024)</span>
+              <br/>
+              <div class="description-toggle" data-target="descjones">
+                Why this is notable
+              </div>
+              <div id="descjones" class="paper-description">
+                See description for Glukhov paper below.
+              </div>
             </li>
             <li class="paper-item">
               <a href="https://arxiv.org/abs/2407.02551" style="color:#191970" target="_blank">Breach By A Thousand Leaks: Unsafe Information Leakage in `Safe' AI Responses</a>
@@ -309,7 +324,7 @@
                 Why this is notable
               </div>
               <div id="descglukhov" class="paper-description">
-                This paper, and the Jones paper above it, point out a fundamental limitation of pointwise defenses: they cannot pick up on distributed harm (eg when a 'harmful' question is decomposed into multiple 'harmless' questions). These lines of work are kind of dual to the 'pointwise-undetectable' attacks on finetuning APIs, <a href="https://arxiv.org/abs/2502.14828" target="_blank">notably the recent one from Xander Davies/UK AISI </a>. This paper/Jones point out that even if an attacker does not have access to the finetuning API extracting diffuse but useful information from a model is still quite easy.
+                This paper, and the Jones paper above it, point out a fundamental limitation of pointwise defenses: they cannot pick up on distributed harm (eg when a 'harmful' question is decomposed into multiple 'harmless' questions). These lines of work are kind of dual to the 'pointwise-undetectable' attacks on finetuning APIs, <a href="https://arxiv.org/abs/2502.14828" target="_blank">eg from Xander Davies/UK AISI</a>. This paper and Jones point out that even if an attacker does not have access to the finetuning API extracting diffuse but useful information from a model is still quite easy.
               </div>
             </li>
             <li class="paper-item">
