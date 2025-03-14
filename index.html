@@ -265,7 +265,7 @@
         }
       }
       
-      @media screen and (min-width: 993px) {
+      @media screen and (min-width: 793px) {
         .w3-row {
           display: flex !important;
           flex-wrap: nowrap !important;
@@ -287,7 +287,7 @@
         }
       }
       
-      @media screen and (max-width: 992px) {
+      @media screen and (max-width: 792px) {
         .sidebar {
           position: relative !important;
           height: auto !important;
@@ -298,6 +298,22 @@
         
         .w3-row {
           display: block !important;
+        }
+        
+        .profile-img {
+          width: 180px !important; /* Fixed width for mobile */
+          max-width: 75% !important; /* Increased from 65% to 75% */
+        }
+        
+        /* Reduce bottom padding for sidebar on mobile */
+        .sidebar .w3-padding-64 {
+          padding-top: 32px !important;
+          padding-bottom: 32px !important;
+        }
+        
+        /* Additional spacing adjustments for mobile */
+        .social-links.w3-padding-16 {
+          padding-bottom: 8px !important;
         }
       }
 
@@ -330,17 +346,17 @@
       }
 
       /* Desktop - larger screens */
-      @media screen and (min-width: 993px) {
+      @media screen and (min-width: 793px) {
         .profile-img {
-          width: 65% !important; /* Keep the original percentage for desktop */
+          width: 75% !important; /* Increased from 65% to 75% */
         }
       }
 
       /* Mobile and smaller screens */
-      @media screen and (max-width: 992px) {
+      @media screen and (max-width: 792px) {
         .profile-img {
           width: 180px !important; /* Fixed width for mobile */
-          max-width: 50% !important; /* Percentage fallback to ensure it's never too large */
+          max-width: 75% !important; /* Increased from 65% to 75% */
         }
       }
     </style>
@@ -352,7 +368,7 @@
       <div class="w3-third sidebar w3-container w3-center">
         <div class="w3-padding-64">
           <h1 class="mono-font" style="font-size: 2rem;">Davis Brown</h1>
-          <img src="assets/headshot.jpeg" class="profile-img w3-margin w3-square" alt="Davis Brown" style="width:65%">
+          <img src="assets/Brown_Davis-2.jpg" class="profile-img w3-margin w3-square" alt="Davis Brown" style="width:75%">
           
           <div class="social-links w3-padding-16">
             <a href="https://twitter.com/davisbrownr" target="_blank" title="Twitter">
@@ -377,10 +393,10 @@
             <a href="https://www.pnnl.gov/" target="_blank">Pacific Northwest National Lab</a>.
           </p>
           <ul class="mono-font" style="list-style-type: disc; padding-left: 20px;">
-            <li>I've most recently been thinking about a) evals and b) AI control and security. Please do reach out if you'd like to chat.</li>
-            <li>
+            <li style="margin-bottom: 10px;">I've most recently been thinking about a) evals and b) AI control and security. Please do reach out if you'd like to chat.</li>
+            <li style="margin-bottom: 10px;">
               <span class="paper-feed-link">
-                I curate a <a href="papers.html" target="_blank"><i class="fas fa-book-open" style="font-size: 0.9rem; color: var(--accent-color); margin-left: 4px; margin-right: 4px;"></i></a>
+                <a href="papers.html" target="_blank"><i class="fas fa-book-open" style="font-size: 0.9rem; color: var(--accent-color); margin-left: 4px; margin-right: 4px;"></i></a>
               </span> 
               <a href="papers.html" target="_blank" style="font-weight: 500;">Paper Feed of research</a> I've found interesting and think may deserve more attention.
             </li>
