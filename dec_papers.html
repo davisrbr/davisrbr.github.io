@@ -115,8 +115,16 @@
     color: var(--primary-color); /* Use the darker primary color */
   }
 
+  .intro-note {
+    margin-top: 1rem;
+    background-color: var(--light-bg);
+    padding: 0.7rem;
+    border-radius: 4px;
+    border-left: 3px solid var(--accent-color);
+  }
+
   /* Desktop - larger screens */
-  @media screen and (min-width: 993px) {
+  @media screen and (min-width: 793px) {
     .sidebar {
       position: sticky;
       top: 0;
@@ -130,16 +138,23 @@
       flex: 0 0 80%;
       width: 80%;
     }
+    .intro-note {
+      margin-right: 80px;
+    }
   }
   
   /* Mobile and smaller screens */
-  @media screen and (max-width: 992px) {
+  @media screen and (max-width: 792px) {
     .sidebar {
       position: static;
       height: auto;
       width: 100%;
       overflow: visible;
       padding-bottom: 1.5rem;
+    }
+    .intro-note {
+      margin-right: 0;
+      width: 100%;
     }
   }
 </style>
@@ -166,7 +181,7 @@
       <div class="w3-padding-64 w3-center">
         <div class="w3-left-align w3-padding-small">
           <h3 class="mono-font">Paper Feed: December 2024</h3>
-          <div class="intro-note mono-font" style="margin-top: 1rem; margin-right: 80px; background-color: var(--light-bg); padding: 0.7rem; border-radius: 4px; border-left: 3px solid var(--accent-color);">
+          <div class="intro-note mono-font">
             <p style="margin: 0 0 0.5rem 0; font-size: 1rem;">
               Highlighting research I find interesting and think may deserve more attention (as of 12/06/24) in either academia, government, or the AI safety community.
             </p>
