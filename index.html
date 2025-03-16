@@ -359,6 +359,24 @@
           max-width: 75% !important; /* Increased from 65% to 75% */
         }
       }
+
+      .paper-feed-link {
+        text-decoration: none !important;
+        transition: color 0.3s;
+        border-bottom: 0 solid transparent;
+        display: inline-block;
+      }
+      
+      .paper-feed-link:hover {
+        color: var(--primary-color) !important;
+        text-decoration: underline !important;
+      }
+      
+      /* Override any conflicting styles */
+      .paper-feed-link:hover i {
+        text-decoration: underline !important;
+        color: var(--primary-color) !important;
+      }
     </style>
   </head>
   <body class="w3-content" style="max-width:2500px">
@@ -395,10 +413,9 @@
           <ul class="mono-font" style="list-style-type: disc; padding-left: 20px;">
             <li style="margin-bottom: 10px;">I've most recently been thinking about a) evals and b) AI control and security. Please do reach out if you'd like to chat.</li>
             <li style="margin-bottom: 10px;">
-              <span class="paper-feed-link">
-                <a href="papers.html" target="_blank"><i class="fas fa-book-open" style="font-size: 0.9rem; color: var(--accent-color); margin-left: 4px; margin-right: 4px;"></i></a>
-              </span> 
-              <a href="papers.html" target="_blank" style="font-weight: 500;">Paper feed of research</a> I've found interesting and think may deserve more attention.
+              <a href="papers.html" target="_blank" style="font-weight: 500;" class="paper-feed-link">
+                <i class="fas fa-book-open" style="font-size: 0.9rem; color: var(--accent-color); margin-right: 4px;"></i>
+              Paper feed of research</a> I've found interesting and think may deserve more attention.
             </li>
           </ul>
           <p class="mono-font">
