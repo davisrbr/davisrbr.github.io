@@ -38,7 +38,7 @@
       
       a:hover {
         color: var(--primary-color);
-        text-decoration: underline;
+        text-decoration: none;
       }
       
       .sidebar {
@@ -112,10 +112,6 @@
         padding-bottom: 5px;
         border-bottom: 1px dashed var(--border-color);
         transition: transform 0.2s;
-      }
-      
-      .paper-item:hover {
-        transform: translateX(3px);
       }
       
       .paper-year {
@@ -212,10 +208,12 @@
         opacity: 0.9;
         margin-top: 0;
         display: inline-block;
+        transition: color 0.3s;
       }
       
       .description-toggle:hover {
-        text-decoration: underline;
+        text-decoration: none;
+        color: var(--primary-color);
       }
       
       .paper-description {
@@ -369,7 +367,7 @@
       
       .paper-feed-link:hover {
         color: var(--primary-color) !important;
-        text-decoration: underline !important;
+        text-decoration: none !important;
       }
       
       /* Override any conflicting styles */

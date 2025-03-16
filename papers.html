@@ -36,7 +36,7 @@
   
   a:hover {
     color: var(--primary-color);
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   .sidebar {
@@ -77,10 +77,12 @@
     opacity: 0.9;
     margin-top: 5px;
     display: inline-block;
+    transition: color 0.3s;
   }
   
   .description-toggle:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    color: var(--primary-color);
   }
   
   .paper-description {
@@ -139,6 +141,11 @@
       overflow: visible;
       padding-bottom: 1.5rem;
     }
+  }
+
+  .paper-feed-link:hover {
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
   }
 </style>
 <body class="w3-content" style="max-width:2500px">
@@ -282,7 +289,7 @@
                 Why this is notable
               </div>
               <div id="desc4" class="paper-description">
-                A compelling first-pass argument for why AIs will likely have increasing returns to scale, over and above that attained by human workers: the ability to trade off between training and inference compute, ie "train once and deploy many." As these authors have previously noted <a href="https://epoch.ai/blog/optimally-allocating-compute-between-inference-and-training">elsewhere</a>, the strength of this effect depends on the actual technique used.
+                A compelling first-pass argument for why AIs will likely have increasing returns to scale, over and above that attained by human workers: the ability to trade off between training and inference compute, ie "train once and deploy many." As these authors have previously noted <a href="https://epoch.ai/blog/optimally-allocating-compute-between-inference-and-training">elsewhere</a>, the strength of this effect depends on the actual technique used to trade off between training and inference compute.
               </div>
             </li>
             <li class="paper-item">
