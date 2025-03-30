@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<title>Paper Feed</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-color: #191970;
+    --accent-color: #4169e1;
+    --highlight-color: #fff3b0;
+    --light-bg: #f9f9f9;
+    --border-color: #e0e0e0;
+  }
+  
+  body {
+    font-family: 'Lora', serif;
+    line-height: 1.6;
+    color: #222;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  .mono-font {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 400;
+  }
+  
+  a {
+    color: var(--accent-color);
+    transition: color 0.3s, text-decoration 0.3s;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+
+  .sidebar {
+    background-color: var(--light-bg);
+    box-shadow: 0 0 10px rgba(0,0,0,0.03);
+    border-right: 1px solid var(--border-color);
+  }
+
+  .highlight {
+    background-color: var(--highlight-color);
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 8px 0;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+
+  .nav-links a:hover {
+    transform: translateX(5px);
+  }
+
+  .paper-item {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+  }
+
+  .description-toggle {
+    color: var(--accent-color);
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    opacity: 0.9;
+    margin-top: 5px;
+    display: inline-block;
+    transition: color 0.3s;
+  }
+  
+  .description-toggle:hover {
+    text-decoration: none;
+    color: var(--primary-color);
+  }
+  
+  .paper-description {
+    font-size: 0.95rem;
+    margin-top: 5px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.3s ease-out, opacity 0.3s, padding 0.3s;
+    background-color: rgba(240, 240, 240, 0.3);
+    border-radius: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 1.4;
+  }
+  
+  .paper-description.visible {
+    max-height: 800px;
+    opacity: 1;
+    padding: 10px;
+  }
+
+  .versions-container {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  .nav-links a.active {
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+
+  /* Desktop - larger screens */
+  @media screen and (min-width: 793px) {
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      flex: 0 0 20%;
+      width: 20%;
+    }
+    
+    .w3-twothird {
+      flex: 0 0 80%;
+      width: 80%;
+    }
+  }
+
+  /* Mobile and smaller screens */
+  @media screen and (max-width: 792px) {
+    .sidebar {
+      position: static;
+      height: auto;
+      width: 100%;
+      overflow: visible;
+      padding-bottom: 1.5rem;
+    }
+  }
+
+  .paper-feed-link:hover {
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+  }
+</style>
+<body class="w3-content" style="max-width:2500px">
+
+  <div class="w3-row">
+    <div class="w3-third sidebar w3-container w3-center">
+      <div class="w3-padding-24">
+        <h4 class="mono-font">Paper Feed</h4>
+      </div>
+      <div class="versions-container">
+        <div class="mono-font" style="font-size: 1.15rem;">Versions</div>
+        <div class="nav-links">
+          <a href="april25_papers.html" class="mono-font active">April '25</a>
+          <a href="mar25_papers.html" class="mono-font">March '25</a>
+          <a href="dec24_papers.html" class="mono-font">December '24</a>
+        </div>
+      </div>
+      <div style="margin-top: 30px;"></div>
+      <div class="nav-links">
+        <a href="index.html" class="mono-font">Home</a>
+      </div>
+    </div>
+    <div class="w3-twothird w3-white w3-container">
+      <div class="w3-padding-64 w3-center">
+        <div class="w3-left-align w3-padding-small">
+          <h3 class="mono-font">Paper Feed: April 2025</h3>
+          <div class="intro-note mono-font" style="margin-top: 1rem; margin-right: 80px; background-color: var(--light-bg); padding: 0.7rem; border-radius: 4px; border-left: 3px solid var(--accent-color);">
+            <p style="margin: 0 0 0.5rem 0; font-size: 1rem;">
+              Highlighting research I find interesting and think may deserve more attention (as of 04/15/25) from academia, government, or the AI safety community.
+            </p>
+          </div>
+
+          <p class="mono-font" style="margin-right: 80px">
+            <span class="highlight">
+              Evals
+            </span>
+          </p>
+          <ul style="padding-left: 20px;">
+            <li class="paper-item">
+              <a href="https://openstellarteam.github.io/DeltaBench/" style="color:#191970" target="_blank">DeltaBench: Comprehensive Benchmark for Delta Tuning</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">OpenStellar Team (2025)</span>
+            </li>
+            <li class="paper-item">
+              <a href="https://nicholas.carlini.com/writing/2019/all-adversarial-example-papers.html" style="color:#191970" target="_blank">A Complete List of All (arXiv) Adversarial Example Papers</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Nicholas Carlini (2019-current)</span>
+              <br/>
+              <div class="description-toggle" data-target="desc2">
+                Why this is notable
+              </div>
+              <div id="desc2" class="paper-description">
+                It recently came up in a discussion that this list isn't universally known (!)-- it is great. Definitely worth skimming every week or so if you are in the field. The script that highlights relevant new papers has held up pretty well.              
+            </div>
+            </li>
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2503.19711" style="color:#191970" target="_blank">Writing as a testbed for open ended agents
+            </a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Sian Gooding, Lucia Lopez-Rivilla, Edward Grefenstette (2025)</span>
+            </li>
+          </ul>
+
+          <p class="mono-font" style="margin-right: 80px">
+            <span class="highlight">
+              Science of DL
+            </span>
+          </p>
+          <ul style="padding-left: 20px;">
+            <li class="paper-item">
+              <a href="https://michaelhla.com/blog/pro1.html" style="color:#191970" target="_blank">Pro-1</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Michael Hla (2025)</span>
+            </li>
+          </ul>
+
+          <p class="mono-font" style="margin-right: 80px">
+            <span class="highlight">
+              LLM Reasoning / Compute
+            </span>
+          </p>
+          <ul style="padding-left: 20px;">
+            <li class="paper-item">
+              <a href="https://arborproject.github.io/" style="color:#191970" target="_blank">ARBOR (Analysis of Reasoning Behavior through Open Research)</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Bau Lab (2025)</span>
+            </li>
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2503.21676" style="color:#191970" target="_blank">How do language models learn facts? Dynamics, curricula and hallucinations</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Nicolas Zucchet, Jörg Bornschein, Stephanie Chan, Andrew Lampinen, Razvan Pascanu, Soham De (2025)</span>
+            </li>
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2503.04941" style="color:#191970" target="_blank">GATE: An Integrated Assessment Model for AI Automation</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Ege Erdil, Andrei Potlogea, Tamay Besiroglu, Edu Roldan, Anson Ho, Jaime Sevilla, Matthew Barnett, Matej Vrzla, Robert Sandler (2025)</span>
+            </li>
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2502.06857" style="color:#191970" target="_blank">Gemstones: A Model Suite for Multi-Faceted Scaling Laws</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Sean McLeish, John Kirchenbauer, David Yu Miller, Siddharth Singh, Abhinav Bhatele, Micah Goldblum, Ashwinee Panda, Tom Goldstein</span>
+            </li>
+          </ul>
+
+          <p class="mono-font" style="margin-right: 80px">
+            <span class="highlight">
+              General Safety
+            </span>
+          </p>
+          <ul style="padding-left: 20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2406.04604" style="color:#191970" target="_blank">Learning Task Decomposition to Assist Humans in Competitive Programming</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Jiaxin Wen, Ruiqi Zhong, Pei Ke, Zhihong Shao, Hongning Wang, Minlie Huang (2024)</span>
+            </li>
+            </li>
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2503.01926" style="color:#191970" target="_blank">Unnatural Languages Are Not Bugs but Features for LLMs</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Keyu Duan, Yiran Zhao, Zhili Feng, Jinjie Ni, Tianyu Pang, Qian Liu, Tianle Cai, Longxu Dou, Kenji Kawaguchi, Anirudh Goyal, J. Zico Kolter, Michael Qizhe Shieh</span>
+            </li>
+          </ul>
+
+          <p class="mono-font" style="margin-right: 80px">
+            <span class="highlight">
+              Security/Control
+            </span>
+          </p>
+          <ul style="padding-left: 20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2501.08970" style="color:#191970" target="_blank">Trusted Machine Learning Models Unlock Private Inference for Problems Currently Infeasible with Cryptography</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Ilia Shumailov, Daniel Ramage, Sarah Meiklejohn, Peter Kairouz, Florian Hartmann, Borja Balle, Eugene Bagdasarian (2025)</span>
+            </li>
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2503.11917" style="color:#191970" target="_blank">A Framework for Evaluating Emerging Cyberattack Capabilities of AI</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Mikel Rodriguez, Raluca Ada Popa, Four Flynn, Lihao Liang, Allan Dafoe, Anna Wang (2025)</span>
+            </li>
+            <li class="paper-item">
+              <a href="https://www.unpatched.ai/reports" style="color:#191970" target="_blank">Unpatched AI: Security and Vulnerability Reports</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Unpatched AI (2025)</span>
+          </ul>
+
+          <p class="mono-font" style="margin-right: 80px">
+            <span class="highlight">
+              Miscellaneous
+            </span>
+          </p>
+          <ul style="padding-left: 20px;">
+            <li style="margin-bottom: 10px;">
+              <a href="https://arxiv.org/abs/2407.14452" style="color:#191970" target="_blank">Undermining Mental Proof: How AI Can Make Cooperation Harder by Making Thinking Easier</a>
+              <br/>
+              <span style="font-size: 0.9em; color: #666;">Zachary Wojtowicz, Simon DeDeo (2025)</span>
+              <br/>
+              <div class="description-toggle" data-target="desc1">
+                Why this is notable
+              </div>
+              <div id="desc1" class="paper-description">
+                I found this framework very useful. For example, I think this kind of set-up can mostly explain why (current) workshop paper submissions from AI-scientists is damaging to the field. Namely, the reviewing bar for workshops is quite low and submitting a paper is mainly a signal or proof-of-work. This signal works even if the paper is relatively low quality, becuase there are often individual elements of workshop papers that are still interesting, eg they have an interesting idea even if the execution is not there (or vice versa). At a minimum, it is a proof-of-mental-work that the author is at least thinking coherently about the topic.
+                <br/>
+                <br/>
+                AI scientists undermine this signal by hacking the (not very robust) workshop review process. If this continues, AI submissions will likely make it so that the current signal is drowned out and it is not worth reading any paper in the workshop. And this makes everyone collectively worse off.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Toggle Paper Descriptions
+    document.querySelectorAll('.description-toggle').forEach(toggle => {
+      toggle.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        const descElement = document.getElementById(targetId);
+        
+        descElement.classList.toggle('visible');
+        
+        // Update toggle text
+        if (descElement.classList.contains('visible')) {
+          this.textContent = 'Hide details';
+        } else {
+          this.textContent = 'Why this is notable';
+        }
+      });
+    });
+  </script>
+</body>
+</html> 
