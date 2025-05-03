@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<title>Paper Feed</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-color: #191970;
+    --accent-color: #4169e1;
+    --highlight-color: #fff3b0;
+    --light-bg: #f9f9f9;
+    --border-color: #e0e0e0;
+  }
+  
+  body {
+    font-family: 'Lora', serif;
+    line-height: 1.6;
+    color: #222;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  .mono-font { font-family: 'IBM Plex Mono', monospace; font-weight: 400; }
+  
+  a       { color: var(--accent-color); transition: color .3s, text-decoration .3s; text-decoration: none; }
+  a:hover { color: var(--primary-color); text-decoration: none; }
+  
+  .sidebar {
+    background-color: var(--light-bg);
+    box-shadow: 0 0 10px rgba(0,0,0,.03);
+    border-right: 1px solid var(--border-color);
+  }
+  
+  .highlight {
+    background-color: var(--highlight-color);
+    padding: .2rem .5rem;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+  
+  .nav-links a       { display:block; padding:8px 0; transition:transform .2s; }
+  .nav-links a:hover { transform:translateX(5px); }
+  .nav-links a.active{ font-weight:700; color:var(--primary-color); }
+  
+  .paper-item { margin-bottom:0; padding-bottom:0; }
+  
+  .description-toggle {
+    color:var(--accent-color); cursor:pointer; font-size:.95rem; font-weight:500;
+    opacity:.9; margin-top:5px; display:inline-block; transition:color .3s;
+  }
+  .description-toggle:hover { color:var(--primary-color); text-decoration:none; }
+  
+  .paper-description {
+    font-size:.95rem; margin-top:5px; overflow:hidden; max-height:0; opacity:0;
+    transition:max-height .3s ease-out, opacity .3s, padding .3s;
+    background:rgba(240,240,240,.3); border-radius:3px;
+    padding-left:5px; padding-right:5px; line-height:1.4;
+  }
+  .paper-description.visible { max-height:800px; opacity:1; padding:10px; }
+  
+  .versions-container { margin-top:15px; margin-bottom:10px; }
+  
+  /* Desktop */
+  @media screen and (min-width:793px){
+    .sidebar       { position:sticky; top:0; height:100vh; overflow-y:auto; flex:0 0 20%; width:20%; }
+    .w3-twothird   { flex:0 0 80%; width:80%; }
+  }
+  /* Mobile */
+  @media screen and (max-width:792px){
+    .sidebar{ position:static; height:auto; width:100%; overflow:visible; padding-bottom:1.5rem; }
+  }
+</style>
+
+<body class="w3-content" style="max-width:2500px">
+
+  <div class="w3-row">
+    <div class="w3-third sidebar w3-container w3-center">
+      <div class="w3-padding-24"><h4 class="mono-font">Paper Feed</h4></div>
+
+      <div class="versions-container">
+        <div class="mono-font" style="font-size:1.15rem;">Versions</div>
+        <div class="nav-links">
+          <a href="may25_papers.html"   class="mono-font active">May '25</a>
+          <a href="april25_papers.html" class="mono-font">April '25</a>
+          <a href="mar25_papers.html"   class="mono-font">March '25</a>
+          <a href="dec24_papers.html"   class="mono-font">December '24</a>
+        </div>
+      </div>
+
+      <div style="margin-top:30px;"></div>
+      <div class="nav-links"><a href="index.html" class="mono-font">Home</a></div>
+    </div>
+
+    <div class="w3-twothird w3-white w3-container">
+      <div class="w3-padding-64 w3-center">
+        <div class="w3-left-align w3-padding-small">
+          <h3 class="mono-font">Paper Feed: May 2025</h3>
+
+          <div class="intro-note mono-font" style="margin-top:1rem;margin-right:80px;background:var(--light-bg);padding:.7rem;border-radius:4px;border-left:3px solid var(--accent-color);">
+            <p style="margin:0 0 .5rem 0;font-size:1rem;">
+              Highlighting research I find interesting and think may deserve more attention (as of&nbsp;05/03/25) from academia, government, or the AI-safety community.
+            </p>
+          </div>
+
+          <!-- =====================  SCIENCE / INTERP  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Science of DL / Interpretability</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2504.07096" target="_blank" style="color:#191970">
+                OLMoTrace: Tracing Language Model Outputs Back to Trillions of Training Tokens
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Jiacheng Liu, Taylor Blanton, Yanai Elazar, […], Jesse Dodge (2025)</span>
+            </li>
+
+            <!-- <li class="paper-item">
+              <a href="https://arxiv.org/abs/2412.08686" target="_blank" style="color:#191970">
+                LatentQA: Teaching LLMs to Decode Activations Into Natural Language
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Alexander Pan, Lijie Chen, Jacob Steinhardt (2024)</span>
+            </li> -->
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2402.13137" target="_blank" style="color:#191970">
+                The Hidden Space of Transformer Language Adapters
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Jesujoba O. Alabi, […], Mor Geva (2024)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="hhttps://arxiv.org/abs/2503.10894"
+                 target="_blank" style="color:#191970">
+                HyperDAS: Towards Automating Mechanistic Interpretability with Geiger Hypernetworks
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Jiuding Sun, Jing Huang, […], Atticus Geiger (2025)</span>
+            </li>
+            <li class="paper-item">
+              <a href="https://openreview.net/forum?id=cADpvQgnqg"
+                 target="_blank" style="color:#191970">
+                Foundation Models Secretly Understand Neural-Network Weights: Enhancing Hypernetworks with FMs
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Jeffrey Gu, Serena Yeung-Levy (2025)</span>
+            </li>
+
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2504.07389" target="_blank" style="color:#191970">
+                Task-Circuit Quantization: Leveraging Knowledge Localization and Interpretability for Compression
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Kevin Sun, Shibo Li, Hanqi Xiao, Yi-Lin Sung, Elias Stengel-Eskin, Mohit Bansal (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2312.08793" target="_blank" style="color:#191970">
+                Forbidden Facts: An Investigation of Competing Objectives in Llama-2
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Tony T. Wang, Miles Wang, Kaivalya Hariharan, Nir Shavit (2023)</span>
+            </li>
+          </ul>
+          
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Evals</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://transluce.org/introducing-docent" target="_blank" style="color:#191970">
+                Introducing Docent
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Transluce (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2410.12851" target="_blank" style="color:#191970">
+                VIBECHECK: Discover &amp; Quantify Qualitative Differences in Large Language Models
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Lisa Dunlap, Krishna Mandal, […], Joseph E Gonzalez (2024)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2502.17541" target="_blank" style="color:#191970">
+                Dataset Featurization: Uncovering Natural Language Features through Unsupervised Data Reconstruction
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Chiyuan Zhang, Iris Xu, […], Jacob Andreas (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2503.08688" target="_blank" style="color:#191970">
+                Randomness, Not Representation: The Unreliability of Evaluating Cultural Alignment in LLMs
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Ariba Khan, Stephen Casper, Dylan Hadfield-Menell (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://openai.com/index/expanding-on-sycophancy/" target="_blank" style="color:#191970">
+                Expanding on Sycophancy
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">OpenAI (2025)</span>
+            </li>
+
+          </ul>  
+
+          <p class="mono-font" style="margin-right:80px">
+            <span class="highlight">Compute / Scaling / Reasoning</span>
+          </p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://www.alignmentforum.org/posts/v7LtZx6Qk5e9s7zj3/what-s-going-on-with-ai-progress-and-trends-as-of-5-2025?curius=628"
+                 target="_blank" style="color:#191970">
+                What's going on with AI progress and trends as of 5/2025?
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Ryan Greenblatt (2025)</span>
+              <br/>
+
+              <div class="description-toggle" data-target="descProgressComment">
+                Why this is notable
+              </div>
+              <div id="descProgressComment" class="paper-description">
+                Argues that the progress in algorithmic progress is more like 4.5x as opposed to 3x, which seems true-- performance gains from RL/etc don't seem well-reflected in the loss? See also this
+                <a href="https://www.alignmentforum.org/posts/XDF6ovePBJf6hsxGj/?commentId=4arc3J2Z3G68rmrpi" target="_blank" style="color:#191970;"> Alignment Forum comment</a>.
+              </div>
+            </li>
+            <li class="paper-item">
+              <a href="https://open.substack.com/pub/epochai/p/the-case-for-multi-decade-ai-timelines" target="_blank" style="color:#191970">
+                The Case for Multi-Decade AI Timelines
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Ege Erdil (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://vladfeinberg.com/2025/04/24/gemini-flash-pretraining.html"
+                 target="_blank" style="color:#191970">
+                Gemini Flash Pre-training
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Vlad Feinberg (2025)</span>
+              <br/>
+              <div class="description-toggle" data-target="descGeminiFlash">
+                Why this is notable
+              </div>
+              <div id="descGeminiFlash" class="paper-description">
+                "You wouldn't know it from the paper/its appendices, but what happened is that the Funsearch team tried to use larger and smaller models in the middle of the loop; they had best results with a mid-sized candidate (that I trained with Emanuel Taropa and Rohan Anil). I always found this to be an interesting tidbit: in generative search you need to strike the right balance of proposal frequency with evaluation. Formalize. Maybe even apply it to the verified RL setting."
+              </div>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://ninapanickssery.substack.com/p/an-llm-codeforces-champion-is-not" target="_blank" style="color:#191970">
+                An LLM CodeForces Champion Is Not Taking Your SWE Job (yet)
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Nina Panickssery (2025)</span>
+            </li>
+
+            <!-- <li class="paper-item">
+              <a href="https://arxiv.org/abs/2410.11840" target="_blank" style="color:#191970">
+                A Hitchhiker's Guide to Scaling-Law Estimation
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Leshem Choshen, Yang Zhang, Jacob Andreas (2024)</span>
+            </li> -->
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2503.04377" style="color:#191970">
+                How Can Representation Dimension Dominate Structurally Pruned LLMs?
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Mingxue Xu, Lisa Alazraki, Danilo P. Mandic (2025)</span>
+            </li>
+          </ul> 
+
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">General Safety</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://alignment.anthropic.com/2025/bumpers/" target="_blank" style="color:#191970">
+                Putting Up Bumpers
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Sam Bowman (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2504.05259" target="_blank" style="color:#191970">
+                How to Evaluate Control Measures for LLM Agents? A Trajectory from Today to Super-Intelligence
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Tomek Korbak, Mikita Balesni, Buck Shlegeris, Geoffrey Irving (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2410.13722" target="_blank" style="color:#191970">
+                Persistent Pre-Training Poisoning of LLMs
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Yiming Zhang, Javier Rando, […], Florian Tramèr, Daphne Ippolito (2024)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2406.02619" target="_blank" style="color:#191970">
+                Unelicitable Backdoors in Language Models via Cryptographic Transformer Circuits
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Andis Draguns, Andrew Gritsevskiy, […], Christian Schroeder de Witt (2024)</span>
+            </li>
+
+          </ul>
+
+          <!-- =====================  AI GOVERNANCE  ===================== -->
+          <p class="mono-font" style="margin-right:80px">
+            <span class="highlight">AI Governance</span>
+          </p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2303.11341"
+                 target="_blank" style="color:#191970">
+                What Does It Take to Catch a Chinchilla? Verifying Rules on Large-Scale NN Training via Compute Monitoring
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Yonadav Shavit (2023)</span>
+            </li>
+            <li class="paper-item">
+              <a href="https://saif.org/research/bare-minimum-mitigations-for-autonomous-ai-development"
+                 target="_blank" style="color:#191970">
+                Bare Minimum Mitigations for Autonomous AI Development
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">
+                Joshua Clymer, Isabella Duan, […] Jingren Wang, Min Yang, Xianyuan Zhan (2025)
+              </span>
+            </li>
+          </ul>
+
+        </div><!-- /w3-left-align -->
+      </div><!-- /w3-padding-64 -->
+    </div><!-- /w3-twothird -->
+  </div><!-- /w3-row -->
+
+
+  <!-- ------------------  JS: Toggle Descriptions  ------------------ -->
+  <script>
+    document.querySelectorAll('.description-toggle').forEach(t => {
+      t.addEventListener('click', function(){
+        const id   = this.getAttribute('data-target');
+        const desc = document.getElementById(id);
+        desc.classList.toggle('visible');
+        this.textContent = desc.classList.contains('visible') ? 'Hide details'
+                                                              : 'Why this is notable';
+      });
+    });
+  </script>
+</body>
+</html> 
