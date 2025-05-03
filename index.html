@@ -375,10 +375,35 @@
       }
       @media screen and (min-width: 1000px) {
         body.w3-content {
-          width: 90% !important;
+          width: auto !important;
           max-width: 1300px !important;
-          margin-left: auto !important;
+          margin-left: 0 !important;
           margin-right: auto !important;
+        }
+      }
+
+      @media screen and (min-width: 1000px) {
+        .main-content {
+          max-width: 100px;
+          margin-left:  auto;
+          margin-right: auto;
+        }
+      }
+
+      @media screen and (min-width: 1000px) {
+        .w3-row {
+          justify-content: center;
+        }
+
+        .w3-twothird {
+          flex: 0 0 800px !important;
+          max-width: 800px !important;
+        }
+
+        .main-content {
+          width: 100%;
+          max-width: 800px;
+          margin: 0 auto;
         }
       }
     </style>
@@ -415,18 +440,18 @@
             <a href="https://www.pnnl.gov/" target="_blank">Pacific Northwest National Lab</a>.
           </p>
           
-          <p class="mono-font">I've most recently been thinking about a) evals and b) AI security and control. See below for my current working papers, and please do reach out if you'd like to chat.</p>
+          <p class="mono-font">I've most recently been thinking about a) evals and b) AI security. See below for my current working papers, and please do reach out if you'd like to chat.</p>
           
           <p class="mono-font highlight-box">
             <a href="april25_papers.html" target="_blank" class="paper-feed-link">
               <i class="fas fa-book-open" style="font-size: 0.9rem; color: var(--accent-color); margin-right: 4px;"></i>
-              A paper feed of research</a> I think may deserve more attention.
+              A paper feed of research</a> I think deserves more attention.
           </p>
           
-          <p class="mono-font">
+          <!-- <p class="mono-font">
             In my free time, I like to run, ski, and 
             <a href="https://www.goodreads.com/user/show/98635701-davis-brown" target="_blank">(re-)read</a> Robert Caro's biographies.
-          </p>
+          </p> -->
         </div>
         
         <!-- Recent Papers Section -->
