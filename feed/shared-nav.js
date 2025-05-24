@@ -7,7 +7,7 @@ const PAPER_FEED_VERSIONS = [
   { id: 'dec24', label: 'December \'24', file: 'dec24_papers.html' }
 ];
 
-const LATEST_VERSION = PAPER_FEED_VERSIONS[0];
+const LATEST_VERSION = PAPER_FEED_VERSIONS.find(version => !version.label.includes('🚧'));
 
 function initializeNavigation(currentPageId) {
   // Generate versions navigation
