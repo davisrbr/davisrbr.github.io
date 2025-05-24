@@ -83,16 +83,13 @@
 
       <div class="versions-container">
         <div class="mono-font" style="font-size:1.15rem;">Versions</div>
-        <div class="nav-links">
-          <a href="may25_papers.html"   class="mono-font active">May '25</a>
-          <a href="april25_papers.html" class="mono-font">April '25</a>
-          <a href="mar25_papers.html"   class="mono-font">March '25</a>
-          <a href="dec24_papers.html"   class="mono-font">December '24</a>
+        <div class="nav-links versions-nav-links">
+          <!-- Navigation will be populated by JavaScript -->
         </div>
       </div>
 
       <div style="margin-top:30px;"></div>
-      <div class="nav-links"><a href="index.html" class="mono-font">Home</a></div>
+      <div class="nav-links"><a href="../index.html" class="mono-font">Home</a></div>
     </div>
 
     <div class="w3-twothird w3-white w3-container">
@@ -102,7 +99,10 @@
 
           <div class="intro-note mono-font" style="margin-top:1rem;margin-right:80px;background:var(--light-bg);padding:.7rem;border-radius:4px;border-left:3px solid var(--accent-color);">
             <p style="margin:0 0 .5rem 0;font-size:1rem;">
-              Highlighting research I find interesting and think may deserve more attention (as of&nbsp;05/03/25) from academia, government, or the AI-safety community.
+              Highlighting research I find interesting and think may deserve more attention (as of 05/03/25) from academia, government, or the AI safety community. 
+              <br/>
+              <br/>
+              For the latest edition, see <a href="papers.html">here</a>.
             </p>
           </div>
 
@@ -334,7 +334,10 @@
 
 
   <!-- ------------------  JS: Toggle Descriptions  ------------------ -->
+  <script src="shared-nav.js"></script>
   <script>
+    initializeNavigation('may25');
+    
     document.querySelectorAll('.description-toggle').forEach(t => {
       t.addEventListener('click', function(){
         const id   = this.getAttribute('data-target');

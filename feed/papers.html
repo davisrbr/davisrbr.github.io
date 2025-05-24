@@ -3,8 +3,8 @@
 <head>
   <title>Paper Feed Redirect</title>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=may25_papers.html">
-  <link rel="canonical" href="may25_papers.html" />
+  <meta http-equiv="refresh" content="0; url=#">
+  <link rel="canonical" href="#" />
   <style>
     body {
       font-family: 'IBM Plex Mono', monospace, sans-serif;
@@ -27,11 +27,16 @@
 <body>
   <div class="redirect-message">
     <p>Redirecting to the latest Paper Feed...</p>
-    <p>If you are not redirected automatically, please <a href="may25_papers.html">click here</a>.</p>
+    <p>If you are not redirected automatically, please <a href="#" id="manual-redirect">click here</a>.</p>
   </div>
 
+  <script src="shared-nav.js"></script>
   <script>
-    window.location.href = "may25_papers.html";
+    // Update redirect URLs and redirect immediately
+    document.querySelector('meta[http-equiv="refresh"]').content = `0; url=${LATEST_VERSION.file}`;
+    document.querySelector('link[rel="canonical"]').href = LATEST_VERSION.file;
+    document.getElementById('manual-redirect').href = LATEST_VERSION.file;
+    redirectToLatest();
   </script>
 </body>
 </html> 

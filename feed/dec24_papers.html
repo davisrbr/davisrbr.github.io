@@ -167,16 +167,13 @@
       </div>
       <div class="versions-container">
         <div class="mono-font" style="font-size: 1.15rem;">Versions</div>
-        <div class="nav-links">
-          <a href="may25_papers.html" class="mono-font">May '25</a>
-          <a href="april25_papers.html" class="mono-font">April '25</a>
-          <a href="mar25_papers.html" class="mono-font">March '25</a>
-          <a href="dec24_papers.html" class="mono-font active">December '24</a>
+        <div class="nav-links versions-nav-links">
+          <!-- Navigation will be populated by JavaScript -->
         </div>
       </div>
       <div style="margin-top: 30px;"></div>
       <div class="nav-links">
-        <a href="index.html" class="mono-font">Home</a>
+        <a href="../index.html" class="mono-font">Home</a>
       </div>
     </div>
     <div class="w3-twothird w3-white w3-container">
@@ -185,10 +182,10 @@
           <h3 class="mono-font">Paper Feed: December 2024</h3>
           <div class="intro-note mono-font">
             <p style="margin: 0 0 0.5rem 0; font-size: 1rem;">
-              Highlighting research I find interesting and think may deserve more attention (as of 12/06/24) in either academia, government, or the AI safety community.
-            </p>
-            <p style="margin: 0; font-size: 1rem;">
-              For the latest edition, see <a href="april25_papers.html">here</a>.
+              Highlighting research I find interesting and think may deserve more attention (as of 12/06/24) in either academia, government, or the AI safety community. 
+              <br/>
+              <br/>
+              For the latest edition, see <a href="papers.html">here</a>.
             </p>
           </div>
 
@@ -366,8 +363,10 @@
   </div>
 
   <!-- JavaScript -->
+  <script src="shared-nav.js"></script>
   <script>
-    // Toggle Paper Descriptions
+    initializeNavigation('dec24');
+    
     document.querySelectorAll('.description-toggle').forEach(toggle => {
       toggle.addEventListener('click', function() {
         const targetId = this.getAttribute('data-target');
@@ -375,7 +374,6 @@
         
         descElement.classList.toggle('visible');
         
-        // Update toggle text
         if (descElement.classList.contains('visible')) {
           this.textContent = 'Hide details';
         } else {

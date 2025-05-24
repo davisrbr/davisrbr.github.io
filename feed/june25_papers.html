@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<title>Paper Feed</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-color: #191970;
+    --accent-color: #4169e1;
+    --highlight-color: #fff3b0;
+    --light-bg: #f9f9f9;
+    --border-color: #e0e0e0;
+  }
+  
+  body {
+    font-family: 'Lora', serif;
+    line-height: 1.6;
+    color: #222;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  .mono-font { font-family: 'IBM Plex Mono', monospace; font-weight: 400; }
+  
+  a       { color: var(--accent-color); transition: color .3s, text-decoration .3s; text-decoration: none; }
+  a:hover { color: var(--primary-color); text-decoration: none; }
+  
+  .sidebar {
+    background-color: var(--light-bg);
+    box-shadow: 0 0 10px rgba(0,0,0,.03);
+    border-right: 1px solid var(--border-color);
+  }
+  
+  .highlight {
+    background-color: var(--highlight-color);
+    padding: .2rem .5rem;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+  
+  .nav-links a       { display:block; padding:8px 0; transition:transform .2s; }
+  .nav-links a:hover { transform:translateX(5px); }
+  .nav-links a.active{ font-weight:700; color:var(--primary-color); }
+  
+  .paper-item { margin-bottom:0; padding-bottom:0; }
+  
+  .description-toggle {
+    color:var(--accent-color); cursor:pointer; font-size:.95rem; font-weight:500;
+    opacity:.9; margin-top:5px; display:inline-block; transition:color .3s;
+  }
+  .description-toggle:hover { color:var(--primary-color); text-decoration:none; }
+  
+  .paper-description {
+    font-size:.95rem; margin-top:5px; overflow:hidden; max-height:0; opacity:0;
+    transition:max-height .3s ease-out, opacity .3s, padding .3s;
+    background:rgba(240,240,240,.3); border-radius:3px;
+    padding-left:5px; padding-right:5px; line-height:1.4;
+  }
+  .paper-description.visible { max-height:800px; opacity:1; padding:10px; }
+  
+  .versions-container { margin-top:15px; margin-bottom:10px; }
+  
+  /* Desktop */
+  @media screen and (min-width:793px){
+    .sidebar       { position:sticky; top:0; height:100vh; overflow-y:auto; flex:0 0 20%; width:20%; }
+    .w3-twothird   { flex:0 0 80%; width:80%; }
+  }
+  /* Mobile */
+  @media screen and (max-width:792px){
+    .sidebar{ position:static; height:auto; width:100%; overflow:visible; padding-bottom:1.5rem; }
+  }
+</style>
+
+<body class="w3-content" style="max-width:2500px">
+
+  <div class="w3-row">
+    <div class="w3-third sidebar w3-container w3-center">
+      <div class="w3-padding-24"><h4 class="mono-font">Paper Feed</h4></div>
+
+      <div class="versions-container">
+        <div class="mono-font" style="font-size:1.15rem;">Versions</div>
+        <div class="nav-links versions-nav-links">
+          <!-- Navigation will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <div style="margin-top:30px;"></div>
+      <div class="nav-links"><a href="../index.html" class="mono-font">Home</a></div>
+    </div>
+
+    <div class="w3-twothird w3-white w3-container">
+      <div class="w3-padding-64 w3-center">
+        <div class="w3-left-align w3-padding-small">
+          <h3 class="mono-font">🚧 Paper Feed: June 2025</h3>
+
+          <div class="intro-note mono-font" style="margin-top:1rem;margin-right:80px;background:var(--light-bg);padding:.7rem;border-radius:4px;border-left:3px solid var(--accent-color);">
+            <p style="margin:0 0 .5rem 0;font-size:1rem;">
+              Highlighting research I find interesting and think may deserve more attention (June 2025 still under construction) from academia, government, or the AI-safety community.
+            </p>
+          </div>
+
+          <!-- =====================  SCIENCE / INTERP  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Science of DL / Interpretability</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://www.proquest.com/docview/3192012793?sourcetype=Dissertations%20&%20Theses" target="_blank" style="color:#191970">
+                Beyond Gradients: Using Curvature Information for Deep Learning
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Juhan Bae (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2502.01481v2" target="_blank" style="color:#191970">
+                Explaining Context Length Scaling and Bounds for Language Models
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Jingzhe Shi, Qinwei Ma, Hongyi Liu, Hang Zhao, Jeng-Neng Hwang, Serge Belongie, Lei Li (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2505.07184v1" target="_blank" style="color:#191970">
+                Structural Entropy Guided Agent for Detecting and Repairing Knowledge Deficiencies in LLMs
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Yifan Wei, Xiaoyan Yu, Tengfei Pan, Angsheng Li, Li Du (2025)</span>
+            </li>
+          </ul>
+          
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Evals</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2505.15216" target="_blank" style="color:#191970">
+                BountyBench: Dollar Impact of AI Agent Attackers and Defenders on Real-World Cybersecurity Systems
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Andy K. Zhang, Joey Ji, […] Daniel E. Ho, Percy Liang (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.lesswrong.com/posts/Zr37dY5YPRT6s56jY/thomas-kwa-s-shortform?commentId=KaaSfntGEBBgadvrF" target="_blank" style="color:#191970">
+                Cross-domain time horizons
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Thomas Kwa (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www-cdn.anthropic.com/6be99a52cb68eb70eb9572b4cafad13df32ed995.pdf#page=91.73" target="_blank" style="color:#191970">
+                System Card: Claude Opus 4 & Claude Sonnet 4
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Anthropic (2025)</span>
+            </li>
+          </ul>  
+
+          <p class="mono-font" style="margin-right:80px">
+            <span class="highlight">Compute / Scaling / Reasoning</span>
+          </p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://www.lesswrong.com/posts/qhjNejRxbMGQp4wHt/how-fast-can-algorithms-advance-capabilities-or-epoch?commentId=iBixRcJDZnvoEZC2F" target="_blank" style="color:#191970">
+                Response to: How Fast Can Algorithms Advance Capabilities?
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Ryan Greenblatt (2025)</span>
+              <br/>
+              <div class="description-toggle" data-target="descResponse">
+                Why this is notable
+              </div>
+              <div id="descResponse" class="paper-description">
+                This is a response to the original document "How Fast Can Algorithms Advance Capabilities?" by Henry Josephson.
+              </div>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://lilianweng.github.io/posts/2025-05-01-thinking/"
+                 target="_blank" style="color:#191970">
+                Why We Think
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Lilian Weng (2025)</span>
+              <br/>
+              <div class="description-toggle" data-target="descWhyWeThink">
+                Why this is notable
+              </div>
+              <div id="descWhyWeThink" class="paper-description">
+                Log-loss is useful in CoT search because these can be seen as sampling over the posterior from a latent variable model. "The fundamental intent of test-time compute is to adaptively modify the model's output distribution at test time."
+              </div>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2505.10475" target="_blank" style="color:#191970">
+                Parallel Scaling Law for Language Models
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Mouxiang Chen, Binyuan Hui, Zeyu Cui, Jiaxi Yang, Dayiheng Liu, Jianling Sun, Junyang Lin, Zhongxin Liu (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://charlesyang.io/assets/Supercomputing_and_Weather_Forecasting.pdf"
+                 target="_blank" style="color:#191970">
+                The First Compute Arms Race: the Early History of Numerical Weather Prediction
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Charles Yang (2025)</span>
+              <br/>
+              <div class="description-toggle" data-target="descWeatherPrediction">
+                Why this is notable
+              </div>
+              <div id="descWeatherPrediction" class="paper-description">
+                I like this a lot. Would be great to see a compute-centered view here/trying to pull out scaling trends to today.
+              </div>
+            </li>
+          </ul>
+
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">General Safety</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2501.16466" target="_blank" style="color:#191970">
+                On the Feasibility of Using LLMs to Execute Multistage Network Attacks
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Brian Singer, Keane Lucas, Lakshmi Adiga, Meghna Jain, Lujo Bauer, Vyas Sekar (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2505.11449" target="_blank" style="color:#191970">
+                LLMs unlock new paths to monetizing exploits
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Nicholas Carlini, Milad Nasr, Edoardo Debenedetti, Barry Wang, Christopher A. Choquette-Choo, Daphne Ippolito, Florian Tramèr, Matthew Jagielski (2025)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  MISCELLANEOUS  ===================== -->
+          <p class="mono-font" style="margin-right:80px">
+            <span class="highlight">Miscellaneous</span>
+          </p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://thebsdetector.substack.com/p/ai-materials-and-fraud-oh-my" target="_blank" style="color:#191970">
+                AI, Materials, and Fraud, Oh My!
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Ben Shindel (2025)</span>
+            </li>
+          </ul>
+
+        </div><!-- /w3-left-align -->
+      </div><!-- /w3-padding-64 -->
+    </div><!-- /w3-twothird -->
+  </div><!-- /w3-row -->
+
+  <script src="shared-nav.js"></script>
+  <script>
+    // Initialize navigation for this page
+    initializeNavigation('june25');
+    
+    // Toggle descriptions functionality
+    document.querySelectorAll('.description-toggle').forEach(t => {
+      t.addEventListener('click', function(){
+        const id   = this.getAttribute('data-target');
+        const desc = document.getElementById(id);
+        desc.classList.toggle('visible');
+        this.textContent = desc.classList.contains('visible') ? 'Hide details'
+                                                              : 'Why this is notable';
+      });
+    });
+  </script>
+</body>
+</html> 

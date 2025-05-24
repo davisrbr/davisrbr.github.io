@@ -152,34 +152,30 @@
 
   <div class="w3-row">
     <div class="w3-third sidebar w3-container w3-center">
-      <div class="w3-padding-24">
-        <h4 class="mono-font">Paper Feed</h4>
-      </div>
+      <div class="w3-padding-24"><h4 class="mono-font">Paper Feed</h4></div>
+
       <div class="versions-container">
-        <div class="mono-font" style="font-size: 1.15rem;">Versions</div>
-        <div class="nav-links">
-          <a href="may25_papers.html" class="mono-font">May '25</a>
-          <a href="april25_papers.html" class="mono-font">April '25</a>
-          <a href="mar25_papers.html" class="mono-font active">March '25</a>
-          <a href="dec24_papers.html" class="mono-font">December '24</a>
+        <div class="mono-font" style="font-size:1.15rem;">Versions</div>
+        <div class="nav-links versions-nav-links">
+          <!-- Navigation will be populated by JavaScript -->
         </div>
       </div>
-      <div style="margin-top: 30px;"></div>
-      <div class="nav-links">
-        <a href="index.html" class="mono-font">Home</a>
-      </div>
+
+      <div style="margin-top:30px;"></div>
+      <div class="nav-links"><a href="../index.html" class="mono-font">Home</a></div>
     </div>
     <div class="w3-twothird w3-white w3-container">
-      <div class="w3-padding-64 w3-center">
+      <div class="w3-padding-64">
         <div class="w3-left-align w3-padding-small">
           <h3 class="mono-font">Paper Feed: March 2025</h3>
           <div class="intro-note mono-font" style="margin-top: 1rem; margin-right: 80px; background-color: var(--light-bg); padding: 0.7rem; border-radius: 4px; border-left: 3px solid var(--accent-color);">
             <p style="margin: 0 0 0.5rem 0; font-size: 1rem;">
-              Highlighting research I find interesting and think may deserve more attention (as of 03/10/25) from academia, government, or the AI safety community.
+              Highlighting research I find interesting and think may deserve more attention (as of 03/10/25) from academia, government, or the AI safety community. 
+              <br/>
+              <br/>
+              For the latest edition, see <a href="papers.html">here</a>.
             </p>
-            <p style="margin: 0; font-size: 1rem;">
-              For the latest edition, see <a href="april25_papers.html">here</a>.
-            </p>
+          </div>
           </div>
 
           <p class="mono-font" style="margin-right: 80px">
@@ -397,21 +393,19 @@
   </div>
 
   <!-- JavaScript -->
+  <script src="shared-nav.js"></script>
   <script>
-    // Toggle Paper Descriptions
-    document.querySelectorAll('.description-toggle').forEach(toggle => {
-      toggle.addEventListener('click', function() {
-        const targetId = this.getAttribute('data-target');
-        const descElement = document.getElementById(targetId);
-        
-        descElement.classList.toggle('visible');
-        
-        // Update toggle text
-        if (descElement.classList.contains('visible')) {
-          this.textContent = 'Hide details';
-        } else {
-          this.textContent = 'Why this is notable';
-        }
+    // Initialize navigation for this page
+    initializeNavigation('mar25');
+    
+    // Toggle descriptions functionality
+    document.querySelectorAll('.description-toggle').forEach(t => {
+      t.addEventListener('click', function(){
+        const id   = this.getAttribute('data-target');
+        const desc = document.getElementById(id);
+        desc.classList.toggle('visible');
+        this.textContent = desc.classList.contains('visible') ? 'Hide details'
+                                                              : 'Why this is notable';
       });
     });
   </script>
