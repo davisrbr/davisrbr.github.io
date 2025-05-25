@@ -31,12 +31,25 @@
   </div>
 
   <script src="shared-nav.js"></script>
+  <script src="js/feed-manager.js"></script>
   <script>
-    // Update redirect URLs and redirect immediately
-    document.querySelector('meta[http-equiv="refresh"]').content = `0; url=${LATEST_VERSION.file}`;
-    document.querySelector('link[rel="canonical"]').href = LATEST_VERSION.file;
-    document.getElementById('manual-redirect').href = LATEST_VERSION.file;
-    redirectToLatest();
+    // Initialize feed manager and redirect
+    feedManager.init().then(() => {
+      // Update redirect URLs using new system
+      const latestVersion = feedManager.getLatestVersion();
+      if (latestVersion) {
+        document.querySelector('meta[http-equiv="refresh"]').content = `0; url=${latestVersion.file}`;
+        document.querySelector('link[rel="canonical"]').href = latestVersion.file;
+        document.getElementById('manual-redirect').href = latestVersion.file;
+      }
+      feedManager.redirectToLatest();
+    }).catch(() => {
+      // Fallback to legacy system
+      document.querySelector('meta[http-equiv="refresh"]').content = `0; url=${LATEST_VERSION.file}`;
+      document.querySelector('link[rel="canonical"]').href = LATEST_VERSION.file;
+      document.getElementById('manual-redirect').href = LATEST_VERSION.file;
+      redirectToLatest();
+    });
   </script>
 </body>
 </html> 

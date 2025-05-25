@@ -1,0 +1,40 @@
+/* Root Variables */
+:root {
+  --primary-color: #191970;
+  --accent-color: #4169e1;
+  --highlight-color: #fff3b0;
+  --light-bg: #f9f9f9;
+  --border-color: #e0e0e0;
+}
+
+/* Base Styles */
+body {
+  font-family: 'Lora', serif;
+  line-height: 1.6;
+  color: #222;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.mono-font {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+a {
+  color: var(--accent-color);
+  transition: color 0.3s, text-decoration 0.3s;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+/* Override any conflicting w3.css styles */
+.w3-content {
+  width: 100% !important;
+  max-width: 2500px !important;
+}

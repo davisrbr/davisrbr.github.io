@@ -1,0 +1,37 @@
+{
+  "title": "Paper Feed",
+  "description": "Davis Brown's curated feed of under-appreciated research papers",
+  "author": "Davis Brown",
+  "versions": [
+    {
+      "id": "june25",
+      "label": "🚧 June '25",
+      "file": "june25_papers.html",
+      "status": "wip"
+    },
+    {
+      "id": "may25",
+      "label": "May '25",
+      "file": "may25_papers.html",
+      "status": "published"
+    },
+    {
+      "id": "april25",
+      "label": "April '25",
+      "file": "april25_papers.html",
+      "status": "published"
+    },
+    {
+      "id": "mar25",
+      "label": "March '25",
+      "file": "mar25_papers.html",
+      "status": "published"
+    },
+    {
+      "id": "dec24",
+      "label": "December '24",
+      "file": "dec24_papers.html",
+      "status": "published"
+    }
+  ]
+}

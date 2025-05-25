@@ -1,0 +1,153 @@
+/* Paper List Styles */
+.paper-list {
+  margin-top: 15px;
+}
+
+.paper-item {
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px dashed var(--border-color);
+  transition: transform 0.2s;
+}
+
+.paper-year {
+  font-size: 0.9rem;
+  color: #444;
+  vertical-align: top;
+  padding-right: 10px;
+  font-weight: 600;
+  width: 70px;
+}
+
+.paper-content {
+  padding-left: 5px;
+}
+
+.paper-title {
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 2px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.paper-authors {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 2px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Toggle Links */
+.toggle-link, .toggle-link-inline {
+  font-family: 'Cutive Mono', monospace;
+  color: var(--accent-color);
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font-size: 1.05rem;
+}
+
+.toggle-link {
+  padding: 5px 0;
+}
+
+.toggle-link-inline {
+  vertical-align: middle;
+  font-size: 1rem;
+}
+
+.toggle-link::after, .toggle-link-inline::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--accent-color);
+  transform: scaleX(0.3);
+  transform-origin: bottom left;
+  transition: transform 0.3s;
+}
+
+.toggle-link:hover::after, .toggle-link-inline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Older Works Section */
+.older-works {
+  transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.older-works.visible {
+  max-height: 800px;
+  opacity: 1;
+}
+
+/* Paper Description */
+.description-toggle {
+  color: var(--accent-color);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-top: 0;
+  display: inline-block;
+  transition: color 0.3s;
+}
+
+.description-toggle:hover {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.paper-description {
+  font-size: 0.95rem;
+  margin-top: 5px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease-out, opacity 0.3s, padding 0.3s;
+  background-color: rgba(240, 240, 240, 0.3);
+  border-radius: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  line-height: 1.4;
+}
+
+.paper-description.visible {
+  max-height: 800px;
+  opacity: 1;
+  padding: 10px;
+}
+
+.paper-description img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.description-content {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .description-content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .description-content img {
+    max-width: 200px;
+    margin-right: 15px;
+    margin-top: 0;
+  }
+}

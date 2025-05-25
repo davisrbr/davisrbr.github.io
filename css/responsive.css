@@ -1,0 +1,105 @@
+/* Desktop Layout */
+@media screen and (min-width: 793px) {
+  .w3-row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+  }
+  
+  .sidebar {
+    position: sticky !important;
+    top: 0 !important;
+    height: 100vh !important;
+    overflow-y: auto !important;
+    flex: 0 0 25% !important;
+    max-width: 25% !important;
+    min-width: 300px !important;
+    padding-bottom: 0 !important;
+  }
+  
+  .w3-twothird {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+}
+
+/* Mobile Layout */
+@media screen and (max-width: 792px) {
+  .sidebar {
+    position: relative !important;
+    height: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+  
+  .w3-row {
+    display: block !important;
+  }
+  
+  .profile-img {
+    width: 180px !important; 
+    max-width: 75% !important; 
+  }
+  
+  /* Reduce bottom padding for sidebar on mobile */
+  .sidebar .w3-padding-64 {
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+  }
+  
+  /* Additional spacing adjustments for mobile */
+  .social-links.w3-padding-16 {
+    padding-bottom: 8px !important;
+  }
+}
+
+/* Profile Image Sizing */
+/* Desktop - larger screens */
+@media screen and (min-width: 793px) {
+  .profile-img {
+    width: 75% !important; 
+    max-width: 250px !important; 
+    min-width: 200px !important;
+  }
+}
+
+/* Mobile and smaller screens */
+@media screen and (max-width: 792px) {
+  .profile-img {
+    width: 180px !important; 
+    max-width: 75% !important; 
+  }
+}
+
+/* Large Screen Layout */
+@media screen and (min-width: 1000px) {
+  body.w3-content {
+    width: auto !important;
+    max-width: 1300px !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+
+  .main-content {
+    max-width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .w3-row {
+    justify-content: center;
+  }
+
+  .w3-twothird {
+    flex: 0 0 800px !important;
+    max-width: 800px !important;
+  }
+
+  .main-content {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
