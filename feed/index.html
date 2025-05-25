@@ -3,8 +3,8 @@
 <head>
   <title>Paper Feed Redirect</title>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=#">
-  <link rel="canonical" href="#" />
+  <meta http-equiv="refresh" content="0; url=may25_papers.html">
+  <link rel="canonical" href="may25_papers.html" />
   <style>
     body {
       font-family: 'IBM Plex Mono', monospace, sans-serif;
@@ -27,29 +27,11 @@
 <body>
   <div class="redirect-message">
     <p>Redirecting to the latest Paper Feed...</p>
-    <p>If you are not redirected automatically, please <a href="#" id="manual-redirect">click here</a>.</p>
+    <p>If you are not redirected automatically, please <a href="may25_papers.html" id="manual-redirect">click here</a>.</p>
   </div>
 
-  <script src="shared-nav.js"></script>
-  <script src="js/feed-manager.js"></script>
   <script>
-    // Initialize feed manager and redirect
-    feedManager.init().then(() => {
-      // Update redirect URLs using new system
-      const latestVersion = feedManager.getLatestVersion();
-      if (latestVersion) {
-        document.querySelector('meta[http-equiv="refresh"]').content = `0; url=${latestVersion.file}`;
-        document.querySelector('link[rel="canonical"]').href = latestVersion.file;
-        document.getElementById('manual-redirect').href = latestVersion.file;
-      }
-      feedManager.redirectToLatest();
-    }).catch(() => {
-      // Fallback to legacy system
-      document.querySelector('meta[http-equiv="refresh"]').content = `0; url=${LATEST_VERSION.file}`;
-      document.querySelector('link[rel="canonical"]').href = LATEST_VERSION.file;
-      document.getElementById('manual-redirect').href = LATEST_VERSION.file;
-      redirectToLatest();
-    });
+    window.location.replace('may25_papers.html');
   </script>
 </body>
 </html> 
