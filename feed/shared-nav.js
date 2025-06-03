@@ -1,6 +1,6 @@
 // Shared navigation data and functionality
 const PAPER_FEED_VERSIONS = [
-  { id: 'june25', label: '🚧 June \'25', file: 'june25_papers.html' },
+  { id: 'june25', label: 'June \'25', file: 'june25_papers.html' },
   { id: 'may25', label: 'May \'25', file: 'may25_papers.html' },
   { id: 'april25', label: 'April \'25', file: 'april25_papers.html' },
   { id: 'mar25', label: 'March \'25', file: 'mar25_papers.html' },

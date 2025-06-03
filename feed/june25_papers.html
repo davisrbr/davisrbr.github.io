@@ -95,11 +95,11 @@
     <div class="w3-twothird w3-white w3-container">
       <div class="w3-padding-64 w3-center">
         <div class="w3-left-align w3-padding-small">
-          <h3 class="mono-font">🚧 Paper Feed: June 2025</h3>
+          <h3 class="mono-font">Paper Feed: June 2025</h3>
 
           <div class="intro-note mono-font" style="margin-top:1rem;margin-right:80px;background:var(--light-bg);padding:.7rem;border-radius:4px;border-left:3px solid var(--accent-color);">
             <p style="margin:0 0 .5rem 0;font-size:1rem;">
-              Highlighting research I find interesting and think may deserve more attention (June 2025 still under construction) from academia, government, or the AI-safety community.
+              Highlighting research I find interesting and think may deserve more attention (as of 06/03/25) from academia, government, or the AI safety community. 
             </p>
           </div>
 
@@ -146,6 +146,44 @@
                 </div>
               </div>
             </li>
+
+            <li class="paper-item">
+              <a href="https://empiricrafting.substack.com/p/claude-just-refereed-the-anthropic" target="_blank" style="color:#191970">
+                Claude Just Refereed the Anthropic Economic Index. Reviewer 2 Has Thoughts
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Andrey Fradkin and Seth Benzell (Apr 21, 2025)</span>
+              <br/>
+              <div class="description-toggle" data-target="descClaudeReferee">
+                Why this is notable
+              </div>
+              <div id="descClaudeReferee" class="paper-description">
+                <div class="description-content">
+                  <div style="margin-bottom: 1rem;">
+                    A common complaint is that professional economists do not typically take trends in AI seriously. I've only listened to a few of the most recent episodes, but I've found this series on the economics of AI useful to understand the perspective mainstream(ish) economics.
+                  </div>
+                  <div style="margin-bottom: 1rem;">
+                    <strong>Some relevant excerpts from this podcast:</strong>
+                  </div>
+                  <div style="margin-bottom: 1rem;">
+                    <strong>Excerpt 1:</strong><br/>
+                    This is a nice point - how do usage patterns change when they've just released a new model? Are we seeing a fundamental change in the usage patterns or mostly more of the same? Is it a slow drift or a sharp discontinuity? There are so many questions to answer with this type of data, but not necessarily economic ones.
+                  </div>
+                  <div style="margin-bottom: 1rem;">
+                    <strong>Excerpt 2:</strong><br/>
+                    <strong>Seth:</strong> What I make of this is that the title of this paper should just be "Which Tasks Are Performed with AI," not "Which Economic Tasks." It's not clear what makes a task economic. In my opinion, a task is economic if it's either some sort of Robinson Crusoe economy where even if I'm not interacting with anyone, this is an economic behavior because I'm building a thing that I'm going to use, or what makes something economic is that I'm participating in a market with this thing and I'm going to buy it and sell it after I go through these steps.
+                  </div>
+                  <div style="margin-bottom: 1rem;">
+                    "My video game is crashing cause I only have eight gigabytes of RAM" doesn't sound like either of those. It sounds like this guy is troubleshooting his consumption, which maybe could be thought of as the consumer taking on some of the job of customer service. The other example, "Can you make sure this blog post follows Chicago style?" - if I'm making an artistic or creative project that I'm just putting out on the internet for people, again, I'm not sure I would call that economic activity. So no problems with this paper being about measuring what activities or tasks people do with AI, but I think it's probably a breach too far to call these economic tasks.
+                  </div>
+                  <div style="margin-bottom: 1rem;">
+                    <strong>Andrey:</strong> I think I agree with you. There needs to be more metadata around these conversations. A survey of whether users are using this for their job or not could be really informative, or even just a subset analysis of just the pro users who are more likely to be using this for their job.
+                  </div>
+                  <div>
+                    I do think it's an interesting phenomenon of substituting professional labor with personal labor. Hal Varian used to bring up this example all the time with YouTube - before, you'd hire someone to repair your appliance or do work around the house, but now you can watch a YouTube video and do it yourself. This means YouTube is generating tremendous economic value that's not being measured. I think both of us are generally on board with that idea - GDP is going to miss a bunch of interesting activity just by virtue of how it's measured. But especially for an academic contribution, we want a more rigorous analysis.
+                  </div>
+                </div>
+              </div>
+            </li>
           </ul>  
 
           <!-- =====================  SCIENCE / INTERP  ===================== -->
@@ -180,6 +218,31 @@
             </li>
           </ul>
 
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Technical AI Governance</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2501.16007" target="_blank" style="color:#191970">
+                TOPLOC: A Locality Sensitive Hashing Scheme for Trustless Verifiable Inference
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Jack Min Ong, Matthew Di Ferrante, […], Johannes Hagemann (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://charlesyang.io/assets/Supercomputing_and_Weather_Forecasting.pdf"
+                 target="_blank" style="color:#191970">
+                The First Compute Arms Race: the Early History of Numerical Weather Prediction
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Charles Yang (2025)</span>
+              <br/>
+              <div class="description-toggle" data-target="descWeatherPrediction">
+                Why this is notable
+              </div>
+              <div id="descWeatherPrediction" class="paper-description">
+                I liked this a lot. Would be great to see the scaling trends pulled out to today.
+              </div>
+            </li>
+          </ul>
+
           <p class="mono-font" style="margin-right:80px">
             <span class="highlight">Compute / Scaling / Reasoning</span>
           </p>
@@ -194,7 +257,7 @@
                 Why this is notable
               </div>
               <div id="descResponse" class="paper-description">
-                This is a response to the original document "<a href="https://epochai.substack.com/p/how-fast-can-algorithms-advance-capabilities">How Fast Can Algorithms Advance Capabilities?</a>" by Henry Josephson.
+                This is a response to "<a href="https://epochai.substack.com/p/how-fast-can-algorithms-advance-capabilities">How Fast Can Algorithms Advance Capabilities?</a>" by Henry Josephson (Epoch AI).
               </div>
             </li>
 
@@ -238,18 +301,10 @@
             </li>
 
             <li class="paper-item">
-              <a href="https://charlesyang.io/assets/Supercomputing_and_Weather_Forecasting.pdf"
-                 target="_blank" style="color:#191970">
-                The First Compute Arms Race: the Early History of Numerical Weather Prediction
+              <a href="https://arxiv.org/abs/2506.00794" target="_blank" style="color:#191970">
+                Predicting Empirical AI Research Outcomes with Language Models
               </a><br/>
-              <span style="font-size:.9em;color:#666;">Charles Yang (2025)</span>
-              <br/>
-              <div class="description-toggle" data-target="descWeatherPrediction">
-                Why this is notable
-              </div>
-              <div id="descWeatherPrediction" class="paper-description">
-                I liked this a lot. Would be great to see the scaling trends pulled out to today.
-              </div>
+              <span style="font-size:.9em;color:#666;">Jiaxin Wen, […], He He, Shi Feng (2025)</span>
             </li>
           </ul>
 
