@@ -74,7 +74,7 @@
                 Benchmarking Misuse Mitigation Against Covert Adversaries
               </a>
               <div class="paper-authors">
-                <b>Davis Brown</b>, Mahdi Sabbaghi, Luze Sun, Alexander Robey, George J. Pappas, Eric Wong, Hamed Hassani
+                {<b>Davis Brown</b>, Mahdi Sabbaghi}, Luze Sun, Alexander Robey, George J. Pappas, Eric Wong, Hamed Hassani
               </div>
               <div class="description-toggle" data-target="desc1">
                 Paper Description
@@ -184,6 +184,32 @@
         <div>
           <div id="olderWork" class="older-works">
             <div class="paper-list">
+              <!-- LLM Compression Paper -->
+              <div class="paper-item w3-row">
+                <div class="w3-col" style="width:70px">
+                  <div class="paper-year">SoLaR NeurIPS '24</div>
+                </div>
+                <div class="w3-rest paper-content">
+                  <a href="https://openreview.net/forum?id=j9IMNLGXi8" class="paper-title" target="_blank">
+                    How Does LLM Compression Affect Weight Exfiltration Attacks?
+                  </a>
+                  <div class="paper-authors">
+                    <b>Davis Brown</b>, Mantas Mazeika
+                  </div>
+                  <div class="description-toggle" data-target="desc-exfil">
+                    Paper Description
+                  </div>
+                  <div id="desc-exfil" class="paper-description">
+                    <div class="description-content">
+                      <img src="assets/exfil.png" alt="Model exfiltration diagram. Higher decompression costs enable smaller weights." />
+                      <div>
+                        Models can be compressed far more than standard practice suggests (e.g., 4 bits-per-parameter) if one is willing to do a bit of additional training to 'decompress' them afterwards. This increases the risk of model weight exfiltration. We find some early evidence that larger models are easier / cheaper to compress in this way.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
               <!-- Older Paper 1 -->
               <div class="paper-item w3-row">
                 <div class="w3-col" style="width:70px">
