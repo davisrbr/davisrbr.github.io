@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<title>Paper Feed</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-color: #191970;
+    --accent-color: #4169e1;
+    --highlight-color: #fff3b0;
+    --light-bg: #f9f9f9;
+    --border-color: #e0e0e0;
+  }
+  
+  body {
+    font-family: 'Lora', serif;
+    line-height: 1.6;
+    color: #222;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  .mono-font { font-family: 'IBM Plex Mono', monospace; font-weight: 400; }
+  
+  a       { color: var(--accent-color); transition: color .3s, text-decoration .3s; text-decoration: none; }
+  a:hover { color: var(--primary-color); text-decoration: none; }
+  
+  .sidebar {
+    background-color: var(--light-bg);
+    box-shadow: 0 0 10px rgba(0,0,0,.03);
+    border-right: 1px solid var(--border-color);
+  }
+  
+  .highlight {
+    background-color: var(--highlight-color);
+    padding: .2rem .5rem;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+  
+  .nav-links a       { display:block; padding:8px 0; transition:transform .2s; }
+  .nav-links a:hover { transform:translateX(5px); }
+  .nav-links a.active{ font-weight:700; color:var(--primary-color); }
+  
+  .paper-item { margin-bottom:0; padding-bottom:0; }
+  
+  .description-toggle {
+    color:var(--accent-color); cursor:pointer; font-size:.95rem; font-weight:500;
+    opacity:.9; margin-top:5px; display:inline-block; transition:color .3s;
+  }
+  .description-toggle:hover { color:var(--primary-color); text-decoration:none; }
+  
+  .paper-description {
+    font-size:.95rem; margin-top:5px; overflow:hidden; max-height:0; opacity:0;
+    transition:max-height .3s ease-out, opacity .3s, padding .3s;
+    background:rgba(240,240,240,.3); border-radius:3px;
+    padding-left:5px; padding-right:5px; line-height:1.4;
+  }
+  .paper-description.visible { max-height:800px; opacity:1; padding:10px; }
+  
+  .versions-container { margin-top:15px; margin-bottom:10px; }
+  
+  /* Desktop */
+  @media screen and (min-width:793px){
+    .sidebar       { position:sticky; top:0; height:100vh; overflow-y:auto; flex:0 0 20%; width:20%; }
+    .w3-twothird   { flex:0 0 80%; width:80%; }
+  }
+  /* Mobile */
+  @media screen and (max-width:792px){
+    .sidebar{ position:static; height:auto; width:100%; overflow:visible; padding-bottom:1.5rem; }
+  }
+</style>
+
+<body class="w3-content" style="max-width:2500px">
+
+  <div class="w3-row">
+    <div class="w3-third sidebar w3-container w3-center">
+      <div class="w3-padding-24"><h4 class="mono-font">Paper Feed</h4></div>
+
+      <div class="versions-container">
+        <div class="mono-font" style="font-size:1.15rem;">Versions</div>
+        <div class="nav-links versions-nav-links">
+          <!-- Navigation will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <div style="margin-top:30px;"></div>
+      <div class="nav-links"><a href="../index.html" class="mono-font">Home</a></div>
+    </div>
+
+    <div class="w3-twothird w3-white w3-container">
+      <div class="w3-padding-64 w3-center">
+        <div class="w3-left-align w3-padding-small">
+          <h3 class="mono-font">Paper Feed: July 2025</h3>
+
+          <div class="intro-note mono-font" style="margin-top:1rem;margin-right:80px;background:var(--light-bg);padding:.7rem;border-radius:4px;border-left:3px solid var(--accent-color);">
+            <p style="margin:0 0 .5rem 0;font-size:1rem;">
+              Highlighting research I find interesting and think may deserve more attention (as of 07/14/25) from academia, government, or the AI safety community. 
+            </p>
+          </div>
+
+          <!-- =====================  AI SECURITY  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">AI Security</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2504.15499" target="_blank" style="color:#191970">
+                Guillotine: Hypervisors for Isolating Malicious AIs
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">James Mickens, Sarah Radway, Ravi Netravali (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2506.06278" target="_blank" style="color:#191970">
+                Distillation Robustifies Unlearning
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Bruce W. Lee, [...], Alex Cloud, Alexander Matt Turner (2025)</span>
+              <br/>
+              <div class="description-toggle" data-target="descDistillation">
+                Why this is notable
+              </div>
+              <div id="descDistillation" class="paper-description">
+                <span style="font-size:.8em;color:#888;">See also <a href="https://redwoodresearch.substack.com/p/ai-safety-techniques-leveraging-distillation" target="_blank" style="color:#888;">AI safety techniques leveraging distillation</a> by Ryan Greenblatt (Jun 19, 2025)</span>
+              </div>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.anthropic.com/research/confidential-inference-trusted-vms" target="_blank" style="color:#191970">
+                Confidential Inference Systems: Design principles and security risks
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Anthropic (2025)</span>
+            </li>
+
+          </ul>
+          <!-- =====================  EVALS / BENCHMARKING  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Evals / Benchmarking</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://epoch.ai/gradient-updates/beyond-benchmark-scores-analysing-o3-mini-math-reasoning" target="_blank" style="color:#191970">
+                Beyond benchmark scores: Analyzing o3-mini's mathematical reasoning
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Anson Ho, Jean-Stanislas Denain, Elliot Glazer (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2506.22419" target="_blank" style="color:#191970">
+                The Automated LLM Speedrunning Benchmark: Reproducing NanoGPT Improvements
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Bingchen Zhao, [...], Jakob Foerster, Yoram Bachrach (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2505.14943" target="_blank" style="color:#191970">
+                Soft Prompts for Evaluation: Measuring Conditional Distance of Capabilities
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Ross Nordby (2025)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  SCIENCE OF DL / INTERPRETABILITY  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Science of DL / Interpretability</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2504.16430" target="_blank" style="color:#191970">
+                MAGIC: Near-Optimal Data Attribution for Deep Learning
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Andrew Ilyas, Logan Engstrom (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2506.15872" target="_blank" style="color:#191970">
+                Hidden Breakthroughs in Language Model Training
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Sara Kangaslahti, Elan Rosenfeld, Naomi Saphra (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2506.20790" target="_blank" style="color:#191970">
+                Stochastic Parameter Decomposition
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Lucius Bushnaq, Dan Braun, Lee Sharkey (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2506.15679" target="_blank" style="color:#191970">
+                Dense SAE Latents Are Features, Not Bugs
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Xiaoqing Sun, [...], Mrinmaya Sachan, Max Tegmark (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://openreview.net/forum?id=L1Bm396P0X" target="_blank" style="color:#191970">
+                The Butterfly Effect: Neural Network Training Trajectories Are Highly Sensitive to Initial Conditions
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Gül Sena Altıntaş, Devin Kwok, Colin Raffel, David Rolnick (2025)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  AI SAFETY  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">AI Safety</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://alignment.anthropic.com/2025/cheap-monitors/" target="_blank" style="color:#191970">
+                Cost-Effective Constitutional Classifiers via Representation Re-use
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Hoagy Cunningham, Alwin Peng, [...], Mrinank Sharma (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://substack.com/home/post/p-167532209" target="_blank" style="color:#191970">
+                Two proposed projects on abstract analogies for scheming
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Julian Stastny (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.arxiv.org/abs/2506.12913" target="_blank" style="color:#191970">
+                Jailbreak Strength and Model Similarity Predict Transferability
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Rico Angell, Jannik Brinkmann, He He (2025)</span>
+            </li>
+
+          </ul>
+
+          <!-- =====================  SCALING / SYSTEMS  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Scaling / Systems</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://damek.github.io/random/basic-facts-about-gpus/" target="_blank" style="color:#191970">
+                Basic facts about GPUs
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Damek Davis (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://epoch.ai/data-insights/context-windows" target="_blank" style="color:#191970">
+                LLMs now accept longer inputs, and the best models can use them more effectively
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Greg Burnham, Tom Adamczewski (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html" target="_blank" style="color:#191970">
+                How Long Contexts Fail
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Drew Breunig (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.nber.org/papers/w33941" target="_blank" style="color:#191970">
+                Expertise
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">David Autor, Neil Thompson (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.alignmentforum.org/posts/hMSuXTsEHvk4NG6pm/slow-corporations-as-an-intuition-pump-for-ai-r-and-d" target="_blank" style="color:#191970">
+                Slow corporations as an intuition pump for AI R&D automation
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Ryan Greenblatt, Eli Lifland (2025)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  MISCELLANEOUS  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Miscellaneous</span></p>
+          <ul style="padding-left:20px;">
+          </ul>
+
+        </div><!-- /w3-left-align -->
+      </div><!-- /w3-padding-64 -->
+    </div><!-- /w3-twothird -->
+  </div><!-- /w3-row -->
+
+  <script src="shared-nav.js"></script>
+  <script>
+    // Initialize navigation for this page
+    initializeNavigation('july25');
+    
+    // Toggle descriptions functionality
+    document.querySelectorAll('.description-toggle').forEach(t => {
+      t.addEventListener('click', function(){
+        const id   = this.getAttribute('data-target');
+        const desc = document.getElementById(id);
+        desc.classList.toggle('visible');
+        this.textContent = desc.classList.contains('visible') ? 'Hide details'
+                                                              : 'Why this is notable';
+      });
+    });
+  </script>
+</body>
+</html> 
