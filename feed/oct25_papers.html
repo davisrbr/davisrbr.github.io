@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<title>Paper Feed</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-color: #191970;
+    --accent-color: #4169e1;
+    --highlight-color: #fff3b0;
+    --light-bg: #f9f9f9;
+    --border-color: #e0e0e0;
+  }
+
+  body {
+    font-family: 'Lora', serif;
+    line-height: 1.6;
+    color: #222;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .mono-font { font-family: 'IBM Plex Mono', monospace; font-weight: 400; }
+
+  a       { color: var(--accent-color); transition: color .3s, text-decoration .3s; text-decoration: none; }
+  a:hover { color: var(--primary-color); text-decoration: none; }
+
+  .sidebar {
+    background-color: var(--light-bg);
+    box-shadow: 0 0 10px rgba(0,0,0,.03);
+    border-right: 1px solid var(--border-color);
+  }
+
+  .highlight {
+    background-color: var(--highlight-color);
+    padding: .2rem .5rem;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  .nav-links a       { display:block; padding:8px 0; transition:transform .2s; }
+  .nav-links a:hover { transform:translateX(5px); }
+  .nav-links a.active{ font-weight:700; color:var(--primary-color); }
+
+  .paper-item { margin-bottom:0; padding-bottom:0; }
+
+  .description-toggle {
+    color:var(--accent-color); cursor:pointer; font-size:.95rem; font-weight:500;
+    opacity:.9; margin-top:5px; display:inline-block; transition:color .3s;
+  }
+  .description-toggle:hover { color:var(--primary-color); text-decoration:none; }
+
+  .paper-description {
+    font-size:.95rem; margin-top:5px; overflow:hidden; max-height:0; opacity:0;
+    transition:max-height .3s ease-out, opacity .3s, padding .3s;
+    background:rgba(240,240,240,.3); border-radius:3px;
+    padding-left:5px; padding-right:5px; line-height:1.4;
+  }
+  .paper-description.visible { max-height:800px; opacity:1; padding:10px; }
+
+  .versions-container { margin-top:15px; margin-bottom:10px; }
+
+  /* Desktop */
+  @media screen and (min-width:793px){
+    .sidebar       { position:sticky; top:0; height:100vh; overflow-y:auto; flex:0 0 20%; width:20%; }
+    .w3-twothird   { flex:0 0 80%; width:80%; }
+  }
+  /* Mobile */
+  @media screen and (max-width:792px){
+    .sidebar{ position:static; height:auto; width:100%; overflow:visible; padding-bottom:1.5rem; }
+  }
+</style>
+
+<body class="w3-content" style="max-width:2500px">
+
+  <div class="w3-row">
+    <div class="w3-third sidebar w3-container w3-center">
+      <div class="w3-padding-24"><h4 class="mono-font">Paper Feed</h4></div>
+
+      <div class="versions-container">
+        <div class="mono-font" style="font-size:1.15rem;">Versions</div>
+        <div class="nav-links versions-nav-links">
+          <!-- Navigation will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <div style="margin-top:30px;"></div>
+      <div class="nav-links"><a href="../index.html" class="mono-font">Home</a></div>
+    </div>
+
+    <div class="w3-twothird w3-white w3-container">
+      <div class="w3-padding-64 w3-center">
+        <div class="w3-left-align w3-padding-small">
+          <h3 class="mono-font">Paper Feed: October 2025</h3>
+
+          <div class="intro-note mono-font" style="margin-top:1rem;margin-right:80px;background:var(--light-bg);padding:.7rem;border-radius:4px;border-left:3px solid var(--accent-color);">
+            <p style="margin:0 0 .5rem 0;font-size:1rem;">
+              Highlighting research I find interesting and think may deserve more attention (as of 10/19/25) from academia, government, or the AI safety community.
+            </p>
+          </div>
+
+          <!-- =====================  AI SAFETY & ALIGNMENT  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">AI Safety & Alignment</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://alignment.anthropic.com/2025/automated-auditing/" target="_blank" style="color:#191970">
+                Building and evaluating alignment auditing agents
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Trenton Bricken, Rowan Wang, Sam Bowman, Euan Ong, Johannes Treutlein, Jeff Wu, Evan Hubinger, Samuel Marks (July 24, 2025)</span>
+              <br/>
+              <div class="description-toggle" data-target="descAuditing">
+                Why this is notable
+              </div>
+              <div id="descAuditing" class="paper-description">
+                See also: <a href="https://alignment.anthropic.com/2025/openai-findings/" target="_blank">https://alignment.anthropic.com/2025/openai-findings/</a>
+              </div>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://aisafetyclaims.org/" target="_blank" style="color:#191970">
+                AI Safety Claims Analysis
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">AI Safety Claims Project (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://openreview.net/pdf?id=viBAbg9ihM" target="_blank" style="color:#191970">
+                Eliciting Harmful Capabilities by Fine-Tuning on Safeguarded Outputs
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Authors not listed in preview (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://openreview.net/pdf?id=3YJ3JAI8Sz" target="_blank" style="color:#191970">
+                Analyzing and Improving Chain-of-Thought Monitorability Through Information Theory
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Authors not listed in preview (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.lesswrong.com/posts/7emjxGADozzm7uwKL/narrow-finetuning-is-different" target="_blank" style="color:#191970">
+                Narrow finetuning is different
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">jimrandomh (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.lesswrong.com/posts/qgvSMwRrdqoDMJJnD/towards-a-typology-of-strange-llm-chains-of-thought" target="_blank" style="color:#191970">
+                Towards a Typology of Strange LLM Chains-of-Thought
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Ruby (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://blog.redwoodresearch.org/p/prospects-for-studying-actual-schemers" target="_blank" style="color:#191970">
+                Prospects for studying actual schemers
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Ryan Greenblatt, Julian Stastny (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.alignmentforum.org/posts/fqRmcuspZuYBNiQuQ/rogue-internal-deployments-via-external-apis" target="_blank" style="color:#191970">
+                Rogue Internal Deployments via External APIs
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Alignment Forum (2025)</span>
+            </li>
+
+          </ul>
+
+          <!-- =====================  EVALS / BENCHMARKING  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Evals / Benchmarking</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2506.02058" target="_blank" style="color:#191970">
+                Evaluating the Unseen Capabilities: How Many Theorems Do LLMs Know?
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Xiang Li, Jiayi Xin, Qi Long, Weijie J. Su (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2410.22296" target="_blank" style="color:#191970">
+                Generalists vs. Specialists: Evaluating LLMs on Highly-Constrained Biophysical Sequence Optimization Tasks
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Angelica Chen, Samuel D. Stanton, [...], Nathan C. Frey (2024)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  SCIENCE OF DL / INTERPRETABILITY  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Science of DL / Interpretability</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2506.16029" target="_blank" style="color:#191970">
+                EvoLM: In Search of Lost Language Model Training Dynamics
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Zhenting Qi, Fan Nie, [...], Hanlin Zhang (2025)</span>
+              <br/>
+              <!-- <div class="description-toggle" data-target="descEvoLM">
+                Why this is notable
+              </div>
+              <div id="descEvoLM" class="paper-description">
+                This paper investigates the often-overlooked dynamics of language model training, providing insights into how models evolve during the training process. Understanding these dynamics could help optimize training efficiency and improve model performance.
+              </div> -->
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2505.11711" target="_blank" style="color:#191970">
+                Reinforcement Learning Finetunes Small Subnetworks in Large Language Models
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Sagnik Mukherjee, Lifan Yuan, Dilek Hakkani-Tur, Hao Peng (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2505.17895" target="_blank" style="color:#191970">
+                DataRater: Meta-Learned Dataset Curation
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Dan A. Calian, Gregory Farquhar, [...], David Silver (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2510.05092" target="_blank" style="color:#191970">
+                Learning to Interpret Weight Differences in Language Models
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Avichal Goel, Yoon Kim, Nir Shavit, Tony T. Wang (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://x.com/NeelNanda5/status/1945616578038652943" target="_blank" style="color:#191970">
+                Resolved: Will Sparse Autoencoders be successfully used on a downstream task in the next year and beat baselines?
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Neel Nanda (2025)</span>
+              <br/>
+              <div class="description-toggle" data-target="descSAE">
+                Why this is notable
+              </div>
+              <div id="descSAE" class="paper-description">
+                See the <a href="https://manifold.markets/NeelNanda/will-sparse-autoencoders-be-success#g9gg9z7k8q" target="_blank">Manifold Market</a> for details.
+              </div>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2508.00161" target="_blank" style="color:#191970">
+                Watch the Weights: Unsupervised monitoring and control of fine-tuned LLMs
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Ziqian Zhong, Aditi Raghunathan (2025)</span>
+            </li>
+
+            <!--
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2507.12549" target="_blank" style="color:#191970">
+                The Serial Scaling Hypothesis
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Yuxi Liu, Konpat Preechakul, Kananart Kuwaranancharoen, Yutong Bai (2025)</span>
+            </li>
+            -->
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2509.14223" target="_blank" style="color:#191970">
+                Fresh in memory: Training-order recency is linearly encoded in language model activations
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Dmitrii Krasheninnikov, Richard E. Turner, David Krueger (2025)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  SCALING / SYSTEMS / REASONING  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Scaling / Systems / Reasoning</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://www.interconnects.ai/p/next-gen-reasoners" target="_blank" style="color:#191970">
+                A taxonomy for next-generation reasoning models
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Nathan Lambert (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2510.06189" target="_blank" style="color:#191970">
+                Barbarians at the Gate: How AI is Upending Systems Research
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Audrey Cheng, Shu Liu, [...], Ion Stoica (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://xbow.com/blog/alloy-agents/" target="_blank" style="color:#191970">
+                Agents Built From Alloys
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Albert Ziegler (July 17, 2025)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  TECHNICAL AI GOVERNANCE  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Technical AI Governance</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2506.03409" target="_blank" style="color:#191970">
+                Technical Options for Flexible Hardware-Enabled Guarantees
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">James Petrie, Onni Aarne (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.rand.org/pubs/working_papers/WRA4077-1.html" target="_blank" style="color:#191970">
+                Verifying International Agreements on AI: Six Layers of Verification for Rules on Large-Scale AI Development and Deployment
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Mauricio Baker, Gabriel Kulp, Oliver Marks, Miles Brundage, Lennart Heim (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://blog.redwoodresearch.org/p/focus-transparency-on-risk-reports" target="_blank" style="color:#191970">
+                Focus transparency on risk reports, not safety cases
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Ryan Greenblatt (2025)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  MISCELLANEOUS  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Miscellaneous</span></p>
+          <ul style="padding-left:20px;">
+          </ul>
+
+        </div><!-- /w3-left-align -->
+      </div><!-- /w3-padding-64 -->
+    </div><!-- /w3-twothird -->
+  </div><!-- /w3-row -->
+
+  <script src="shared-nav.js"></script>
+  <script>
+    // Initialize navigation for this page
+    initializeNavigation('oct25');
+
+    // Toggle descriptions functionality
+    document.querySelectorAll('.description-toggle').forEach(t => {
+      t.addEventListener('click', function(){
+        const id   = this.getAttribute('data-target');
+        const desc = document.getElementById(id);
+        desc.classList.toggle('visible');
+        this.textContent = desc.classList.contains('visible') ? 'Hide details'
+                                                              : 'Why this is notable';
+      });
+    });
+  </script>
+</body>
+</html>
