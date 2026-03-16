@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<title>Paper Feed</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-color: #191970;
+    --accent-color: #4169e1;
+    --highlight-color: #fff3b0;
+    --light-bg: #f9f9f9;
+    --border-color: #e0e0e0;
+  }
+
+  body {
+    font-family: 'Lora', serif;
+    line-height: 1.6;
+    color: #222;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .mono-font { font-family: 'IBM Plex Mono', monospace; font-weight: 400; }
+
+  a       { color: var(--accent-color); transition: color .3s, text-decoration .3s; text-decoration: none; }
+  a:hover { color: var(--primary-color); text-decoration: none; }
+
+  .sidebar {
+    background-color: var(--light-bg);
+    box-shadow: 0 0 10px rgba(0,0,0,.03);
+    border-right: 1px solid var(--border-color);
+  }
+
+  .highlight {
+    background-color: var(--highlight-color);
+    padding: .2rem .5rem;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  .nav-links a       { display:block; padding:8px 0; transition:transform .2s; }
+  .nav-links a:hover { transform:translateX(5px); }
+  .nav-links a.active{ font-weight:700; color:var(--primary-color); }
+
+  .paper-item { margin-bottom:0; padding-bottom:0; }
+
+  .versions-container { margin-top:15px; margin-bottom:10px; }
+
+  @media screen and (min-width:793px){
+    .sidebar       { position:sticky; top:0; height:100vh; overflow-y:auto; flex:0 0 20%; width:20%; }
+    .w3-twothird   { flex:0 0 80%; width:80%; }
+  }
+
+  @media screen and (max-width:792px){
+    .sidebar{ position:static; height:auto; width:100%; overflow:visible; padding-bottom:1.5rem; }
+  }
+</style>
+
+<body class="w3-content" style="max-width:2500px">
+
+  <div class="w3-row">
+    <div class="w3-third sidebar w3-container w3-center">
+      <div class="w3-padding-24"><h4 class="mono-font">Paper Feed</h4></div>
+
+      <div class="versions-container">
+        <div class="mono-font" style="font-size:1.15rem;">Versions</div>
+        <div class="nav-links versions-nav-links">
+          <!-- Navigation will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <div style="margin-top:30px;"></div>
+      <div class="nav-links"><a href="../index.html" class="mono-font">Home</a></div>
+    </div>
+
+    <div class="w3-twothird w3-white w3-container">
+      <div class="w3-padding-64 w3-center">
+        <div class="w3-left-align w3-padding-small">
+          <h3 class="mono-font">Paper Feed: March 2026</h3>
+
+          <div class="intro-note mono-font" style="margin-top:0.85rem;margin-right:80px;margin-bottom:0.35rem;padding:0 0 0.25rem 0;color:#555;font-size:0.95rem;">
+            <p style="margin:0 0 .5rem 0;font-size:1rem;">
+              Highlighting research I find interesting and think may deserve more attention (as of 03/16/26), with a heavier-than-usual emphasis on AI economics, oversight, and training dynamics.
+            </p>
+          </div>
+
+          <!-- =====================  AI ECONOMICS AND FORECASTING  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">AI Economics and Forecasting</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://www.lesswrong.com/posts/epFKhn24trRP2cs3k/the-economics-of-transformative-ai" target="_blank" style="color:#191970">
+                The Economics of Transformative AI
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Jan Kulveit, David Duvenaud, Raymond Douglas (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://windowsontheory.org/2025/11/04/thoughts-by-a-non-economist-on-ai-and-economics/" target="_blank" style="color:#191970">
+                Thoughts by a non-economist on AI and economics
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Boaz Barak (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://joel-becker.com/images/publications/forecasting_time_horizon_under_compute_slowdown.pdf" target="_blank" style="color:#191970">
+                Forecasting AI Time Horizon Under Compute Slowdowns
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Parker Whitfill, Ben Snodin, Joel Becker (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.anthropic.com/research/anthropic-economic-index-january-2026-report" target="_blank" style="color:#191970">
+                Anthropic Economic Index report: Economic primitives
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Ruth Appel, Maxim Massenkoff, Peter McCrory, [...], Alex Tamkin (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.lesswrong.com/posts/XDF6ovePBJf6hsxGj/will-compute-bottlenecks-prevent-a-software-intelligence-1" target="_blank" style="color:#191970">
+                Will compute bottlenecks prevent a software intelligence explosion?
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Parker Whitfill, Cheryl Wu (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2507.23181" target="_blank" style="color:#191970">
+                Will Compute Bottlenecks Prevent an Intelligence Explosion?
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Parker Whitfill, Cheryl Wu (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2511.21622" target="_blank" style="color:#191970">
+                On the Origin of Algorithmic Progress in AI
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Hans Gundlach, Alex Fogelson, Jayson Lynch, [...], Neil Thompson (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.lesswrong.com/posts/3uMZFbvJZ8Z5LqpyQ/most-algorithmic-progress-is-data-progress-linkpost" target="_blank" style="color:#191970">
+                Most Algorithmic Progress is Data Progress
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Beren Millidge (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://zhengdongwang.com/2025/12/30/2025-letter.html" target="_blank" style="color:#191970">
+                2025 letter
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Zhengdong Wang (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://tecunningham.github.io/posts/2025-12-30-llm-verification.html" target="_blank" style="color:#191970">
+                LLM verification
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Tom Cunningham (2025)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  SECURITY AND CONTROL  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Security and Control</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://www.heronsec.ai/post/the-ai-infrastructure-security-shortlist" target="_blank" style="color:#191970">
+                The AI Infrastructure Security Shortlist
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Abbey Chaver (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.arxiv.org/abs/2504.18577" target="_blank" style="color:#191970">
+                Defending Against Intelligent Attackers at Large Scales
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Andrew J. Lohn (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://metr.org/frontier-ai-regulations.pdf" target="_blank" style="color:#191970">
+                Frontier AI safety regulations: A reference for lab staff
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Miles Kodama, Michael Chen (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://metr.org/blog/2026-02-19-five-lessons-from-ai-biology-rct/" target="_blank" style="color:#191970">
+                Five lessons from having helped run an AI-Biology RCT
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Luca Righetti (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://brucewlee.com/blog/posts/distillation-robustifies-unlearning.html" target="_blank" style="color:#191970">
+                Distillation Robustifies Unlearning
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Bruce W. Lee, [...], Alex Cloud, Alexander Matt Turner (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://brucewlee.com/blog/posts/salient-directions-ai-control.html" target="_blank" style="color:#191970">
+                Salient Directions in AI Control
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Bruce W. Lee (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2511.02823" target="_blank" style="color:#191970">
+                Optimizing AI Agent Attacks With Synthetic Data
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Chloe Loughridge, Paul Colognese, Avery Griffin, [...], Joe Benton (2025)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  ALIGNMENT AND MONITORABILITY  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Alignment and Monitorability</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://alignment.anthropic.com/2025/alignment-faking-mitigations/" target="_blank" style="color:#191970">
+                Alignment Faking Mitigations
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Johannes Gasteiger, Vlad Mikulik, Hoagy Cunningham, [...], Evan Hubinger (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2510.23966" target="_blank" style="color:#191970">
+                A Pragmatic Way to Measure Chain-of-Thought Monitorability
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Scott Emmons, Roland S. Zimmermann, David K. Elson, Rohin Shah (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2506.14261" target="_blank" style="color:#191970">
+                RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors?
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Rohan Gupta, Erik Jenner (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.lesswrong.com/posts/WSKNmRxPnYdQnoNvt/training-qwen-1-5b-with-a-cot-legibility-penalty" target="_blank" style="color:#191970">
+                Training Qwen-1.5B with a CoT legibility penalty
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Fabien Roger (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.alignmentforum.org/posts/Lz8cvGskgXmLRgmN4/current-language-models-struggle-to-reason-in-ciphered" target="_blank" style="color:#191970">
+                Current language models struggle to reason in ciphered text
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Fabien Roger, Shiyuan Guo (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.alignmentforum.org/posts/FeaJcWkC6fuRAMsfp/the-behavioral-selection-model-for-predicting-ai-motivations-1" target="_blank" style="color:#191970">
+                The behavioral selection model for predicting AI motivations
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Alex Mallen, Buck Shlegeris (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.lesswrong.com/posts/yN6Wsu7SgxGgtJGqq/refusals-that-could-become-catastrophic" target="_blank" style="color:#191970">
+                Refusals that could become catastrophic
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Fabien Roger (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.lesswrong.com/posts/zFZHHnLez6k8ykxpu/building-ais-that-do-human-like-philosophy" target="_blank" style="color:#191970">
+                Building AIs that do human-like philosophy
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Joe Carlsmith (2026)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  TRAINING  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Training</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2510.24626" target="_blank" style="color:#191970">
+                Relative Scaling Laws for LLMs
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">William Held, David Hall, Percy Liang, Diyi Yang (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2602.07488" target="_blank" style="color:#191970">
+                Deriving Neural Scaling Laws from the statistics of natural language
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Francesco Cagnetta, Allan Raventos, Surya Ganguli, Matthieu Wyart (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://kvfrans.com/matrix-whitening/" target="_blank" style="color:#191970">
+                What really matters in matrix-whitening optimizers?
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Kevin Frans (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://varunneal.github.io/essays/muon" target="_blank" style="color:#191970">
+                Muon in Modded NanoGPT
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Varun Neal (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2507.14740" target="_blank" style="color:#191970">
+                Better Training Data Attribution via Better Inverse Hessian-Vector Products
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Andrew Wang, Elisa Nguyen, Runshi Yang, [...], Roger Grosse (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://magazine.sebastianraschka.com/p/technical-deepseek" target="_blank" style="color:#191970">
+                A Technical Tour of the DeepSeek Models from V3 to V3.2
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Sebastian Raschka (2025)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  THEORY  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Theory</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2511.05408" target="_blank" style="color:#191970">
+                Steering Language Models with Weight Arithmetic
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Constanza Fierro, Fabien Roger (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2410.20035" target="_blank" style="color:#191970">
+                Training the Untrainable: Introducing Inductive Bias via Representational Alignment
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Vighnesh Subramaniam, David Mayo, Colin Conwell, [...], Andrei Barbu (2024)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.semanticscholar.org/paper/Excess-Description-Length-of-Learning-Generalizable-Donoway-Joren/e4869527726a25a389100f05db7acb14f0f4d375" target="_blank" style="color:#191970">
+                Excess Description Length of Learning Generalizable Predictors
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Elizabeth Donoway, Hailey Joren, Fabien Roger, Jan Leike (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2512.18452" target="_blank" style="color:#191970">
+                Secret mixtures of experts inside your LLM
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Enric Boix-Adsera (2025)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2601.03220" target="_blank" style="color:#191970">
+                From Entropy to Epiplexity: Rethinking Information for Computationally Bounded Intelligence
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Marc Finzi, Shikai Qiu, Yiding Jiang, [...], Andrew Gordon Wilson (2026)</span>
+            </li>
+          </ul>
+
+        </div><!-- /w3-left-align -->
+      </div><!-- /w3-padding-64 -->
+    </div><!-- /w3-twothird -->
+  </div><!-- /w3-row -->
+
+  <script src="shared-nav.js"></script>
+  <script>
+    initializeNavigation('mar26');
+  </script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 // Shared navigation data and functionality
 const PAPER_FEED_VERSIONS = [
+  { id: 'mar26', label: 'March \'26', file: 'mar26_papers.html' },
   { id: 'oct25', label: 'October \'25', file: 'oct25_papers.html' },
   { id: 'july25', label: 'July \'25', file: 'july25_papers.html' },
   { id: 'june25', label: 'June \'25', file: 'june25_papers.html' },
@@ -31,8 +32,140 @@ function initializeNavigation(currentPageId) {
     }
   });
 
+  initializeCategoryJumpLinks();
+
   // Add smooth page transitions
 //   addPageTransitions();
+}
+
+function slugifyCategory(label) {
+  return label
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function ensureCategoryJumpStyles() {
+  if (document.getElementById('feed-category-jump-styles')) return;
+
+  const style = document.createElement('style');
+  style.id = 'feed-category-jump-styles';
+  style.textContent = `
+    .category-jump-links {
+      margin: 0.55rem 80px 1.05rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      column-gap: 0.35rem;
+      row-gap: 0.2rem;
+    }
+
+    .category-jump-links-title {
+      margin-bottom: 0;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      color: rgba(25, 25, 112, 0.62);
+      white-space: nowrap;
+    }
+
+    .category-jump-links-list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      row-gap: 0.2rem;
+    }
+
+    .category-jump-link {
+      color: var(--accent-color, #4169e1);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: baseline;
+      line-height: 1.3;
+      padding-left: 0.55rem;
+      margin-left: 0.55rem;
+      border-left: 1px solid rgba(25, 25, 112, 0.3);
+    }
+
+    .category-jump-link:hover {
+      color: var(--primary-color, #191970);
+      text-decoration: none;
+      border-left-color: rgba(25, 25, 112, 0.46);
+    }
+
+    .category-jump-link-label {
+      min-width: 0;
+    }
+
+    .category-jump-link:first-child {
+      margin-left: 0;
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    @media screen and (max-width: 792px) {
+      .category-jump-links {
+        margin-right: 0;
+      }
+
+      .intro-note {
+        margin-right: 0 !important;
+      }
+    }
+  `;
+
+  document.head.appendChild(style);
+}
+
+function initializeCategoryJumpLinks() {
+  const contentRoot = document.querySelector('.w3-left-align');
+  if (!contentRoot || contentRoot.querySelector('.category-jump-links')) return;
+
+  const categoryHeadings = Array.from(contentRoot.querySelectorAll('p .highlight'))
+    .map(span => ({
+      label: span.textContent.trim(),
+      container: span.closest('p')
+    }))
+    .filter(item => item.label && item.container);
+
+  if (categoryHeadings.length < 2) return;
+
+  const usedIds = new Set();
+  const categories = categoryHeadings.map((item, index) => {
+    let id = item.container.id || slugifyCategory(item.label) || `category-${index + 1}`;
+    while (usedIds.has(id) || (document.getElementById(id) && document.getElementById(id) !== item.container)) {
+      id = `${slugifyCategory(item.label) || 'category'}-${index + 1}`;
+    }
+
+    usedIds.add(id);
+    item.container.id = id;
+    item.container.style.scrollMarginTop = '24px';
+
+    return { id, label: item.label };
+  });
+
+  ensureCategoryJumpStyles();
+
+  const jumpLinks = document.createElement('div');
+  jumpLinks.className = 'category-jump-links mono-font';
+  jumpLinks.innerHTML = `
+    <div class="category-jump-links-title">Sections:</div>
+    <div class="category-jump-links-list">
+      ${categories.map(category => `
+        <a href="#${category.id}" class="category-jump-link">
+          <span class="category-jump-link-label">${category.label}</span>
+        </a>
+      `).join('')}
+    </div>
+  `;
+
+  const introNote = contentRoot.querySelector('.intro-note');
+  const title = contentRoot.querySelector('h3.mono-font');
+  const anchorTarget = introNote || title;
+
+  if (anchorTarget && anchorTarget.parentNode) {
+    anchorTarget.insertAdjacentElement('afterend', jumpLinks);
+  }
 }
 
 function addPageTransitions() {
@@ -67,4 +200,4 @@ function addPageTransitions() {
 // Auto-redirect functionality for papers.html
 function redirectToLatest() {
   window.location.href = LATEST_VERSION.file;
-} 
+}

@@ -4,10 +4,28 @@
   "author": "Davis Brown",
   "versions": [
     {
+      "id": "mar26",
+      "label": "March '26",
+      "file": "mar26_papers.html",
+      "status": "published"
+    },
+    {
+      "id": "oct25",
+      "label": "October '25",
+      "file": "oct25_papers.html",
+      "status": "published"
+    },
+    {
+      "id": "july25",
+      "label": "July '25",
+      "file": "july25_papers.html",
+      "status": "published"
+    },
+    {
       "id": "june25",
-      "label": "🚧 June '25",
+      "label": "June '25",
       "file": "june25_papers.html",
-      "status": "wip"
+      "status": "published"
     },
     {
       "id": "may25",
