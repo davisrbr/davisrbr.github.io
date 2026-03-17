@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Introducing OpenConjecture, a living dataset of mathematics conjectures | Davis Brown</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Lora:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/papers.css">
+    <link rel="stylesheet" href="../css/writing.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+  </head>
+  <body class="w3-content writing-page" style="max-width:2500px">
+    <div class="w3-container main-content main-content--writing blog-shell">
+      <div class="writing-post-layout">
+        <aside class="writing-post-sidebar">
+          <div class="writing-breadcrumb mono-font">
+            <a href="../index.html">Home</a> / <a href="index.html">Blog</a>
+          </div>
+          <section class="writing-post-sidebar-section writing-post-toc">
+            <div class="writing-post-toc-title mono-font">On this page</div>
+            <nav class="writing-post-toc-links">
+              <a href="#openconjecture">OpenConjecture</a>
+              <a href="#gpt-5-4-solution-attempts">GPT-5.4 Solution Attempts</a>
+              <a href="#notes">Notes</a>
+              <a href="#references">References</a>
+            </nav>
+          </section>
+        </aside>
+
+        <div class="writing-post-main">
+          <div class="writing-post-intro">
+            <header class="writing-post-header">
+              <div class="writing-post-type mono-font">Essay</div>
+              <h1 class="writing-post-title">Introducing OpenConjecture, a living dataset of mathematics conjectures from the ArXiv</h1>
+              <p class="writing-post-dek mono-font">
+                We are releasing OpenConjecture, a dataset of 850 unproved conjectures from recent arXiv math papers. On a small subset, GPT-5.4 finds candidate proofs or counterexamples, and formalizes several in Lean.
+              </p>
+            </header>
+
+            <div class="writing-post-topbar">
+            <div class="writing-post-meta-grid">
+              <section class="writing-post-meta-panel">
+                <div class="writing-post-sidebar-label mono-font">Contributors</div>
+                <div class="writing-post-sidebar-value"><a href="../index.html">Davis Brown</a> and <a href="https://hkvinge.github.io/" target="_blank" rel="noreferrer">Henry Kvinge</a></div>
+              </section>
+
+              <section class="writing-post-meta-panel">
+                <div class="writing-post-sidebar-label mono-font">Date</div>
+                <div class="writing-post-sidebar-value">March 17, 2026</div>
+              </section>
+
+              <section class="writing-post-meta-panel">
+                <div class="writing-post-sidebar-label mono-font">Share</div>
+                <div class="writing-post-sidebar-links mono-font">
+                  <a href="https://huggingface.co/datasets/davisrbr/conjectures-arxiv" target="_blank" rel="noreferrer">Hugging Face</a>
+                  <a href="https://github.com/davisrbr/conjectures-arxiv" target="_blank" rel="noreferrer">GitHub</a>
+                  <button type="button" class="writing-post-copy-link mono-font" id="citation-button">Citation</button>
+                </div>
+              </section>
+            </div>
+          </div>
+          </div>
+
+          <article class="writing-post-body">
+            <p>The mathematics literature is an ongoing discussion amongst the mathematical community, spanning both time and place. From this perspective, <em>conjectures</em> have a particularly important role, functioning as a direct call to the community to investigate a notable and unproven claim.</p>
+            <p>We are releasing <a href="https://huggingface.co/datasets/davisrbr/conjectures-arxiv" target="_blank" rel="noreferrer">OpenConjecture</a>, a living dataset of conjectures extracted from recent ArXiv papers. OpenConjecture is motivated by the observation that conjectures are scattered across a massive volume of papers uploaded each month. As the potential for AI acceleration of mathematics research increases, the value of organizing conjectures in one place has grown. Today&#39;s release contains 850 conjectures from papers uploaded between February 2, 2026 and March 16, 2026. We plan to update it weekly.</p>
+            <p>There are a small number of other datasets that collect open math problems, e.g. <a href="https://epoch.ai/frontiermath/open-problems" target="_blank" rel="noreferrer">FrontierMath: Open Problems</a> and our own <a href="https://openreview.net/forum?id=tlniJJFUW2" target="_blank" rel="noreferrer">ACD</a>. These are well-curated datasets. However, datasets are small and represent only a small slice of the field.<sup class="writing-footnote-call"><a href="#note-1" id="note-ref-1">1</a></sup> In contrast, OpenConjecture samples from a wide variety of problems that, because of the way they are posed (as conjectures), suggest they are open and often interesting. Our approach is similar to <a href="https://matharena.ai/arxivmath/" target="_blank" rel="noreferrer">ArxivMath</a>, which also scrapes problems from recently published arXiv math papers. OpenConjecture, though, is composed of problems that have no known proofs or solutions.</p>
+            <p>For each conjecture in OpenConjecture, we use an LLM to estimate conjecture tractability (could an expert resolve this in an afternoon vs. would it require a fundamentally new idea) and the extent a conjecture is ‘interesting’ (based on potential impact). We also use GPT-5.4 Thinking (xhigh) to attempt solutions on 20 of the most tractable conjectures. Of these 20, the model claimed to have reached a conclusion in 6 cases: in 2 cases it claimed to have confirmed an open conjecture, and in 4 cases it claims to have disproven the conjecture. In one of the cleanest examples, GPT-5.4 claimed a simple counterexample<sup class="writing-footnote-call"><a href="#note-2" id="note-ref-2">2</a></sup> to a conjecture on kernel quantile discrepancy rates published in a <a href="https://arxiv.org/abs/2505.20433" target="_blank" rel="noreferrer">recent ICML 2025 paper</a>. Summaries, discussion of the overlap with the prior literature, and the full proof attempts can be found <a href="https://github.com/davisrbr/conjectures-arxiv/blob/main/data/exports_solver_status_20260309_attempts20/solver_attempts_20_summary.md" target="_blank" rel="noreferrer">here</a>.</p>
+            <p>It is important to note that the LLM-based assessments of both the interestingness/tractability of a problem, as well as LLM claims to proofs and counterexamples, must be taken with a healthy dose of skepticism. We are not experts in these fields. However, the idea of using LLMs to autonomously solve open problems in mathematics is now routinely discussed. The exercise of tasking GPT-5.4 with solving a subset of only roughly curated conjectures helps us to better understand what this might look like in real, research mathematics.</p>
+            <h2 id="openconjecture">OpenConjecture</h2>
+            <p>By sampling conjectures from papers recently uploaded to the ArXiv, OpenConjecture collects problems that are (1) of interest to working mathematicians, (2) are believed to be open, and (3) assessed to be sufficiently difficult to present to the community. Our scrape collects conjectures from a long-tail of subfields. The field with the most conjectures was combinatorics, followed by number theory, and then algebraic geometry.</p>
+            <figure class="writing-figure-narrow"><img src="../assets/blog/openconjecture-primary-category-histogram.png" alt="Histogram showing the number of extracted conjectures by mathematical subfield."><figcaption>Distribution of extracted conjectures across mathematical subfields.</figcaption></figure>
+            <p>We used GPT-5-mini to label if the conjecture is currently open (unlike LLMs, humans do not have internet scale knowledge so even world-class experts can sometimes miss a relevant result that appeared in a distant field). We also ask GPT-5-mini to score conjectures for their mathematical interestingness and near-term solution viability, i.e. their tractability. This helped to filter out restatements of famous conjectures from survey papers and vague conjectures which likely played a rhetorical role within the paper they were pulled from. The distribution of these scores (via KDE) is shown below. Intriguingly, representation theory conjectures tended to be rated as both highly interesting and viable. On the other hand, algebraic topology conjectures are scored very interesting, but not very viable/tractable. It is not clear to what extent the assessments reflect the nature of the conjectures vs. biases of GPT-5-mini.</p>
+            <figure><img src="../assets/blog/openconjecture-category-kde-scores.png" alt="KDE plot showing interestingness and tractability score distributions for extracted conjectures across mathematical subfields."><figcaption>Interestingness and tractability score distributions for extracted conjectures.</figcaption></figure>
+            <h2 id="gpt-5-4-solution-attempts">GPT-5.4 Solution Attempts</h2>
+            <p>We use GPT-5.4 Thinking (xhigh) to attempt proofs of the 20 conjectures which were assessed to be most viable. Of these, the model claimed to have reached a conclusion in six cases (claiming to confirm two of the conjectures and providing counterexamples for 4). The (claimed) disproven conjectures were in probability, mathematical statistics, and metric geometry, and the confirmations were from commutative algebra and number theory. In all examples, we had the model discuss the novelty of its resolution, i.e., how close the attempt was to prior literature (see “<a href="https://github.com/davisrbr/conjectures-arxiv/blob/main/data/exports_solver_status_20260309_attempts20/solver_attempts_20_summary.md" target="_blank" rel="noreferrer">Literature overlap</a>”). While most attempts appear to heavily leverage existing literature, at least one counterexample (the conjecture around kernel quantile discrepancy rates) was judged to be a relatively novel contribution. Finally, we also ask the model to judge how well-specified each conjecture is. From our perspective as non-experts, the model appeared overly-critical, e.g., it often marked a conjecture as not well-specified if it used even mildly ambiguous notation. This points to a potential limitation of this dataset. It is common to state key assumptions at the beginning of the paper. Since we extracted conjectures in isolation, the evaluator model will not have this context. A summary of the attempts and links to the full proofs can be <a href="https://github.com/davisrbr/conjectures-arxiv/blob/main/data/exports_solver_status_20260309_attempts20/solver_attempts_20_summary.md" target="_blank" rel="noreferrer">found here</a>.</p>
+            <p>Finally, we used Codex (again, with GPT-5.4 Thinking) to attempt Lean formalizations of 6 of the 20 proof attempts, <a href="https://github.com/davisrbr/conjectures-arxiv/tree/main/formalization/notes" target="_blank" rel="noreferrer">linked here</a>. In 4 of 6 cases, the system claims that the formalization is successful, though as non-experts we are of course hesitant to draw strong conclusions. It is worth noting that while carrying out an unsuccessful formalization attempt, the model appears to have uncovered a mistake in one of the original attempted natural language proofs. As with the prior labeling results, these should be interpreted with caution, as we did not independently verify the proofs / Lean formalizations. Even so, we think this exercise gives a useful sense of what an ambitious pipeline of conjecturing, proving, and formalization might look like for mathematics.</p>
+            <section class="writing-post-notes" id="notes"><h2>Notes</h2><ol><li id="note-1">They also run the risk of being solved, soon. For example, there is a <a href="https://x.com/GregHBurnham/status/2031451554151022838?s=20" target="_blank" rel="noreferrer">recent proposed solution</a> to one of the 15 FrontierMath: Open Problems that has received some attention. <a class="writing-note-backlink mono-font" href="#note-ref-1" aria-label="Jump back to note reference">↩</a></li><li id="note-2">Although this counterexample proved too difficult for GPT-5.4 Codex to formalize in Lean, likely due to limited <code>mathlib</code> coverage for probability asymptotics. <a class="writing-note-backlink mono-font" href="#note-ref-2" aria-label="Jump back to note reference">↩</a></li></ol></section>
+            <section class="writing-post-references" id="references"><h2>References</h2><ul><li><a href="https://huggingface.co/datasets/davisrbr/conjectures-arxiv" target="_blank" rel="noreferrer">OpenConjecture dataset</a></li><li><a href="https://epoch.ai/frontiermath/open-problems" target="_blank" rel="noreferrer">FrontierMath: Open Problems</a></li><li><a href="https://openreview.net/forum?id=tlniJJFUW2" target="_blank" rel="noreferrer">ACD: A Suite of Datasets Capturing Research-level Conjecturing Ability in Pure Mathematics</a></li><li><a href="https://matharena.ai/arxivmath/" target="_blank" rel="noreferrer">ArxivMath</a></li><li><a href="https://arxiv.org/abs/2505.20433" target="_blank" rel="noreferrer">Kernel quantile discrepancy rates paper</a></li><li><a href="https://x.com/GregHBurnham/status/2031451554151022838?s=20" target="_blank" rel="noreferrer">FrontierMath proposed solution discussion</a></li></ul></section>
+          </article>
+        </div>
+      </div>
+    </div>
+    <div class="writing-modal" id="citation-modal" aria-hidden="true">
+      <div class="writing-modal-backdrop" data-close-modal></div>
+      <div class="writing-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="citation-modal-title">
+        <div class="writing-modal-header">
+          <h2 class="writing-modal-title" id="citation-modal-title">BibTeX Citation</h2>
+          <button type="button" class="writing-modal-close mono-font" id="citation-close-button" aria-label="Close citation dialog">×</button>
+        </div>
+        <pre class="writing-modal-code" id="citation-bibtex">@misc{brown-kvinge-openconjecture-2026,
+    title = {Introducing OpenConjecture, a living dataset of mathematics conjectures from the {ArXiv}},
+    author = {Davis Brown and Henry Kvinge},
+    howpublished = {\url{https://davisrbr.github.io/blog/openconjecture.html}},
+    year = {2026},
+    month = {03},
+}</pre>
+        <button type="button" class="writing-modal-copy mono-font" id="citation-copy-button">Copy</button>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var modal = document.getElementById("citation-modal");
+        var openButton = document.getElementById("citation-button");
+        var closeButton = document.getElementById("citation-close-button");
+        var copyButton = document.getElementById("citation-copy-button");
+        var bibtex = document.getElementById("citation-bibtex");
+        if (!modal || !openButton || !closeButton || !copyButton || !bibtex) return;
+
+        function openModal() {
+          modal.classList.add("is-open");
+          modal.setAttribute("aria-hidden", "false");
+        }
+
+        function closeModal() {
+          modal.classList.remove("is-open");
+          modal.setAttribute("aria-hidden", "true");
+        }
+
+        openButton.addEventListener("click", openModal);
+        closeButton.addEventListener("click", closeModal);
+
+        modal.addEventListener("click", function (event) {
+          if (event.target && event.target.hasAttribute("data-close-modal")) {
+            closeModal();
+          }
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && modal.classList.contains("is-open")) {
+            closeModal();
+          }
+        });
+
+        copyButton.addEventListener("click", function () {
+          if (!navigator.clipboard) return;
+          navigator.clipboard.writeText(bibtex.textContent).then(function () {
+            var original = copyButton.textContent;
+            copyButton.textContent = "Copied";
+            window.setTimeout(function () {
+              copyButton.textContent = original;
+            }, 1200);
+          });
+        });
+
+        var tocLinks = Array.prototype.slice.call(
+          document.querySelectorAll(".writing-post-toc-links a")
+        );
+        var tocTargets = tocLinks
+          .map(function (link) {
+            var id = (link.getAttribute("href") || "").replace("#", "");
+            var target = id ? document.getElementById(id) : null;
+            return target ? { link: link, target: target } : null;
+          })
+          .filter(Boolean);
+
+        function setActiveToc(id) {
+          tocLinks.forEach(function (link) {
+            link.classList.toggle("is-active", link.getAttribute("href") === "#" + id);
+          });
+        }
+
+        function updateActiveToc() {
+          if (!tocTargets.length) return;
+          var activeId = tocTargets[0].target.id;
+          var threshold = window.innerHeight * 0.9;
+
+          tocTargets.forEach(function (entry) {
+            if (entry.target.getBoundingClientRect().top <= threshold) {
+              activeId = entry.target.id;
+            }
+          });
+
+          setActiveToc(activeId);
+        }
+
+        updateActiveToc();
+        window.addEventListener("scroll", updateActiveToc, { passive: true });
+        window.addEventListener("resize", updateActiveToc);
+      }());
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+{
+  "slug": "openconjecture",
+  "title": "Introducing OpenConjecture, a living dataset of mathematics conjectures from the ArXiv",
+  "dek": "We are releasing OpenConjecture, a dataset of 850 unproved conjectures from recent arXiv math papers. On a small subset, GPT-5.4 finds candidate proofs or counterexamples, and formalizes several in Lean.",
+  "type": "Essay",
+  "date": "March 17, 2026",
+  "contributors": [
+    {
+      "name": "Davis Brown",
+      "url": "../index.html"
+    },
+    {
+      "name": "Henry Kvinge",
+      "url": "https://hkvinge.github.io/"
+    }
+  ],
+  "shareLinks": [
+    {
+      "label": "Hugging Face",
+      "url": "https://huggingface.co/datasets/davisrbr/conjectures-arxiv"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/davisrbr/conjectures-arxiv"
+    }
+  ],
+  "references": [
+    {
+      "label": "OpenConjecture dataset",
+      "url": "https://huggingface.co/datasets/davisrbr/conjectures-arxiv"
+    },
+    {
+      "label": "FrontierMath: Open Problems",
+      "url": "https://epoch.ai/frontiermath/open-problems"
+    },
+    {
+      "label": "ACD: A Suite of Datasets Capturing Research-level Conjecturing Ability in Pure Mathematics",
+      "url": "https://openreview.net/forum?id=tlniJJFUW2"
+    },
+    {
+      "label": "ArxivMath",
+      "url": "https://matharena.ai/arxivmath/"
+    },
+    {
+      "label": "Kernel quantile discrepancy rates paper",
+      "url": "https://arxiv.org/abs/2505.20433"
+    },
+    {
+      "label": "FrontierMath proposed solution discussion",
+      "url": "https://x.com/GregHBurnham/status/2031451554151022838?s=20"
+    }
+  ],
+  "citation": {
+    "key": "brown-kvinge-openconjecture-2026",
+    "url": "https://davisrbr.github.io/blog/openconjecture.html",
+    "year": "2026",
+    "month": "03"
+  }
+}

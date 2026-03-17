@@ -102,4 +102,13 @@
     max-width: 800px;
     margin: 0 auto;
   }
+
+  body.writing-page.w3-content {
+    max-width: 1600px !important;
+  }
+
+  .writing-page .main-content--writing {
+    width: 100% !important;
+    max-width: 70rem !important;
+  }
 }
