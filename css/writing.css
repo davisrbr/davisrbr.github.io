@@ -738,10 +738,7 @@
 
   .writing-post-body a[href^="http"]::after,
   .writing-post-sidebar a[href^="http"]::after {
-    font-size: 0.78em;
-    vertical-align: baseline;
-    margin-left: 0.12em;
-    opacity: 0.62;
+    content: none;
   }
 
   .writing-feature .writing-card-title {
