@@ -1,7 +1,7 @@
 {
   "slug": "openconjecture",
   "title": "Introducing OpenConjecture, a living dataset of mathematics conjectures from the ArXiv",
-  "dek": "We are releasing OpenConjecture, a dataset of 890 unproved conjectures from recent arXiv math papers. On a small subset, GPT-5.4 finds candidate proofs or counterexamples, and formalizes several in Lean.",
+  "dek": "We are releasing OpenConjecture, a dataset of (currently) 890 unproved conjectures from recent arXiv math papers. On a small subset, GPT-5.4 finds candidate proofs or counterexamples, and formalizes several in Lean.",
   "type": "Essay",
   "date": "March 17, 2026",
   "contributors": [
