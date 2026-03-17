@@ -14,7 +14,8 @@ const posts = [
   }
 ];
 
-await Promise.all(posts.map(buildPost));
+const builtPosts = await Promise.all(posts.map(buildPost));
+await syncBlogIndex(builtPosts);
 
 async function buildPost(post) {
   const [markdown, metadataJson] = await Promise.all([
@@ -27,6 +28,32 @@ async function buildPost(post) {
   const html = renderPage(metadata, rendered);
   await fs.writeFile(post.output, html);
   console.log(`Built ${path.relative(repoRoot, post.output)}`);
+  return metadata;
+}
+
+async function syncBlogIndex(postsMetadata) {
+  const indexPath = path.join(repoRoot, "blog/index.html");
+  let indexHtml = await fs.readFile(indexPath, "utf8");
+  const indexUpdates = postsMetadata.map(({ slug, date }) => {
+    const escapedDate = date.replace(/\$/g, "\\$");
+    const replacementRegex = new RegExp(
+      `(<div\\s+class=\\"home-blog-meta\\s+mono-font\\"\\s+[^>]*?data-post-slug=\\"${slug}\\"[^>]*>Essay ·\\s*)[^<]*<\\/div>`
+    );
+    return {
+      from: replacementRegex,
+      to: `$1${escapedDate}</div>`
+    };
+  });
+
+  const nextHtml = indexUpdates.reduce(
+    (updated, { from, to }) => updated.replace(from, to),
+    indexHtml
+  );
+
+  if (nextHtml !== indexHtml) {
+    await fs.writeFile(indexPath, nextHtml);
+    console.log(`Synced blog index metadata in ${path.relative(repoRoot, indexPath)}`);
+  }
 }
 
 function renderPage(metadata, rendered) {
