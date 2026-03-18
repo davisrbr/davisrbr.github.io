@@ -145,9 +145,13 @@
 
 .home-writing-bullet {
   margin: 0 0 0.85rem;
-  color: #222;
+  color: var(--accent-color);
   font-size: 1rem;
   line-height: 1.6;
+}
+
+.home-writing-bullet a {
+  color: inherit;
 }
 
 .home-writing-bullet:last-child {
