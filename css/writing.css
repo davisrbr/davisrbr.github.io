@@ -145,17 +145,21 @@
 
 .home-writing-bullet {
   margin: 0 0 0.85rem;
-  color: var(--accent-color);
+  color: #222;
   font-size: 1rem;
   line-height: 1.6;
 }
 
 .home-writing-bullet a {
-  color: inherit;
+  color: var(--accent-color);
 }
 
 .home-writing-bullet a:hover {
   color: var(--primary-color);
+}
+
+.home-writing-bullet::marker {
+  color: var(--accent-color);
 }
 
 .home-writing-bullet:last-child {
@@ -171,7 +175,8 @@
   margin-bottom: 0.1rem;
 }
 
-.home-writing-title {
+.home-writing-bullet .home-writing-title,
+.home-writing-bullet .home-writing-title:visited {
   display: inline-block;
   color: var(--accent-color);
   font-family: 'IBM Plex Mono', monospace;
@@ -181,7 +186,8 @@
   text-decoration: none;
 }
 
-.home-writing-title:hover {
+.home-writing-bullet .home-writing-title:hover,
+.home-writing-bullet .home-writing-title:focus-visible {
   color: var(--primary-color);
 }
 
