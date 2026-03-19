@@ -1,23 +1,36 @@
-/* Root Variables */
+/* ------------------------------------------------------------------ */
+/*  Root variables                                                     */
+/* ------------------------------------------------------------------ */
+
 :root {
   --primary-color: #191970;
   --accent-color: #4169e1;
   --highlight-color: #fff3b0;
   --light-bg: #f9f9f9;
   --border-color: #e0e0e0;
+
+  --text-color: #222;
+  --text-muted: #666;
+  --text-secondary: #444;
+
+  --font-serif: 'Lora', serif;
+  --font-mono: 'IBM Plex Mono', monospace;
 }
 
-/* Base Styles */
+/* ------------------------------------------------------------------ */
+/*  Base styles                                                        */
+/* ------------------------------------------------------------------ */
+
 body {
-  font-family: 'Lora', serif;
+  font-family: var(--font-serif);
   line-height: 1.6;
-  color: #222;
+  color: var(--text-color);
   font-size: 16px;
   font-weight: 400;
 }
 
 .mono-font {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-weight: 400;
   font-size: 1rem;
 }

@@ -1,4 +1,7 @@
-/* Paper List Styles */
+/* ------------------------------------------------------------------ */
+/*  Paper list                                                         */
+/* ------------------------------------------------------------------ */
+
 .paper-list {
   margin-top: 15px;
 }
@@ -39,7 +42,10 @@
   line-height: 1.3;
 }
 
-/* Toggle Links */
+/* ------------------------------------------------------------------ */
+/*  Toggle links (older work / paper descriptions)                     */
+/* ------------------------------------------------------------------ */
+
 .toggle-link, .toggle-link-inline {
   font-family: 'Cutive Mono', monospace;
   color: var(--accent-color);
@@ -75,7 +81,10 @@
   transform: scaleX(1);
 }
 
-/* Older Works Section */
+/* ------------------------------------------------------------------ */
+/*  Collapsible sections (older works, descriptions)                   */
+/* ------------------------------------------------------------------ */
+
 .older-works {
   transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
   max-height: 0;
@@ -88,7 +97,10 @@
   opacity: 1;
 }
 
-/* Paper Description */
+/* ------------------------------------------------------------------ */
+/*  Paper description expand/collapse                                  */
+/* ------------------------------------------------------------------ */
+
 .description-toggle {
   color: var(--accent-color);
   cursor: pointer;

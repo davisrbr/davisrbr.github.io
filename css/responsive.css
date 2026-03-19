@@ -1,4 +1,7 @@
-/* Desktop Layout */
+/* ------------------------------------------------------------------ */
+/*  Desktop (>= 793px)                                                 */
+/* ------------------------------------------------------------------ */
+
 @media screen and (min-width: 793px) {
   .w3-row {
     display: flex !important;
@@ -24,7 +27,10 @@
   }
 }
 
-/* Mobile Layout */
+/* ------------------------------------------------------------------ */
+/*  Mobile (<= 792px)                                                  */
+/* ------------------------------------------------------------------ */
+
 @media screen and (max-width: 792px) {
   .sidebar {
     position: relative !important;
@@ -55,8 +61,10 @@
   }
 }
 
-/* Profile Image Sizing */
-/* Desktop - larger screens */
+/* ------------------------------------------------------------------ */
+/*  Profile image sizing                                               */
+/* ------------------------------------------------------------------ */
+
 @media screen and (min-width: 793px) {
   .profile-img {
     width: 75% !important; 
@@ -65,7 +73,6 @@
   }
 }
 
-/* Mobile and smaller screens */
 @media screen and (max-width: 792px) {
   .profile-img {
     width: 180px !important; 
@@ -73,7 +80,10 @@
   }
 }
 
-/* Large Screen Layout */
+/* ------------------------------------------------------------------ */
+/*  Large screens (>= 1000px)                                          */
+/* ------------------------------------------------------------------ */
+
 @media screen and (min-width: 1000px) {
   body.w3-content {
     width: auto !important;

@@ -1,27 +1,35 @@
-// Shared navigation data and functionality
+/* ------------------------------------------------------------------ */
+/*  Paper feed versions – add new editions at the top                  */
+/* ------------------------------------------------------------------ */
+
 const PAPER_FEED_VERSIONS = [
-  { id: 'mar26', label: 'March \'26', file: 'mar26_papers.html' },
-  { id: 'oct25', label: 'October \'25', file: 'oct25_papers.html' },
-  { id: 'july25', label: 'July \'25', file: 'july25_papers.html' },
-  { id: 'june25', label: 'June \'25', file: 'june25_papers.html' },
-  { id: 'may25', label: 'May \'25', file: 'may25_papers.html' },
-  { id: 'april25', label: 'April \'25', file: 'april25_papers.html' },
-  { id: 'mar25', label: 'March \'25', file: 'mar25_papers.html' },
-  { id: 'dec24', label: 'December \'24', file: 'dec24_papers.html' }
+  { id: 'mar26',   label: "March '26",    file: 'mar26_papers.html'  },
+  { id: 'oct25',   label: "October '25",  file: 'oct25_papers.html'  },
+  { id: 'july25',  label: "July '25",     file: 'july25_papers.html' },
+  { id: 'june25',  label: "June '25",     file: 'june25_papers.html' },
+  { id: 'may25',   label: "May '25",      file: 'may25_papers.html'  },
+  { id: 'april25', label: "April '25",    file: 'april25_papers.html'},
+  { id: 'mar25',   label: "March '25",    file: 'mar25_papers.html'  },
+  { id: 'dec24',   label: "December '24", file: 'dec24_papers.html'  },
 ];
 
+// First non-draft version is considered "latest".
 const LATEST_VERSION = PAPER_FEED_VERSIONS.find(version => !version.label.includes('🚧'));
 
+/* ------------------------------------------------------------------ */
+/*  Navigation setup                                                   */
+/* ------------------------------------------------------------------ */
+
 function initializeNavigation(currentPageId) {
-  // Generate versions navigation
   const versionsContainer = document.querySelector('.versions-nav-links');
   if (versionsContainer) {
-    versionsContainer.innerHTML = PAPER_FEED_VERSIONS.map(version => 
-      `<a href="${version.file}" class="mono-font ${version.id === currentPageId ? 'active' : ''}">${version.label}</a>`
-    ).join('');
+    versionsContainer.innerHTML = PAPER_FEED_VERSIONS
+      .map(version =>
+        `<a href="${version.file}" class="mono-font ${version.id === currentPageId ? 'active' : ''}">${version.label}</a>`
+      )
+      .join('');
   }
 
-  // Update "latest edition" links
   const latestLinks = document.querySelectorAll('.latest-edition-link');
   latestLinks.forEach(link => {
     if (currentPageId !== LATEST_VERSION.id) {
@@ -33,10 +41,11 @@ function initializeNavigation(currentPageId) {
   });
 
   initializeCategoryJumpLinks();
-
-  // Add smooth page transitions
-//   addPageTransitions();
 }
+
+/* ------------------------------------------------------------------ */
+/*  Category jump links (in-page section navigation)                   */
+/* ------------------------------------------------------------------ */
 
 function slugifyCategory(label) {
   return label
@@ -168,27 +177,23 @@ function initializeCategoryJumpLinks() {
   }
 }
 
+/* ------------------------------------------------------------------ */
+/*  Page transitions (currently unused, kept for future use)           */
+/* ------------------------------------------------------------------ */
+
 function addPageTransitions() {
-  // Add fade-in effect when page loads
   document.body.style.opacity = '0';
   document.body.style.transition = 'opacity 0.2s ease-in-out';
-  
-  // Fade in after a brief delay to ensure content is loaded
+
   setTimeout(() => {
     document.body.style.opacity = '1';
   }, 10);
 
-  // Add smooth transitions for navigation links
   document.querySelectorAll('.versions-nav-links a').forEach(link => {
-    link.addEventListener('click', function(e) {
-      // Only add transition if it's a different page
+    link.addEventListener('click', function (e) {
       if (!this.classList.contains('active')) {
         e.preventDefault();
-        
-        // Fade out current page
         document.body.style.opacity = '0';
-        
-        // Navigate after fade out completes
         setTimeout(() => {
           window.location.href = this.href;
         }, 100);
@@ -197,7 +202,10 @@ function addPageTransitions() {
   });
 }
 
-// Auto-redirect functionality for papers.html
+/* ------------------------------------------------------------------ */
+/*  Redirect helper                                                    */
+/* ------------------------------------------------------------------ */
+
 function redirectToLatest() {
   window.location.href = LATEST_VERSION.file;
 }

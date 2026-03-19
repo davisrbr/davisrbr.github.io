@@ -2,17 +2,29 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+/* ------------------------------------------------------------------ */
+/*  Paths                                                              */
+/* ------------------------------------------------------------------ */
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, "..");
+
+/* ------------------------------------------------------------------ */
+/*  Post manifest – add new entries here                               */
+/* ------------------------------------------------------------------ */
 
 const posts = [
   {
     markdown: path.join(repoRoot, "blog/posts/openconjecture.md"),
     metadata: path.join(repoRoot, "blog/posts/openconjecture.meta.json"),
-    output: path.join(repoRoot, "blog/openconjecture.html")
-  }
+    output: path.join(repoRoot, "blog/openconjecture.html"),
+  },
 ];
+
+/* ------------------------------------------------------------------ */
+/*  Build                                                              */
+/* ------------------------------------------------------------------ */
 
 const builtPosts = await Promise.all(posts.map(buildPost));
 await syncBlogIndex(builtPosts);
@@ -56,12 +68,24 @@ async function syncBlogIndex(postsMetadata) {
   }
 }
 
+/* ------------------------------------------------------------------ */
+/*  Page-level rendering                                               */
+/* ------------------------------------------------------------------ */
+
 function renderPage(metadata, rendered) {
   const citation = metadata.citation || {};
-  const citationBibtex = `@misc{${citation.key || "citation"},\n    title = {${metadata.title.replace(
-    /ArXiv/g,
-    "{ArXiv}"
-  )}},\n    author = {${metadata.contributors.map((person) => person.name).join(" and ")}},\n    howpublished = {\\url{${citation.url || ""}}},\n    year = {${citation.year || ""}},\n    month = {${citation.month || ""}},\n}`;
+  const authors = metadata.contributors.map((p) => p.name).join(" and ");
+  const bibtexTitle = metadata.title.replace(/ArXiv/g, "{ArXiv}");
+
+  const citationBibtex = [
+    `@misc{${citation.key || "citation"},`,
+    `    title = {${bibtexTitle}},`,
+    `    author = {${authors}},`,
+    `    howpublished = {\\url{${citation.url || ""}}},`,
+    `    year = {${citation.year || ""}},`,
+    `    month = {${citation.month || ""}},`,
+    `}`,
+  ].join("\n");
 
   return `<!DOCTYPE html>
 <html>
@@ -246,6 +270,10 @@ function renderPage(metadata, rendered) {
 `;
 }
 
+/* ------------------------------------------------------------------ */
+/*  Markdown → HTML                                                    */
+/* ------------------------------------------------------------------ */
+
 function renderMarkdown(markdown, metadata) {
   const lines = markdown.replace(/\r\n/g, "\n").split("\n");
   const references = {};
@@ -349,6 +377,10 @@ function renderMarkdown(markdown, metadata) {
   };
 }
 
+/* ------------------------------------------------------------------ */
+/*  Inline rendering (bold, italic, links, footnotes, code)            */
+/* ------------------------------------------------------------------ */
+
 function renderInline(text, footnoteDefinitions, footnoteOrder, footnoteLookup) {
   let html = escapeHtml(text);
 
@@ -407,6 +439,10 @@ function renderReferences(references) {
   return `<section class="writing-post-references" id="references"><h2>References</h2><ul>${items}</ul></section>`;
 }
 
+/* ------------------------------------------------------------------ */
+/*  Small component renderers                                          */
+/* ------------------------------------------------------------------ */
+
 function renderContributors(contributors) {
   return contributors
     .map(
@@ -418,28 +454,32 @@ function renderContributors(contributors) {
     .join(" and ");
 }
 
+/* ------------------------------------------------------------------ */
+/*  Utilities                                                          */
+/* ------------------------------------------------------------------ */
+
 function shortTitle(title) {
   return title.split("|")[0].replace(/\s+from the ArXiv$/, "").trim();
 }
 
+// Per-image captions and alt text. Extend these maps when adding new figures.
+const IMAGE_CAPTIONS = {
+  image1: "Distribution of extracted conjectures across mathematical subfields.",
+  image2: "Interestingness and tractability score distributions for extracted conjectures.",
+};
+
+const IMAGE_ALT_TEXT = {
+  image1: "Histogram showing the number of extracted conjectures by mathematical subfield.",
+  image2:
+    "KDE plot showing interestingness and tractability score distributions for extracted conjectures across mathematical subfields.",
+};
+
 function imageCaptionFor(key) {
-  if (key === "image1") {
-    return "Distribution of extracted conjectures across mathematical subfields.";
-  }
-  if (key === "image2") {
-    return "Interestingness and tractability score distributions for extracted conjectures.";
-  }
-  return key.replace(/[-_]/g, " ");
+  return IMAGE_CAPTIONS[key] || key.replace(/[-_]/g, " ");
 }
 
 function altTextFor(key) {
-  if (key === "image1") {
-    return "Histogram showing the number of extracted conjectures by mathematical subfield.";
-  }
-  if (key === "image2") {
-    return "KDE plot showing interestingness and tractability score distributions for extracted conjectures across mathematical subfields.";
-  }
-  return imageCaptionFor(key);
+  return IMAGE_ALT_TEXT[key] || imageCaptionFor(key);
 }
 
 function normalizeAssetPath(source) {

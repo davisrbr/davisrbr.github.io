@@ -286,54 +286,39 @@
       <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- JavaScript -->
     <script>
-      // Toggle Older Work
-      document.getElementById('older-work-toggle').addEventListener('click', function() {
-        var elem = document.getElementById("olderWork");
-        elem.classList.toggle("visible");
-        
-        // Change text based on current state
-        if (elem.classList.contains("visible")) {
-          this.textContent = "Hide older work";
-        } else {
-          this.textContent = "Some older work";
-        }
+      /* -- Older-work toggle ------------------------------------------ */
+      document.getElementById('older-work-toggle').addEventListener('click', function () {
+        var elem = document.getElementById('olderWork');
+        elem.classList.toggle('visible');
+        this.textContent = elem.classList.contains('visible')
+          ? 'Hide older work'
+          : 'Some older work';
       });
-      
-      // Toggle Paper Descriptions
-      document.querySelectorAll('.description-toggle').forEach(toggle => {
-        toggle.addEventListener('click', function() {
-          const targetId = this.getAttribute('data-target');
-          const descElement = document.getElementById(targetId);
-          
-          descElement.classList.toggle('visible');
-          
-          // Update toggle text
-          if (descElement.classList.contains('visible')) {
-            this.textContent = 'Hide description';
-          } else {
-            this.textContent = 'Paper Description';
-          }
+
+      /* -- Paper description toggles ---------------------------------- */
+      document.querySelectorAll('.description-toggle').forEach(function (toggle) {
+        toggle.addEventListener('click', function () {
+          var desc = document.getElementById(this.getAttribute('data-target'));
+          desc.classList.toggle('visible');
+          this.textContent = desc.classList.contains('visible')
+            ? 'Hide description'
+            : 'Paper Description';
         });
       });
-      
-      // Back to Top Button
-      window.onscroll = function() {scrollFunction()};
-      
-      function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-          document.getElementById("back-to-top").style.display = "block";
-        } else {
-          document.getElementById("back-to-top").style.display = "none";
-        }
-      }
-      
-      document.getElementById('back-to-top').addEventListener('click', function() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+      /* -- Back-to-top button ----------------------------------------- */
+      var backToTop = document.getElementById('back-to-top');
+
+      window.addEventListener('scroll', function () {
+        var scrolled = document.body.scrollTop > 20 || document.documentElement.scrollTop > 20;
+        backToTop.style.display = scrolled ? 'block' : 'none';
       });
-      
+
+      backToTop.addEventListener('click', function () {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      });
     </script>
   </body>
 </html>
