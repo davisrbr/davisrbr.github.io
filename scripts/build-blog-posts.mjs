@@ -157,7 +157,7 @@ function renderPage(metadata, rendered) {
           <button type="button" class="writing-modal-close mono-font" id="citation-close-button" aria-label="Close citation dialog">×</button>
         </div>
         <pre class="writing-modal-code" id="citation-bibtex">${escapeHtml(citationBibtex)}</pre>
-        <button type="button" class="writing-modal-copy mono-font" id="citation-copy-button">Copy</button>
+        <button type="button" class="writing-modal-copy mono-font" id="citation-copy-button">Copy BibTeX</button>
       </div>
     </div>
     <script>
