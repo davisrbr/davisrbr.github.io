@@ -154,6 +154,10 @@
   color: inherit;
 }
 
+.home-writing-bullet a:hover {
+  color: var(--primary-color);
+}
+
 .home-writing-bullet:last-child {
   margin-bottom: 0;
 }
@@ -169,7 +173,8 @@
 
 .home-writing-title {
   display: inline-block;
-  color: #b35a1f;
+  color: var(--accent-color);
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.6;
@@ -177,7 +182,7 @@
 }
 
 .home-writing-title:hover {
-  color: #8f4310;
+  color: var(--primary-color);
 }
 
 .home-writing-note {
@@ -531,6 +536,10 @@
 .writing-modal-copy:active {
   background: #eef1f8;
   box-shadow: inset 0 1px 2px rgba(10, 16, 35, 0.08);
+}
+
+.home-writing-inline-note {
+  color: #444;
 }
 
 .writing-post-body h2 {
