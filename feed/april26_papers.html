@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<title>Paper Feed</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Ctext y=%2250%22 x=%2250%25%22 text-anchor=%22middle%22 font-size=%2250%22%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-color: #191970;
+    --accent-color: #4169e1;
+    --highlight-color: #fff3b0;
+    --light-bg: #f9f9f9;
+    --border-color: #e0e0e0;
+  }
+
+  body {
+    font-family: 'Lora', serif;
+    line-height: 1.6;
+    color: #222;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .mono-font { font-family: 'IBM Plex Mono', monospace; font-weight: 400; }
+
+  a       { color: var(--accent-color); transition: color .3s, text-decoration .3s; text-decoration: none; }
+  a:hover { color: var(--primary-color); text-decoration: none; }
+
+  .sidebar {
+    background-color: var(--light-bg);
+    box-shadow: 0 0 10px rgba(0,0,0,.03);
+    border-right: 1px solid var(--border-color);
+  }
+
+  .highlight {
+    background-color: var(--highlight-color);
+    padding: .2rem .5rem;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  .nav-links a       { display:block; padding:8px 0; transition:transform .2s; }
+  .nav-links a:hover { transform:translateX(5px); }
+  .nav-links a.active{ font-weight:700; color:var(--primary-color); }
+
+  .paper-item { margin-bottom:0; padding-bottom:0; }
+
+  .description-toggle {
+    color:var(--accent-color); cursor:pointer; font-size:.95rem; font-weight:500;
+    opacity:.9; margin-top:5px; display:inline-block; transition:color .3s;
+  }
+  .description-toggle:hover { color:var(--primary-color); text-decoration:none; }
+
+  .paper-description {
+    font-size:.95rem; margin-top:5px; overflow:hidden; max-height:0; opacity:0;
+    transition:max-height .3s ease-out, opacity .3s, padding .3s;
+    background:rgba(240,240,240,.3); border-radius:3px;
+    padding-left:5px; padding-right:5px; line-height:1.4;
+  }
+  .paper-description.visible { max-height:800px; opacity:1; padding:10px; }
+
+  .versions-container { margin-top:15px; margin-bottom:10px; }
+
+  @media screen and (min-width:793px){
+    .sidebar       { position:sticky; top:0; height:100vh; overflow-y:auto; flex:0 0 20%; width:20%; }
+    .w3-twothird   { flex:0 0 80%; width:80%; }
+  }
+
+  @media screen and (max-width:792px){
+    .sidebar{ position:static; height:auto; width:100%; overflow:visible; padding-bottom:1.5rem; }
+  }
+</style>
+
+<body class="w3-content" style="max-width:2500px">
+
+  <div class="w3-row">
+    <div class="w3-third sidebar w3-container w3-center">
+      <div class="w3-padding-24"><h4 class="mono-font">Paper Feed</h4></div>
+
+      <div class="versions-container">
+        <div class="mono-font" style="font-size:1.15rem;">Versions</div>
+        <div class="nav-links versions-nav-links">
+          <!-- Navigation will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <div style="margin-top:30px;"></div>
+      <div class="nav-links"><a href="../index.html" class="mono-font">Home</a></div>
+    </div>
+
+    <div class="w3-twothird w3-white w3-container">
+      <div class="w3-padding-64 w3-center">
+        <div class="w3-left-align w3-padding-small">
+          <h3 class="mono-font">Paper Feed: April 2026</h3>
+
+          <div class="intro-note mono-font" style="margin-top:0.85rem;margin-right:80px;margin-bottom:0.35rem;padding:0 0 0.25rem 0;color:#555;font-size:0.95rem;">
+            <p style="margin:0 0 .5rem 0;font-size:1rem;">
+              As of 04/01/26.
+            </p>
+          </div>
+
+          <!-- =====================  MONITORING AND MISALIGNMENT  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Monitoring and Misalignment</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://openai.com/index/how-we-monitor-internal-coding-agents-misalignment/" target="_blank" style="color:#191970">
+                How we monitor internal coding agents for misalignment
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">OpenAI (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://alignment.openai.com/metagaming" target="_blank" style="color:#191970">
+                Metagaming matters for training, evaluation, and oversight
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Bronson Schoen, Jenny Nitishinskaya (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.anthropic.com/engineering/eval-awareness-browsecomp" target="_blank" style="color:#191970">
+                Eval awareness in Claude Opus 4.6's BrowseComp performance
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Anthropic (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.aisi.gov.uk/blog/stress-testing-asynchronous-monitoring-of-ai-coding-agents" target="_blank" style="color:#191970">
+                Stress-testing asynchronous monitoring of AI coding agents
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">
+                AISI (2026); companion paper:
+                <a href="https://arxiv.org/abs/2512.13526" target="_blank" style="color:#191970">
+                  Async Control: Stress-testing Asynchronous Control Measures for LLM Agents
+                </a>
+              </span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.lesswrong.com/posts/CWecvQoLDGWt6d35v/cot-control-the-word-disappears-but-the-thought-does-not" target="_blank" style="color:#191970">
+                COT control: The Word Disappears, but the Thought Does Not
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Pranjal Garg (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.lesswrong.com/posts/FG54euEAesRkSZuJN/ryan_greenblatt-s-shortform?commentId=pmK5edpGKnzwNcXAo" target="_blank" style="color:#191970">
+                AIs exhibit a (misaligned) drive to stop early
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Ryan Greenblatt (ongoing)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  GENERALIZATION  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Generalization</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://alignment.openai.com/how-far-does-alignment-midtraining-generalize/" target="_blank" style="color:#191970">
+                How far does alignment midtraining generalize?
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Tomek Korbak, Cameron Raymond, Micah Carroll, [...], Ian Kivlichan (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2603.02225" target="_blank" style="color:#191970">
+                Scaling Reward Modeling without Human Supervision
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Jingxuan Fan, Yueying Li, Zhenting Qi, [...], Hanlin Zhang (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.forethought.org/research/ai-should-sometimes-be-proactively-prosocial" target="_blank" style="color:#191970">
+                AIs Should Have Proactive Prosocial Drives
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Tom Davidson, William MacAskill (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://blog.redwoodresearch.org/p/are-ais-more-likely-to-pursue-on" target="_blank" style="color:#191970">
+                Are AIs more likely to pursue on-episode or beyond-episode reward?
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Anders Cairns Woodruff (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://x.com/cfgeek/status/1660694398932500481" target="_blank" style="color:#191970">
+                Running list of conjectures about neural networks
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Charles Foster (2023)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  SECURITY  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Security</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://www.workshoplabs.ai/blog/private-post-training" target="_blank" style="color:#191970">
+                Private Post-Training and Inference for Frontier Models
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Rudolf Laine, Tanya Verma, Daniel McCann-Sayles, Jules Drean (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://substack.com/home/post/p-189184829" target="_blank" style="color:#191970">
+                My computer got self-hacked because of OpenClaw
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Aaron Zhao (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2602.15001" target="_blank" style="color:#191970">
+                Boundary Point Jailbreaking of Black-Box LLMs
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Xander Davies, Giorgi Giglemiani, Edmund Lau, [...], Yarin Gal (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2603.02277" target="_blank" style="color:#191970">
+                Quantifying Frontier LLM Capabilities for Container Sandbox Escape
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Rahul Marchand, Art O Cathain, Jerome Wynne, [...], Harry Coppock (2026)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  AI ECONOMICS AND FORECASTING  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">AI Economics and Forecasting</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://www.econtai.org/research/AutomatingResearch-2026-01-02.pdf" target="_blank" style="color:#191970">
+                When Does Automating Research Produce Explosive Growth?
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Tom Davidson, Basil Halperin, Thomas Houlden, Anton Korinek (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2603.03992" target="_blank" style="color:#191970">
+                Measuring AI R&amp;D Automation
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Alan Chan, Ranay Padarath, Joe Kwon, Hilary Greaves, Markus Anderljung (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2603.23802" target="_blank" style="color:#191970">
+                How are AI agents used? Evidence from 177,000 MCP tools
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Merlin Stein (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://metr.org/notes/2026-03-19-org-uplift-game" target="_blank" style="color:#191970">
+                We spent 2 hours working in the future
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Thomas Kwa, Tom Cunningham (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.anthropic.com/research/economic-index-march-2026-report" target="_blank" style="color:#191970">
+                Anthropic Economic Index report: Learning curves
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Maxim Massenkoff, Eva Lyubich, Peter McCrory, [...], Ryan Heller (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://blog.redwoodresearch.org/p/ais-capability-improvements-havent" target="_blank" style="color:#191970">
+                AI's capability improvements haven't come from it getting less affordable
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Anders Cairns Woodruff (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://epoch.ai/gradient-updates/r-and-d-vs-training-compute" target="_blank" style="color:#191970">
+                Final training runs account for a minority of R&amp;D compute spending
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Jean-Stanislas Denain (2026)</span>
+              <br/>
+              <div class="description-toggle" data-target="descCatchUp">
+                Why this is notable
+              </div>
+              <div id="descCatchUp" class="paper-description">
+                Catch-up effects exist, but they are less pronounced than I naively expected.
+              </div>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2603.22404" target="_blank" style="color:#191970">
+                Computational Arbitrage in AI Model Markets
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Ricardo Olmedo, Bernhard Sch&ouml;lkopf, Moritz Hardt (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://multipliercg.substack.com/p/understanding-and-tracking-developments" target="_blank" style="color:#191970">
+                Understanding and tracking developments in robotics
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Janvi (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://newsletter.forethought.org/p/concrete-projects-to-prepare-for" target="_blank" style="color:#191970">
+                Concrete projects to prepare for superintelligence
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Will MacAskill (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://x.com/YafahEdelman/status/2037299837855776771" target="_blank" style="color:#191970">
+                Discussion with Daniel Kokotajlo and Eli Lifland on AI worldviews and cruxes
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Yafah Edelman (2026)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  MISCELLANEOUS  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Miscellaneous</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2505.22988" target="_blank" style="color:#191970">
+                Model-Preserving Adaptive Rounding
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Albert Tseng, Zhaofeng Sun, Christopher De Sa (2025)</span>
+            </li>
+          </ul>
+
+        </div><!-- /w3-left-align -->
+      </div><!-- /w3-padding-64 -->
+    </div><!-- /w3-twothird -->
+  </div><!-- /w3-row -->
+
+  <script src="shared-nav.js"></script>
+  <script>
+    initializeNavigation('april26');
+
+    document.querySelectorAll('.description-toggle').forEach(t => {
+      t.addEventListener('click', function(){
+        const id = this.getAttribute('data-target');
+        const desc = document.getElementById(id);
+        desc.classList.toggle('visible');
+        this.textContent = desc.classList.contains('visible') ? 'Hide details'
+                                                              : 'Why this is notable';
+      });
+    });
+  </script>
+</body>
+</html>

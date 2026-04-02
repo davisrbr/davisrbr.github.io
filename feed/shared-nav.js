@@ -1,5 +1,6 @@
 // Shared navigation data and functionality
 const PAPER_FEED_VERSIONS = [
+  { id: 'april26', label: 'April \'26', file: 'april26_papers.html' },
   { id: 'mar26', label: 'March \'26', file: 'mar26_papers.html' },
   { id: 'oct25', label: 'October \'25', file: 'oct25_papers.html' },
   { id: 'july25', label: 'July \'25', file: 'july25_papers.html' },
@@ -10,7 +11,7 @@ const PAPER_FEED_VERSIONS = [
   { id: 'dec24', label: 'December \'24', file: 'dec24_papers.html' }
 ];
 
-const LATEST_VERSION = PAPER_FEED_VERSIONS.find(version => !version.label.includes('🚧'));
+const LATEST_VERSION = PAPER_FEED_VERSIONS.find(version => !version.draft);
 
 function initializeNavigation(currentPageId) {
   // Generate versions navigation
