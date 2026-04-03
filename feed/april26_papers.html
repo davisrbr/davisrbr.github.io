@@ -111,6 +111,13 @@
                 How we monitor internal coding agents for misalignment
               </a><br/>
               <span style="font-size:.9em;color:#666;">OpenAI (2026)</span>
+              <br/>
+              <div class="description-toggle" data-target="descMonitorMisalignment">
+                Why this is important
+              </div>
+              <div id="descMonitorMisalignment" class="paper-description">
+                It would be nice to have a BOTEC estimate for how much more expensive synchronous monitoring would be for monitoring misalignment. See also <a href="https://blog.redwoodresearch.org/p/blocking-live-failures-with-synchronous" target="_blank">this Redwood Research post</a>.
+              </div>
             </li>
 
             <li class="paper-item">
@@ -118,6 +125,13 @@
                 Metagaming matters for training, evaluation, and oversight
               </a><br/>
               <span style="font-size:.9em;color:#666;">Bronson Schoen, Jenny Nitishinskaya (2026)</span>
+              <br/>
+              <div class="description-toggle" data-target="descMetagaming">
+                Why this is important
+              </div>
+              <div id="descMetagaming" class="paper-description">
+                Verbalized alignment-eval awareness rises from 2% to 20.6% during capabilities RL.
+              </div>
             </li>
 
             <li class="paper-item">
@@ -137,6 +151,13 @@
                   Async Control: Stress-testing Asynchronous Control Measures for LLM Agents
                 </a>
               </span>
+              <br/>
+              <div class="description-toggle" data-target="descAsyncControl">
+                Why this is important
+              </div>
+              <div id="descAsyncControl" class="paper-description">
+                I really like these kinds of red-blue team games, have run one before, and am in the process of running a couple others. However, my guess is that the use of humans in red-blue team games will soon be less important, as humans become less relevant in actually coming up with and implementing ideas in control or security. (Although it's possible that larger-scale competitions stay relevant with good mechanism design). To do: how might the mechanism design for these games for language model agents be different from the mechanism design for humans? (Note: please contact me if you are interested in this!)
+              </div>
             </li>
 
             <li class="paper-item">
@@ -151,6 +172,13 @@
                 AIs exhibit a (misaligned) drive to stop early
               </a><br/>
               <span style="font-size:.9em;color:#666;">Ryan Greenblatt (2026)</span>
+              <br/>
+              <div class="description-toggle" data-target="descStopEarly">
+                Why this is important
+              </div>
+              <div id="descStopEarly" class="paper-description">
+                Multiple hypotheses are given. I think it would be nice to test this one: "The AI might have learned to stop before running out of context or compaction in training because compaction is bad for task completion." Some anecdotal evidence is provided here: "For Opus 4.5, I've seen many cases where when given a big task it stops right before running out of context." Although my personal guess is that it is due to the "AI being unreliable in decision making combined with selection effects."
+              </div>
             </li>
           </ul>
 
@@ -162,6 +190,13 @@
                 How far does alignment midtraining generalize?
               </a><br/>
               <span style="font-size:.9em;color:#666;">Tomek Korbak, Cameron Raymond, Micah Carroll, [...], Ian Kivlichan (2026)</span>
+              <br/>
+              <div class="description-toggle" data-target="descMidtraining">
+                Why this is important
+              </div>
+              <div id="descMidtraining" class="paper-description">
+                Some evidence that RL priors are more important than those picked up from pretraining, although this is only a single setting (e.g. more or better data, at different points of training, might change things).
+              </div>
             </li>
 
             <li class="paper-item">
@@ -183,6 +218,13 @@
                 Are AIs more likely to pursue on-episode or beyond-episode reward?
               </a><br/>
               <span style="font-size:.9em;color:#666;">Anders Cairns Woodruff, Alex Mallen (2026)</span>
+              <br/>
+              <div class="description-toggle" data-target="descRewardSeeking">
+                Why this is important
+              </div>
+              <div id="descRewardSeeking" class="paper-description">
+                Given the arguments in the post, I am a bit surprised the authors think on-episode reward seekers are only 55% more likely than beyond-episode reward seekers. An important factor for how low this credence is, is that on-episode reward seekers have very similar motivations to beyond-episode reward seekers (namely: they enjoy a good reward).
+              </div>
             </li>
 
             <li class="paper-item">
@@ -201,6 +243,13 @@
                 Private Post-Training and Inference for Frontier Models
               </a><br/>
               <span style="font-size:.9em;color:#666;">Rudolf Laine, Tanya Verma, Daniel McCann-Sayles, Jules Drean (2026)</span>
+              <br/>
+              <div class="description-toggle" data-target="descPrivatePostTraining">
+                Why this is important
+              </div>
+              <div id="descPrivatePostTraining" class="paper-description">
+                Some good discussion about what TEEs actually buy you.
+              </div>
             </li>
 
             <li class="paper-item">
@@ -254,6 +303,13 @@
                 We spent 2 hours working in the future
               </a><br/>
               <span style="font-size:.9em;color:#666;">Thomas Kwa, Tom Cunningham (2026)</span>
+              <br/>
+              <div class="description-toggle" data-target="descWorkingInFuture">
+                Why this is important
+              </div>
+              <div id="descWorkingInFuture" class="paper-description">
+                Re-hashes a standard line of argument: serial bottlenecks (ML experiments, human feedback) start to hit very hard, and the extent that agents can overcome these bottlenecks (via predicting the results of ML experiments or simulating human feedback) is important. Of course, agents might also be able to better design experiments.
+              </div>
             </li>
 
             <li class="paper-item">
@@ -268,6 +324,13 @@
                 AI's capability improvements haven't come from it getting less affordable
               </a><br/>
               <span style="font-size:.9em;color:#666;">Anders Cairns Woodruff (2026)</span>
+              <br/>
+              <div class="description-toggle" data-target="descAffordability">
+                Why this is important
+              </div>
+              <div id="descAffordability" class="paper-description">
+                Ord came out with some analysis arguing the contrary: that improvements have largely been from spending more on inference. This would have significant (I think largely good) implications on the near-term impact of AIs if true. However, this seems likely incorrect, because Ord's analysis is much too sensitive to rare / expensive long tasks, and anchored too heavily on older / more expensive reasoning models.
+              </div>
             </li>
 
             <li class="paper-item">
@@ -277,7 +340,7 @@
               <span style="font-size:.9em;color:#666;">Jean-Stanislas Denain (2026)</span>
               <br/>
               <div class="description-toggle" data-target="descCatchUp">
-                Why this is notable
+                Why this is important
               </div>
               <div id="descCatchUp" class="paper-description">
                 Catch-up effects exist, but they are less pronounced than I naively expected.
@@ -339,7 +402,7 @@
         const desc = document.getElementById(id);
         desc.classList.toggle('visible');
         this.textContent = desc.classList.contains('visible') ? 'Hide details'
-                                                              : 'Why this is notable';
+                                                              : 'Why this is important';
       });
     });
   </script>
