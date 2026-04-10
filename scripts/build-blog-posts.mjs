@@ -8,6 +8,11 @@ const repoRoot = path.resolve(__dirname, "..");
 
 const posts = [
   {
+    markdown: path.join(repoRoot, "blog/posts/cheating-agents.md"),
+    metadata: path.join(repoRoot, "blog/posts/cheating-agents.meta.json"),
+    output: path.join(repoRoot, "blog/cheating-agents.html")
+  },
+  {
     markdown: path.join(repoRoot, "blog/posts/openconjecture.md"),
     metadata: path.join(repoRoot, "blog/posts/openconjecture.meta.json"),
     output: path.join(repoRoot, "blog/openconjecture.html")
@@ -296,11 +301,18 @@ function renderMarkdown(markdown, metadata) {
       return;
     }
 
-    if (block.startsWith("## ")) {
+    if (block.startsWith("## ") && !block.startsWith("### ")) {
       const heading = block.replace(/^##\s+/, "").trim();
       const id = slugify(heading);
       sections.push({ id, title: heading });
       htmlParts.push(`<h2 id="${escapeAttribute(id)}">${escapeHtml(heading)}</h2>`);
+      return;
+    }
+
+    if (block.startsWith("### ")) {
+      const heading = block.replace(/^###\s+/, "").trim();
+      const id = slugify(heading);
+      htmlParts.push(`<h3 id="${escapeAttribute(id)}">${renderInline(heading, footnoteDefinitions, footnoteOrder, footnoteLookup)}</h3>`);
       return;
     }
 
@@ -408,14 +420,25 @@ function renderReferences(references) {
 }
 
 function renderContributors(contributors) {
-  return contributors
-    .map(
-      (person) =>
-        `<a href="${escapeAttribute(person.url)}"${
-          person.url.startsWith("http") ? ' target="_blank" rel="noreferrer"' : ""
-        }>${escapeHtml(person.name)}</a>`
-    )
-    .join(" and ");
+  const links = contributors.map(
+    (person) => {
+      const star = person.equal ? "*" : "";
+      return `<a href="${escapeAttribute(person.url)}"${
+        person.url.startsWith("http") ? ' target="_blank" rel="noreferrer"' : ""
+      }>${escapeHtml(person.name)}${star}</a>`;
+    }
+  );
+  const hasEqual = contributors.some((p) => p.equal);
+  let joined;
+  if (links.length <= 2) {
+    joined = links.join(" and ");
+  } else {
+    joined = links.slice(0, -1).join(", ") + ", and " + links[links.length - 1];
+  }
+  if (hasEqual) {
+    joined += '<br><span style="font-size:0.85em;font-style:italic;">*Equal contribution. Order decided by coin flip</span>';
+  }
+  return joined;
 }
 
 function shortTitle(title) {
@@ -429,6 +452,19 @@ function imageCaptionFor(key) {
   if (key === "image2") {
     return "Interestingness and tractability score distributions for extracted conjectures.";
   }
+  const cheatingCaptions = {
+    overview: "Over 1,000 validated cheating instances found across 28 benchmark submissions.",
+    pilot: "Pilot agent reads from an inaccessible /tests directory to extract expected outputs.",
+    forge_mteb: "ForgeCode AGENTS.md contains the answer key; the agent copies it verbatim.",
+    forge_bnfit: "ForgeCode agent hardcodes Bayesian Network edges from AGENTS.md.",
+    hal_usaco: "HAL USACO scaffold injects full solution code disguised as a similar problem.",
+    cybench: "Agent Googles a CyBench CTF challenge and extracts the flag from a public writeup.",
+    swebench: "Agent mines git history to find and copy the fix commit.",
+    metaharness: "Agent writes code that prints PASS to trick the verifier.",
+    swesmith: "Agent hardcodes return values for exact test inputs.",
+    bountybench: "Agents fake exploits using grep pattern matching and mock libraries."
+  };
+  if (cheatingCaptions[key]) return cheatingCaptions[key];
   return key.replace(/[-_]/g, " ");
 }
 
@@ -438,6 +474,9 @@ function altTextFor(key) {
   }
   if (key === "image2") {
     return "KDE plot showing interestingness and tractability score distributions for extracted conjectures across mathematical subfields.";
+  }
+  if (key === "overview") {
+    return "Dot plot showing over 1,000 validated cheating instances across 28 benchmark submissions.";
   }
   return imageCaptionFor(key);
 }

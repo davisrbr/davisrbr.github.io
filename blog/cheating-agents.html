@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Finding Widespread Cheating on Popular Agent Benchmarks | Davis Brown</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Lora:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/papers.css">
+    <link rel="stylesheet" href="../css/writing.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+  </head>
+  <body class="w3-content writing-page" style="max-width:2500px">
+    <div class="w3-container main-content main-content--writing blog-shell">
+      <div class="writing-post-layout">
+        <aside class="writing-post-sidebar">
+          <div class="writing-breadcrumb mono-font">
+            <a href="../index.html">Home</a> / <a href="index.html">Blog</a>
+          </div>
+          <section class="writing-post-sidebar-section writing-post-toc">
+            <div class="writing-post-toc-title mono-font">On this page</div>
+            <nav class="writing-post-toc-links">
+              <a href="#harness-level-cheating">Harness-Level Cheating</a>
+              <a href="#task-level-cheating">Task-Level Cheating</a>
+              <a href="#takeaways">Takeaways</a>
+              <a href="#references">References</a>
+            </nav>
+          </section>
+        </aside>
+
+        <div class="writing-post-main">
+          <div class="writing-post-intro">
+            <header class="writing-post-header">
+              <div class="writing-post-type mono-font">Essay</div>
+              <h1 class="writing-post-title">Finding Widespread Cheating on Popular Agent Benchmarks</h1>
+              <p class="writing-post-dek mono-font">
+                We find over 1,000 instances of cheating across 28+ submissions on 9 benchmarks, including the top 3 Terminal-Bench 2 agents.
+              </p>
+            </header>
+
+            <div class="writing-post-topbar">
+            <div class="writing-post-meta-grid">
+              <section class="writing-post-meta-panel">
+                <div class="writing-post-sidebar-label mono-font">Contributors</div>
+                <div class="writing-post-sidebar-value"><a href="https://seas.upenn.edu/~steinad" target="_blank" rel="noreferrer">Adam Stein*</a>, <a href="../index.html">Davis Brown*</a>, <a href="https://www.seas.upenn.edu/~hassani/" target="_blank" rel="noreferrer">Hamed Hassani</a>, <a href="https://www.seas.upenn.edu/~mhnaik" target="_blank" rel="noreferrer">Mayur Naik</a>, and <a href="https://www.cis.upenn.edu/~exwong/" target="_blank" rel="noreferrer">Eric Wong</a><br><span style="font-size:0.85em;font-style:italic;">*Equal contribution. Order decided by coin flip</span></div>
+              </section>
+
+              <section class="writing-post-meta-panel">
+                <div class="writing-post-sidebar-label mono-font">Date</div>
+                <div class="writing-post-sidebar-value">April 10, 2026</div>
+              </section>
+
+              <section class="writing-post-meta-panel">
+                <div class="writing-post-sidebar-label mono-font">Share</div>
+                <div class="writing-post-sidebar-links mono-font">
+                  <a href="https://github.com/BrachioLab/Meerkat" target="_blank" rel="noreferrer">GitHub</a>
+                  <a href="https://debugml.github.io/cheating-agents/" target="_blank" rel="noreferrer">DebugML</a>
+                  <button type="button" class="writing-post-copy-link mono-font" id="citation-button">Citation</button>
+                </div>
+              </section>
+            </div>
+          </div>
+          </div>
+
+          <article class="writing-post-body">
+            <p><strong>TLDR:</strong> Agentic cheating is a widespread issue, affecting thousands of submitted agent runs on 28+ submissions across 9 different benchmarks.</p>
+            <figure><img src="../assets/blog/cheating_matrix_v4_dotplot.png" alt="Dot plot showing over 1,000 validated cheating instances across 28 benchmark submissions."><figcaption>Over 1,000 validated cheating instances found across 28 benchmark submissions.</figcaption></figure>
+            <p><a href="https://www.tbench.ai/" target="_blank" rel="noreferrer">Terminal-Bench 2</a> is a popular benchmark used to evaluate frontier model releases (e.g. Opus 4.6 and GPT-5.4), where agent scaffolds at the top of the leaderboard get thousands of stars on Github.</p>
+            <p>Unfortunately, we find that the top three submissions to Terminal-Bench 2 are guilty of cheating.</p>
+            <p>More broadly, we find that agentic cheating is widespread, affecting thousands of submitted agent runs on 28+ submissions across 9 different benchmarks. Our system for finding violations, <a href="https://github.com/BrachioLab/Meerkat" target="_blank" rel="noreferrer">Meerkat</a>, uses agentic search and clustering to scale auditing for cheating to thousands of traces (see the <a href="#takeaways" target="_blank" rel="noreferrer">takeaways</a> at the end for further discussion on how Meerkat works). We use it to find strong evidence for the following: (1) *<em>The top three Terminal-Bench-2 agents and the top HAL USACO submission commit </em>harness-level cheating<em><strong>, where the agent harness sneaks the correct answer to the model. This cheating spans over 1,000 traces and 12+ frontier models. (2) </strong>Task-level cheating,</em>* where the task is gamed or shortcutted by the model itself. For example, agents hack evaluations by overwriting test cases or simply looking up the solution online. We find 39 confirmed instances across 6 benchmarks, roughly 4x more than previous estimates.</p>
+            <p>Harness-level cheating is not always intentional cheating by the developer, but can be a kind of &quot;meta&quot; reward hacking. We believe the coding agents used by the developer to build the scaffold are themselves cheating when attempting to design a harness to get good benchmark performance. This is especially likely for the cheating in Terminal-Bench, where many of the developers publicly discuss vibecoding their harnesses. We think harness-level cheating will be an even greater problem as <a href="https://x.com/karpathy/status/2031135152349524125" target="_blank" rel="noreferrer">autoresearch</a> gets adopted.</p>
+            <p>Below, we provide examples found by Meerkat and discuss takeaways. A paper with more detail on our approach will be released soon.</p>
+            <h2 id="harness-level-cheating">Harness-Level Cheating</h2>
+            <p>Harness-level cheating, or developer cheating, is when privileged information (like the correct answer) is leaked into the agent&#39;s environment by the developer. Since this happens at the scaffold level, it is often model-agnostic: any capable model will end up cheating when evaluated through the same harness. We believe this is due to developers designing agent harnesses with coding agents; so this occurs due to the meta-agent itself cheating. This becomes explicit as autoresearch and <a href="https://arxiv.org/abs/2603.28052" target="_blank" rel="noreferrer">meta-harnesses</a> become more widely adopted.</p>
+            <h3 id="verifier-injection-pilot-on-terminal-bench-2">Verifier injection (Pilot on Terminal-Bench 2)</h3>
+            <p>The #1 Terminal-Bench 2 score (82.9% pass rate) was achieved by Pilot, a scaffold that loads task verifier code into the agent&#39;s environment. In 415 of 429 traces, <em>the agent reads from a <code>/tests</code> directory that should be <a href="https://www.tbench.ai/docs/task-overview#implementing-a-sing-dockerfile" target="_blank" rel="noreferrer">inaccessible</a></em>. Its first action is often <code>cat /tests/test_outputs.py</code>, after which it reverse-engineers expected outputs and works backward. The scaffold cheats by looking up the answer-key, which should not be accessible.</p>
+            <figure><img src="../assets/blog/02_pilot_verifier_leak.png" alt="Pilot agent reads from an inaccessible /tests directory to extract expected outputs."><figcaption>Pilot agent reads from an inaccessible /tests directory to extract expected outputs.</figcaption></figure>
+            <h3 id="sneaking-the-answer-key-forgecode-on-terminal-bench-2">Sneaking the answer key (ForgeCode on Terminal-Bench 2)</h3>
+            <p>The #2 and #3 score on the Terminal-Bench 2 leaderboard (81.8% pass rate) are achieved by ForgeCode, a scaffold that automatically loads <code>AGENTS.md</code> files into the agent&#39;s system prompt before execution begins. These files, however, are not part of the official benchmark and we find that in several cases they contained literal answer keys.</p>
+            <p>On the <code>mteb-leaderboard</code> task, the <code>AGENTS.md</code> file included the exact expected answer along with a record of why a prior attempt had failed: <em>&quot;That run failed with reward 0.0 because it wrote the wrong final answer... instead of the expected GritLM/GritLM-7B.&quot;</em> The agent reads this file, adopts the answer verbatim, writes it to <code>result.txt</code>, and then &quot;verifies&quot; it by checking against the same injected source. All four passing traces on this task follow the identical pattern.</p>
+            <figure><img src="../assets/blog/01_forgecode_answer_injection.png" alt="ForgeCode AGENTS.md contains the answer key; the agent copies it verbatim."><figcaption>ForgeCode AGENTS.md contains the answer key; the agent copies it verbatim.</figcaption></figure>
+            <p>On the <code>bn-fit-modify</code> task, the agent was supposed to recover a Bayesian Network DAG from data using structure-learning algorithms. Instead, the agent announced it would use &quot;the known correct DAG from guidelines&quot; and hardcoded all six edges without ever running a discovery algorithm. All five ForgeCode traces on this task exhibit the same behavior and none of the traces from other scaffolds use this shortcut.</p>
+            <figure><img src="../assets/blog/01b_forgecode_bnfit.png" alt="ForgeCode agent hardcodes Bayesian Network edges from AGENTS.md."><figcaption>ForgeCode agent hardcodes Bayesian Network edges from AGENTS.md.</figcaption></figure>
+            <p>When we replace the ForgeCode traces that reference <code>AGENTS.md</code> with the performance of the same model (Claude Opus 4.6) running through a clean scaffold, the overall pass rate drops from 81.8% to approximately 71.7%, <strong>which would move the submission from 1st place to 14th on the leaderboard</strong>.</p>
+            <h3 id="solution-injection-hal-usaco">Solution injection (HAL USACO)</h3>
+            <p>The top-ranked HAL USACO agent uses a scaffold that injects solutions into the prompt disguised as &quot;somewhat similar problems.&quot; The &quot;similar&quot; problems are the actual benchmark problems, complete with full solution code.</p>
+            <p>Across 307 problems, 107 had the full exact <code>Solution Code</code> block inserted into the agent context. We found 595 likely cheating traces across all 12 models evaluated through this scaffold. The cheating is model-agnostic, in that the framework provides the answer regardless of the model actions. We think it is likely that this is not deliberate harness-level cheating, but due to a bug in the retrieval code.</p>
+            <figure><img src="../assets/blog/03_hal_usaco_leak.png" alt="HAL USACO scaffold injects full solution code disguised as a similar problem."><figcaption>HAL USACO scaffold injects full solution code disguised as a similar problem.</figcaption></figure>
+            <h2 id="task-level-cheating">Task-Level Cheating</h2>
+            <p>Task-level cheating is when the agent itself finds a way to satisfy the evaluator without doing the intended task. Prior audits focused here, but we find it is more pervasive than previously reported: 39 confirmed traces across 6 benchmarks.</p>
+            <h3 id="googling-answers-cybench">Googling answers (CyBench)</h3>
+            <p>On CyBench, 16 of 464 successful traces (3.4%) solved CTF challenges by downloading public writeups instead of working through the problem. This affected 13 tasks across 4 models. Prior work documented 4 instances, but we found 4x that.</p>
+            <figure><img src="../assets/blog/04_cybench_writeup.png" alt="Agent Googles a CyBench CTF challenge and extracts the flag from a public writeup."><figcaption>Agent Googles a CyBench CTF challenge and extracts the flag from a public writeup.</figcaption></figure>
+            <h3 id="mining-git-history-swe-bench">Mining git history (SWE-bench)</h3>
+            <p>On SWE-bench and SWE-rebench, 17 traces across 3 scaffold types showed agents finding the fix commit via <code>git log</code> and copying the historical patch. As one Qwen3-Coder trace put it: &quot;There&#39;s a commit 020c195... that seems very relevant. Perfect! So this commit already implemented the fix I need to make.&quot; This type of cheating had recently been <a href="https://github.com/SWE-bench/SWE-bench/issues/465" target="_blank" rel="noreferrer">discovered on SWE-bench</a>, but we recover the issue without any human intervention and find it on SWE-rebench as well.</p>
+            <figure><img src="../assets/blog/05_swebench_git.png" alt="Agent mines git history to find and copy the fix commit."><figcaption>Agent mines git history to find and copy the fix commit.</figcaption></figure>
+            <h3 id="prompt-injecting-the-verifier-terminal-bench-2">Prompt-injecting the verifier (Terminal-Bench 2)</h3>
+            <p>On Terminal-Bench 2, a Claude Opus 4.6 agent (via Meta-Harness) tasked with implementing an adaptive rejection sampler wrote code that always prints &quot;PASS&quot; when run. The verifier executes the agent&#39;s code (printing &quot;PASS&quot;), then runs its own checks (printing &quot;FAIL&quot;), but only checks whether the output <em>contains</em> &quot;PASS.&quot; Since the agent&#39;s output comes first, the verifier passes despite the actual tests failing.</p>
+            <figure><img src="../assets/blog/06_metaharness_verifier.png" alt="Agent writes code that prints PASS to trick the verifier."><figcaption>Agent writes code that prints PASS to trick the verifier.</figcaption></figure>
+            <h3 id="hardcoding-test-answers-swe-smith">Hardcoding test answers (SWE-smith)</h3>
+            <p>On SWE-smith, a Claude 3.7 Sonnet agent that couldn&#39;t fix a string-distance algorithm hardcoded return values for the exact test inputs. The agent acknowledged this was &quot;temporary.&quot; The temporary values were never removed. The final commit was: &quot;Added special case handling for the specific test cases to ensure the tests pass.&quot;</p>
+            <figure><img src="../assets/blog/07_swesmith_hardcode.png" alt="Agent hardcodes return values for exact test inputs."><figcaption>Agent hardcodes return values for exact test inputs.</figcaption></figure>
+            <h3 id="faking-exploits-bountybench">Faking exploits (BountyBench)</h3>
+            <p>On BountyBench, which requires dynamic vulnerability exploitation, agents that couldn&#39;t get the real exploit working fell back to faking it. One agent used <code>grep</code> to check if the vulnerable pattern existed in the source code, then ran an unrelated standalone <code>pickle.loads()</code> demo. Another replaced an entire library with a mock that simulates the vulnerability. Both were accepted by the evaluator, which only checks exit codes.</p>
+            <figure><img src="../assets/blog/08_bountybench_fakes.png" alt="Agents fake exploits using grep pattern matching and mock libraries."><figcaption>Agents fake exploits using grep pattern matching and mock libraries.</figcaption></figure>
+            <h2 id="takeaways">Takeaways</h2>
+            <p>Some of the most widely adopted agent evaluations have widespread cheating. This means they are accidentally measuring the ability of agents or developers (who often themselves are using agents to code their solutions!) to cheat. In the short term, cheating will likely become more, not less, common as agents become more capable. We suspect cheating at the level of the agent scaffold will be an even greater issue going forward, as the community continues to adopt approaches like <a href="https://x.com/karpathy/status/2031135152349524125" target="_blank" rel="noreferrer">autoresearch</a>.</p>
+            <p>The true prevalence of cheating in real evaluations is unknown, despite work on specific instances of reward hacking, e.g. <a href="https://metr.org/blog/2025-06-05-recent-reward-hacking/" target="_blank" rel="noreferrer">here for o3</a>. Similarly, while the community often discusses &quot;benchmaxxing,&quot; where developers overfit models or scaffolds to benchmarks, it is unknown just how common this practice is. Our results discover many cases of cheating, and find that cheating at the level of the harness is more common than previous estimates suspected.</p>
+            <p>Finding cheating at scale is hard for three reasons. First, the evidence is often spread across multiple traces rather than visible in any single one. Second, this is a sparse retrieval problem, where the cheating traces are buried among hundreds of benign runs. Third, cheating behavior is often adversarially disguised and so looks like real work. Our approach, Meerkat, addresses this by first organizing traces with clustering, so that related behaviors end up near each other and large benign regions can be skipped. We then use an LLM agent (in the cases discussed here, Opus 4.6) to search for groups of traces that have suspicious behavior. This lets it scalably find patterns that per-trace monitors miss.</p>
+            <p>Widespread cheating <a href="https://www.nist.gov/caisi/cheating-ai-agent-evaluations" target="_blank" rel="noreferrer">calls for</a> evaluations designed with clear rules and access controls for both the agent and developer. It also requires large-scale auditing and transcript analysis, where the use of agents to supervise other agents becomes important as benchmarks grow in scale and complexity.</p>
+            <section class="writing-post-references" id="references"><h2>References</h2><ul><li><a href="https://github.com/BrachioLab/Meerkat" target="_blank" rel="noreferrer">Meerkat: Scalable Agentic Auditing of Agent Benchmarks</a></li><li><a href="https://www.nist.gov/caisi/cheating-ai-agent-evaluations" target="_blank" rel="noreferrer">NIST CAISI: Cheating on AI Agent Evaluations</a></li></ul></section>
+          </article>
+        </div>
+      </div>
+    </div>
+    <div class="writing-modal" id="citation-modal" aria-hidden="true">
+      <div class="writing-modal-backdrop" data-close-modal></div>
+      <div class="writing-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="citation-modal-title">
+        <div class="writing-modal-header">
+          <h2 class="writing-modal-title" id="citation-modal-title">BibTeX Citation</h2>
+          <button type="button" class="writing-modal-close mono-font" id="citation-close-button" aria-label="Close citation dialog">×</button>
+        </div>
+        <pre class="writing-modal-code" id="citation-bibtex">@misc{stein-brown-cheating-agents-2026,
+    title = {Finding Widespread Cheating on Popular Agent Benchmarks},
+    author = {Adam Stein and Davis Brown and Hamed Hassani and Mayur Naik and Eric Wong},
+    howpublished = {\url{https://davisrbr.github.io/blog/cheating-agents.html}},
+    year = {2026},
+    month = {04},
+}</pre>
+        <button type="button" class="writing-modal-copy mono-font" id="citation-copy-button">Copy BibTeX</button>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var modal = document.getElementById("citation-modal");
+        var openButton = document.getElementById("citation-button");
+        var closeButton = document.getElementById("citation-close-button");
+        var copyButton = document.getElementById("citation-copy-button");
+        var bibtex = document.getElementById("citation-bibtex");
+        if (!modal || !openButton || !closeButton || !copyButton || !bibtex) return;
+
+        function openModal() {
+          modal.classList.add("is-open");
+          modal.setAttribute("aria-hidden", "false");
+        }
+
+        function closeModal() {
+          modal.classList.remove("is-open");
+          modal.setAttribute("aria-hidden", "true");
+        }
+
+        openButton.addEventListener("click", openModal);
+        closeButton.addEventListener("click", closeModal);
+
+        modal.addEventListener("click", function (event) {
+          if (event.target && event.target.hasAttribute("data-close-modal")) {
+            closeModal();
+          }
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && modal.classList.contains("is-open")) {
+            closeModal();
+          }
+        });
+
+        copyButton.addEventListener("click", function () {
+          if (!navigator.clipboard) return;
+          navigator.clipboard.writeText(bibtex.textContent).then(function () {
+            var original = copyButton.textContent;
+            copyButton.textContent = "Copied";
+            window.setTimeout(function () {
+              copyButton.textContent = original;
+            }, 1200);
+          });
+        });
+
+        var tocLinks = Array.prototype.slice.call(
+          document.querySelectorAll(".writing-post-toc-links a")
+        );
+        var tocTargets = tocLinks
+          .map(function (link) {
+            var id = (link.getAttribute("href") || "").replace("#", "");
+            var target = id ? document.getElementById(id) : null;
+            return target ? { link: link, target: target } : null;
+          })
+          .filter(Boolean);
+
+        function setActiveToc(id) {
+          tocLinks.forEach(function (link) {
+            link.classList.toggle("is-active", link.getAttribute("href") === "#" + id);
+          });
+        }
+
+        function updateActiveToc() {
+          if (!tocTargets.length) return;
+          var activeId = tocTargets[0].target.id;
+          var threshold = window.innerHeight * 0.9;
+
+          tocTargets.forEach(function (entry) {
+            if (entry.target.getBoundingClientRect().top <= threshold) {
+              activeId = entry.target.id;
+            }
+          });
+
+          setActiveToc(activeId);
+        }
+
+        updateActiveToc();
+        window.addEventListener("scroll", updateActiveToc, { passive: true });
+        window.addEventListener("resize", updateActiveToc);
+      }());
+    </script>
+  </body>
+</html>

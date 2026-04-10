@@ -1,0 +1,57 @@
+{
+  "slug": "cheating-agents",
+  "title": "Finding Widespread Cheating on Popular Agent Benchmarks",
+  "dek": "We find over 1,000 instances of cheating across 28+ submissions on 9 benchmarks, including the top 3 Terminal-Bench 2 agents.",
+  "type": "Essay",
+  "date": "April 10, 2026",
+  "contributors": [
+    {
+      "name": "Adam Stein",
+      "url": "https://seas.upenn.edu/~steinad",
+      "equal": true
+    },
+    {
+      "name": "Davis Brown",
+      "url": "../index.html",
+      "equal": true
+    },
+    {
+      "name": "Hamed Hassani",
+      "url": "https://www.seas.upenn.edu/~hassani/"
+    },
+    {
+      "name": "Mayur Naik",
+      "url": "https://www.seas.upenn.edu/~mhnaik"
+    },
+    {
+      "name": "Eric Wong",
+      "url": "https://www.cis.upenn.edu/~exwong/"
+    }
+  ],
+  "shareLinks": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/BrachioLab/Meerkat"
+    },
+    {
+      "label": "DebugML",
+      "url": "https://debugml.github.io/cheating-agents/"
+    }
+  ],
+  "references": [
+    {
+      "label": "Meerkat: Scalable Agentic Auditing of Agent Benchmarks",
+      "url": "https://github.com/BrachioLab/Meerkat"
+    },
+    {
+      "label": "NIST CAISI: Cheating on AI Agent Evaluations",
+      "url": "https://www.nist.gov/caisi/cheating-ai-agent-evaluations"
+    }
+  ],
+  "citation": {
+    "key": "stein-brown-cheating-agents-2026",
+    "url": "https://davisrbr.github.io/blog/cheating-agents.html",
+    "year": "2026",
+    "month": "04"
+  }
+}
