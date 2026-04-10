@@ -44,6 +44,22 @@
       "url": "https://github.com/BrachioLab/Meerkat"
     },
     {
+      "label": "Terminal-Bench 2",
+      "url": "https://www.tbench.ai/"
+    },
+    {
+      "label": "Meta-Harness: Fully Automated Benchmark Construction (arXiv:2603.28052)",
+      "url": "https://arxiv.org/abs/2603.28052"
+    },
+    {
+      "label": "METR: Recent Reward Hacking (o3)",
+      "url": "https://metr.org/blog/2025-06-05-recent-reward-hacking/"
+    },
+    {
+      "label": "SWE-bench git history mining (Issue #465)",
+      "url": "https://github.com/SWE-bench/SWE-bench/issues/465"
+    },
+    {
       "label": "NIST CAISI: Cheating on AI Agent Evaluations",
       "url": "https://www.nist.gov/caisi/cheating-ai-agent-evaluations"
     }
