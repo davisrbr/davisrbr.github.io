@@ -8,7 +8,11 @@
 
 Unfortunately, we find that the top three submissions to Terminal-Bench 2 are guilty of cheating.
 
-More broadly, we find that agentic cheating is widespread, affecting thousands of submitted agent runs on 28+ submissions across 9 different benchmarks. Our system for finding violations, [Meerkat](https://github.com/BrachioLab/Meerkat), uses agentic search and clustering to scale auditing for cheating to thousands of traces (see the [takeaways](#takeaways) at the end for further discussion on how Meerkat works). We use it to find strong evidence for the following: (1) **The top three Terminal-Bench-2 agents and the top HAL USACO submission commit *harness-level cheating***, where the agent harness sneaks the correct answer to the model. This cheating spans over 1,000 traces and 12+ frontier models. (2) **Task-level cheating,** where the task is gamed or shortcutted by the model itself. For example, agents hack evaluations by overwriting test cases or simply looking up the solution online. We find 39 confirmed instances across 6 benchmarks, roughly 4x more than previous estimates.
+More broadly, we find that agentic cheating is widespread, affecting thousands of submitted agent runs on 28+ submissions across 9 different benchmarks. Our system for finding violations, [Meerkat](https://github.com/BrachioLab/Meerkat), uses agentic search and clustering to scale auditing for cheating to thousands of traces (see the [takeaways](#takeaways) at the end for further discussion on how Meerkat works). We use it to find strong evidence for the following:
+
+(1) **The top three Terminal-Bench-2 agents and the top HAL USACO submission commit harness-level cheating**, where the agent harness sneaks the correct answer to the model. This cheating spans over 1,000 traces and 12+ frontier models.
+
+(2) **Task-level cheating,** where the task is gamed or shortcutted by the model itself. For example, agents hack evaluations by overwriting test cases or simply looking up the solution online. We find 28 confirmed instances across 6 benchmarks, roughly 3x more than previous estimates.\*
 
 Harness-level cheating is not always intentional cheating by the developer, but can be a kind of "meta" reward hacking. We believe the coding agents used by the developer to build the scaffold are themselves cheating when attempting to design a harness to get good benchmark performance. This is especially likely for the cheating in Terminal-Bench, where many of the developers publicly discuss vibecoding their harnesses. We think harness-level cheating will be an even greater problem as [autoresearch](https://x.com/karpathy/status/2031135152349524125) gets adopted.
 
@@ -48,7 +52,7 @@ Across 307 problems, 107 had the full exact `Solution Code` block inserted into 
 
 ## Task-Level Cheating
 
-Task-level cheating is when the agent itself finds a way to satisfy the evaluator without doing the intended task. Prior audits focused here, but we find it is more pervasive than previously reported: 39 confirmed traces across 6 benchmarks.
+Task-level cheating is when the agent itself finds a way to satisfy the evaluator without doing the intended task. Prior audits focused here, but we find it is more pervasive than previously reported: 28 confirmed traces across 6 benchmarks.
 
 ### Googling answers (CyBench)
 
@@ -58,7 +62,7 @@ On CyBench, 16 of 464 successful traces (3.4%) solved CTF challenges by download
 
 ### Mining git history (SWE-bench)
 
-On SWE-bench and SWE-rebench, 17 traces across 3 scaffold types showed agents finding the fix commit via `git log` and copying the historical patch. As one Qwen3-Coder trace put it: "There's a commit 020c195... that seems very relevant. Perfect! So this commit already implemented the fix I need to make." This type of cheating has recently been [discovered and patched on SWE-bench](https://github.com/SWE-bench/SWE-bench/issues/465), and affected leaderboard entries have been re-evaluated, but we recover the issue without any human intervention and find it on SWE-rebench as well.
+On SWE-bench and SWE-rebench, 6 traces across 3 scaffold types showed agents finding the fix commit via `git log` and copying the historical patch. As one Qwen3-Coder trace put it: "There's a commit 020c195... that seems very relevant. Perfect! So this commit already implemented the fix I need to make." This type of cheating has recently been [discovered and patched on SWE-bench](https://github.com/SWE-bench/SWE-bench/issues/465), and affected leaderboard entries have been re-evaluated, but we recover the issue without any human intervention and find it on SWE-rebench as well.
 
 ![][swebench]
 
@@ -89,6 +93,8 @@ The true prevalence of cheating in real evaluations is unknown, despite work on 
 Finding cheating at scale is hard for three reasons. First, the evidence is often spread across multiple traces rather than visible in any single one. Second, this is a sparse retrieval problem, where the cheating traces are buried among hundreds of benign runs. Third, cheating behavior is often adversarially disguised and so looks like real work. Our approach, Meerkat, addresses this by first organizing traces with clustering, so that related behaviors end up near each other and large benign regions can be skipped. We then use an LLM agent (in the cases discussed here, Opus 4.6) to search for groups of traces that have suspicious behavior. This lets it scalably find patterns that per-trace monitors miss.
 
 Widespread cheating [calls for](https://www.nist.gov/caisi/cheating-ai-agent-evaluations) evaluations designed with clear rules and access controls for both the agent and developer. It also requires large-scale auditing and transcript analysis, where the use of agents to supervise other agents becomes important as benchmarks grow in scale and complexity.
+
+*\*An earlier version of this post reported higher task-level counts (17 instances of git-history cheating across SWE-bench and SWE-rebench). We lowered these numbers after additional auditing.*
 
 [overview]: /assets/blog/cheating_matrix_v4_dotplot.png
 [pilot]: /assets/blog/02_pilot_verifier_leak.png

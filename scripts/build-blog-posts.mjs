@@ -364,6 +364,10 @@ function renderMarkdown(markdown, metadata) {
 function renderInline(text, footnoteDefinitions, footnoteOrder, footnoteLookup) {
   let html = escapeHtml(text);
 
+  // Support \* and \_ escapes (replace with placeholders, restore at end)
+  html = html.replace(/\\\*/g, "\u0001ASTERISK\u0001");
+  html = html.replace(/\\_/g, "\u0001UNDERSCORE\u0001");
+
   html = html.replace(/\[\^([^\]]+)\]/g, function (_, key) {
     if (!footnoteLookup[key]) {
       footnoteOrder.push(key);
@@ -381,6 +385,10 @@ function renderInline(text, footnoteDefinitions, footnoteOrder, footnoteLookup) 
   html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
   html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+
+  // Restore escaped characters
+  html = html.replace(/\u0001ASTERISK\u0001/g, "*");
+  html = html.replace(/\u0001UNDERSCORE\u0001/g, "_");
 
   return html;
 }
