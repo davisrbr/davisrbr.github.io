@@ -70,6 +70,34 @@
           <!-- Paper 1 -->
           <div class="paper-item w3-row">
             <div class="w3-col" style="width:70px">
+              <div class="paper-year">2026</div>
+            </div>
+            <div class="w3-rest paper-content">
+              <a href="https://arxiv.org/abs/2604.11806" class="paper-title" target="_blank">
+                Detecting Safety Violations Across Many Agent Traces
+              </a>
+              <div class="paper-authors">
+                {Adam Stein, <b>Davis Brown</b>}, Hamed Hassani, Mayur Naik, Eric Wong
+              </div>
+              <div class="description-toggle" data-target="desc2">
+                Paper Description
+              </div>
+              <div id="desc2" class="paper-description">
+                <div class="description-content" style="display:block;">
+                  <img src="assets/meerkat_agentic_search_process.png" alt="Meerkat agentic search process" style="max-width: 100%; width: 88%; margin: 0 auto 12px auto; display: block;" />
+                  <div>
+                      See our <a href="blog/cheating-agents.html" target="_blank" style="color: var(--accent-color);">blog summary</a> of part of this paper, where we find widespread cheating in agent evaluations.
+                      <br><br>
+                      We design an agent, "Meerkat," that performs quite well on a number of asynchronous monitoring settings, ie monitoring after an agent has already executed some actions. Meerkat identifies misuse campaigns, reward hacking, code sabotage, and developer cheating on real agent evals more effectively than standard monitors or naive agents.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paper 2 -->
+          <div class="paper-item w3-row">
+            <div class="w3-col" style="width:70px">
               <div class="paper-year">2025</div>
             </div>
             <div class="w3-rest paper-content">
@@ -92,32 +120,6 @@
                     We argue that <b>stateful defenses</b>, which store context from previous user sessions, are needed to subvert decomposition attacks.
                     <br><br>
                     <a href="https://modelmisuse.com/" target="_blank" style="color: var(--accent-color);">Project website</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Paper 2 -->
-          <div class="paper-item w3-row">
-            <div class="w3-col" style="width:70px">
-              <div class="paper-year">EMNLP '25</div>
-            </div>
-            <div class="w3-rest paper-content">
-              <a href="https://arxiv.org/abs/2503.01986" class="paper-title" target="_blank">
-                Adaptively profiling models with task elicitation
-              </a>
-              <div class="paper-authors">
-                <b>Davis Brown</b>, Prithvi Balehannina, Helen Jin, Shreya Havaldar, Hamed Hassani, Eric Wong
-              </div>
-              <div class="description-toggle" data-target="desc2">
-                Paper Description
-              </div>
-              <div id="desc2" class="paper-description">
-                <div class="description-content">
-                  <img src="assets/cluster_visualization_attempt_super_tiny.jpeg" alt="Task elicitation visualization" />
-                  <div>
-                      Language models have a 'jagged frontier' of capabilities and behaviors, performing exceptionally well on some tasks and brittle on others. We map this frontier by adaptively probing the model under evaluation with new tasks. We term this procedure as <i>task elicitation</i>, and generate new hard tasks in truthfulness, forecasting, social harms, and more. 
                   </div>
                 </div>
               </div>
