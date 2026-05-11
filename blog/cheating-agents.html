@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="../css/papers.css">
     <link rel="stylesheet" href="../css/writing.css">
     <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   </head>
   <body class="w3-content writing-page" style="max-width:2500px">
     <div class="w3-container main-content main-content--writing blog-shell">
@@ -71,8 +74,8 @@
             <p><a href="https://www.tbench.ai/" target="_blank" rel="noreferrer">Terminal-Bench 2</a> is a popular benchmark used to evaluate frontier model releases (e.g. Opus 4.6 and GPT-5.4), where agent scaffolds at the top of the leaderboard get thousands of stars on Github.</p>
             <p>Unfortunately, we find that the top three submissions to Terminal-Bench 2 are guilty of cheating.</p>
             <p>More broadly, we find that agentic cheating is widespread, affecting thousands of submitted agent runs on 28+ submissions across 9 different benchmarks. Our system for finding violations, <a href="https://github.com/BrachioLab/Meerkat" target="_blank" rel="noreferrer">Meerkat</a>, uses agentic search and clustering to scale auditing for cheating to thousands of traces (see the <a href="#takeaways" target="_blank" rel="noreferrer">takeaways</a> at the end for further discussion on how Meerkat works). We use it to find strong evidence for the following:</p>
-            <p style="margin-left:1.5em">(1) <strong>The top three Terminal-Bench-2 agents and the top HAL USACO submission commit harness-level cheating</strong>, where the agent harness sneaks the correct answer to the model. This cheating spans over 1,000 traces and 12+ frontier models.</p>
-            <p style="margin-left:1.5em">(2) <strong>Task-level cheating,</strong> where the task is gamed or shortcutted by the model itself. For example, agents hack evaluations by overwriting test cases or simply looking up the solution online. We find 28 confirmed instances across 6 benchmarks, roughly 3x more than previous estimates.*</p>
+            <p>(1) <strong>The top three Terminal-Bench-2 agents and the top HAL USACO submission commit harness-level cheating</strong>, where the agent harness sneaks the correct answer to the model. This cheating spans over 1,000 traces and 12+ frontier models.</p>
+            <p>(2) <strong>Task-level cheating,</strong> where the task is gamed or shortcutted by the model itself. For example, agents hack evaluations by overwriting test cases or simply looking up the solution online. We find 28 confirmed instances across 6 benchmarks, roughly 3x more than previous estimates.*</p>
             <p>Harness-level cheating is not always intentional cheating by the developer, but can be a kind of &quot;meta&quot; reward hacking. We believe the coding agents used by the developer to build the scaffold are themselves cheating when attempting to design a harness to get good benchmark performance. This is especially likely for the cheating in Terminal-Bench, where many of the developers publicly discuss vibecoding their harnesses. We think harness-level cheating will be an even greater problem as <a href="https://x.com/karpathy/status/2031135152349524125" target="_blank" rel="noreferrer">autoresearch</a> gets adopted.</p>
             <p>Below, we provide examples found by Meerkat and discuss takeaways. For more detail on our approach, see our <a href="https://arxiv.org/abs/2604.11806" target="_blank" rel="noreferrer">paper</a>.</p>
             <h2 id="harness-level-cheating">Harness-Level Cheating</h2>
@@ -143,41 +146,99 @@
         var closeButton = document.getElementById("citation-close-button");
         var copyButton = document.getElementById("citation-copy-button");
         var bibtex = document.getElementById("citation-bibtex");
-        if (!modal || !openButton || !closeButton || !copyButton || !bibtex) return;
+        if (modal && openButton && closeButton && copyButton && bibtex) {
+          function openModal() {
+            modal.classList.add("is-open");
+            modal.setAttribute("aria-hidden", "false");
+          }
 
-        function openModal() {
-          modal.classList.add("is-open");
-          modal.setAttribute("aria-hidden", "false");
+          function closeModal() {
+            modal.classList.remove("is-open");
+            modal.setAttribute("aria-hidden", "true");
+          }
+
+          openButton.addEventListener("click", openModal);
+          closeButton.addEventListener("click", closeModal);
+
+          modal.addEventListener("click", function (event) {
+            if (event.target && event.target.hasAttribute("data-close-modal")) {
+              closeModal();
+            }
+          });
+
+          document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && modal.classList.contains("is-open")) {
+              closeModal();
+            }
+          });
+
+          copyButton.addEventListener("click", function () {
+            if (!navigator.clipboard) return;
+            navigator.clipboard.writeText(bibtex.textContent).then(function () {
+              var original = copyButton.textContent;
+              copyButton.textContent = "Copied";
+              window.setTimeout(function () {
+                copyButton.textContent = original;
+              }, 1200);
+            });
+          });
         }
 
-        function closeModal() {
-          modal.classList.remove("is-open");
-          modal.setAttribute("aria-hidden", "true");
+        function renderPostMath() {
+          if (!window.renderMathInElement) return;
+          var body = document.querySelector(".writing-post-body");
+          if (!body || body.hasAttribute("data-math-rendered")) return;
+          window.renderMathInElement(body, {
+            delimiters: [
+              { left: "\\[", right: "\\]", display: true },
+              { left: "\\(", right: "\\)", display: false },
+              { left: "$$", right: "$$", display: true }
+            ],
+            throwOnError: false
+          });
+          body.setAttribute("data-math-rendered", "true");
         }
 
-        openButton.addEventListener("click", openModal);
-        closeButton.addEventListener("click", closeModal);
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", renderPostMath);
+        } else {
+          renderPostMath();
+        }
 
-        modal.addEventListener("click", function (event) {
-          if (event.target && event.target.hasAttribute("data-close-modal")) {
-            closeModal();
+        var footnoteCalls = Array.prototype.slice.call(
+          document.querySelectorAll(".writing-footnote-call")
+        );
+        var activeFootnoteCall = null;
+
+        function positionFootnotePopover(call) {
+          var popover = call ? call.querySelector(".writing-footnote-popover") : null;
+          if (!popover) return;
+
+          call.removeAttribute("data-footnote-align");
+          var rect = popover.getBoundingClientRect();
+          var gutter = 12;
+
+          if (rect.left < gutter) {
+            call.setAttribute("data-footnote-align", "left");
+          } else if (rect.right > window.innerWidth - gutter) {
+            call.setAttribute("data-footnote-align", "right");
           }
-        });
+        }
 
-        document.addEventListener("keydown", function (event) {
-          if (event.key === "Escape" && modal.classList.contains("is-open")) {
-            closeModal();
-          }
-        });
-
-        copyButton.addEventListener("click", function () {
-          if (!navigator.clipboard) return;
-          navigator.clipboard.writeText(bibtex.textContent).then(function () {
-            var original = copyButton.textContent;
-            copyButton.textContent = "Copied";
-            window.setTimeout(function () {
-              copyButton.textContent = original;
-            }, 1200);
+        footnoteCalls.forEach(function (call) {
+          call.addEventListener("mouseenter", function () {
+            activeFootnoteCall = call;
+            positionFootnotePopover(call);
+          });
+          call.addEventListener("mouseleave", function () {
+            if (activeFootnoteCall === call) activeFootnoteCall = null;
+          });
+          call.addEventListener("focusin", function () {
+            activeFootnoteCall = call;
+            positionFootnotePopover(call);
+          });
+          call.addEventListener("focusout", function () {
+            if (activeFootnoteCall === call) activeFootnoteCall = null;
           });
         });
 
@@ -214,7 +275,10 @@
 
         updateActiveToc();
         window.addEventListener("scroll", updateActiveToc, { passive: true });
-        window.addEventListener("resize", updateActiveToc);
+        window.addEventListener("resize", function () {
+          updateActiveToc();
+          if (activeFootnoteCall) positionFootnotePopover(activeFootnoteCall);
+        });
       }());
     </script>
   </body>

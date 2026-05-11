@@ -222,14 +222,14 @@
 }
 
 .blog-shell {
-  max-width: 70rem;
+  max-width: 82rem;
   margin: 0 auto;
 }
 
 .writing-post-intro {
-  max-width: 50rem;
+  max-width: 55rem;
   margin: 0 0 2.1rem;
-  padding: 1.25rem 0.85rem 1.15rem 0.95rem;
+  padding: 1rem 0.75rem 0.85rem;
   background: rgba(179, 90, 31, 0.06);
   border-radius: 0.95rem;
 }
@@ -243,7 +243,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.58fr) minmax(0, 1.42fr);
   gap: 1.5rem 1.2rem;
-  padding: 0.9rem 0 1.1rem;
+  padding: 0.55rem 0 0.7rem;
 }
 
 .writing-post-meta-panel {
@@ -322,7 +322,7 @@
 
 .writing-post-header {
   max-width: none;
-  margin-bottom: 1.55rem;
+  margin-bottom: 1.1rem;
 }
 
 .writing-post-type {
@@ -339,12 +339,11 @@
   font-weight: 600;
   line-height: 1.07;
   letter-spacing: -0.018em;
-  text-wrap: balance;
 }
 
 .writing-post-dek {
-  max-width: 46rem;
-  margin: 0 0 1.15rem;
+  max-width: 51rem;
+  margin: 0 0 0.75rem;
   color: #404040;
   font-size: 0.96rem;
   font-style: italic;
@@ -364,11 +363,11 @@
 }
 
 .writing-post-main {
-  max-width: 50rem;
+  max-width: 55rem;
 }
 
 .writing-post-body {
-  max-width: 48rem;
+  max-width: 52rem;
 }
 
 .writing-post-sidebar {
@@ -551,14 +550,37 @@
 .writing-post-body h2 {
   margin: 3rem 0 0.9rem;
   color: #8f4310;
-  font-size: 1.55rem;
+  font-size: 1.65rem;
   line-height: 1.2;
 }
 
 .writing-post-body p {
   margin: 0 0 1.25rem;
-  font-size: 1.02rem;
-  line-height: 1.82;
+  font-size: 1.1rem;
+  line-height: 1.78;
+}
+
+.writing-post-body .writing-math-block {
+  margin: 1.35rem 0 1.55rem;
+  overflow-x: auto;
+  color: #222;
+  font-size: 1.08rem;
+}
+
+.writing-post-body .writing-math-block .katex-display {
+  margin: 0;
+}
+
+.writing-post-body .writing-math-block .katex {
+  font-size: 1.12em;
+}
+
+.writing-post-body .writing-math-inline {
+  white-space: nowrap;
+}
+
+.writing-post-body .katex {
+  font-size: 1.12em;
 }
 
 .writing-post-body strong {
@@ -612,7 +634,7 @@
 }
 
 .writing-post-body figure {
-  margin: 2rem 0;
+  margin: 2.15rem 0 2.25rem;
 }
 
 .writing-post-body figure img {
@@ -627,9 +649,18 @@
 }
 
 .writing-post-body figcaption {
-  padding: 0.85rem 1rem 1rem;
+  width: min(92%, 42rem);
+  margin: 0.7rem auto 0;
+  padding: 0 0 0 0.9rem;
+  border-left: 2px solid rgba(179, 90, 31, 0.28);
   color: #666;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
+  line-height: 1.58;
+  text-align: left;
+}
+
+.writing-post-body .writing-figure-narrow figcaption {
+  width: 82%;
 }
 
 .writing-figure-placeholder {
@@ -719,18 +750,110 @@
 }
 
 .writing-footnote-call {
+  position: relative;
+  display: inline-block;
+  top: -0.42em;
   font-size: 0.82rem;
-  vertical-align: super;
+  line-height: 1;
+  vertical-align: baseline;
 }
 
 .writing-footnote-call a {
-  color: #8f4310;
-  font-weight: 600;
+  color: #b35a1f;
+  font-weight: 700;
   text-decoration: none;
 }
 
 .writing-footnote-call a:hover {
-  color: #b35a1f;
+  color: #7f3609;
+}
+
+.writing-footnote-popover {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.48rem);
+  z-index: 50;
+  display: none;
+  width: min(22rem, calc(100vw - 2rem));
+  padding: 0.72rem 0.82rem 0.78rem;
+  border: 1px solid rgba(25, 25, 112, 0.14);
+  background: #fff;
+  box-shadow: 0 16px 36px rgba(10, 16, 35, 0.16);
+  color: #222;
+  font-size: 0.88rem;
+  font-weight: 400;
+  line-height: 1.55;
+  text-align: left;
+  transform: translate(-50%, 0.18rem);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 140ms ease, transform 140ms ease, visibility 140ms ease;
+}
+
+.writing-footnote-popover::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-right: 1px solid rgba(25, 25, 112, 0.14);
+  border-bottom: 1px solid rgba(25, 25, 112, 0.14);
+  background: #fff;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.writing-footnote-call:hover .writing-footnote-popover,
+.writing-footnote-call:focus-within .writing-footnote-popover {
+  display: block;
+  transform: translate(-50%, 0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.writing-footnote-call[data-footnote-align="left"] .writing-footnote-popover {
+  left: 0;
+  transform: translateY(0.18rem);
+}
+
+.writing-footnote-call[data-footnote-align="right"] .writing-footnote-popover {
+  right: 0;
+  left: auto;
+  transform: translateY(0.18rem);
+}
+
+.writing-footnote-call[data-footnote-align="left"]:hover .writing-footnote-popover,
+.writing-footnote-call[data-footnote-align="left"]:focus-within .writing-footnote-popover,
+.writing-footnote-call[data-footnote-align="right"]:hover .writing-footnote-popover,
+.writing-footnote-call[data-footnote-align="right"]:focus-within .writing-footnote-popover {
+  transform: translateY(0);
+}
+
+.writing-footnote-call[data-footnote-align="left"] .writing-footnote-popover::after {
+  left: 0.9rem;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.writing-footnote-call[data-footnote-align="right"] .writing-footnote-popover::after {
+  right: 0.9rem;
+  left: auto;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.writing-footnote-popover-label {
+  display: block;
+  margin-bottom: 0.24rem;
+  color: #8f4310;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.writing-footnote-popover-content {
+  display: block;
 }
 
 .writing-note-backlink {
@@ -788,12 +911,37 @@
   }
 
   .writing-post-body p {
-    font-size: 1.03rem;
-    line-height: 1.82;
+    font-size: 1.08rem;
+    line-height: 1.78;
+    overflow-wrap: break-word;
+  }
+
+  .writing-post-intro,
+  .writing-post-main,
+  .writing-post-body {
+    max-width: 100%;
+  }
+
+  .writing-post-title,
+  .writing-post-dek {
+    overflow-wrap: break-word;
+  }
+
+  .writing-post-body figcaption {
+    width: 100%;
+  }
+
+  .writing-post-body .writing-figure-narrow figcaption {
+    width: 82%;
+  }
+
+  .writing-footnote-popover {
+    width: min(18rem, calc(100vw - 1.5rem));
+    font-size: 0.84rem;
   }
 
   .writing-post-title {
-    font-size: clamp(2rem, 10vw, 3rem);
+    font-size: clamp(1.9rem, 8.8vw, 2.3rem);
   }
 
   .home-blog-item {

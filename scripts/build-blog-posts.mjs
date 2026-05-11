@@ -8,6 +8,11 @@ const repoRoot = path.resolve(__dirname, "..");
 
 const posts = [
   {
+    markdown: path.join(repoRoot, "blog/posts/jailbreak-timing-simple-model.md"),
+    metadata: path.join(repoRoot, "blog/posts/jailbreak-timing-simple-model.meta.json"),
+    output: path.join(repoRoot, "blog/jailbreak-timing-simple-model.html")
+  },
+  {
     markdown: path.join(repoRoot, "blog/posts/cheating-agents.md"),
     metadata: path.join(repoRoot, "blog/posts/cheating-agents.meta.json"),
     output: path.join(repoRoot, "blog/cheating-agents.html")
@@ -82,6 +87,9 @@ function renderPage(metadata, rendered) {
     <link rel="stylesheet" href="../css/papers.css">
     <link rel="stylesheet" href="../css/writing.css">
     <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   </head>
   <body class="w3-content writing-page" style="max-width:2500px">
     <div class="w3-container main-content main-content--writing blog-shell">
@@ -109,7 +117,7 @@ function renderPage(metadata, rendered) {
               <div class="writing-post-type mono-font">${escapeHtml(metadata.type)}</div>
               <h1 class="writing-post-title">${escapeHtml(metadata.title)}</h1>
               <p class="writing-post-dek mono-font">
-                ${escapeHtml(metadata.dek)}
+                ${renderInlineText(metadata.dek)}
               </p>
             </header>
 
@@ -172,41 +180,99 @@ function renderPage(metadata, rendered) {
         var closeButton = document.getElementById("citation-close-button");
         var copyButton = document.getElementById("citation-copy-button");
         var bibtex = document.getElementById("citation-bibtex");
-        if (!modal || !openButton || !closeButton || !copyButton || !bibtex) return;
+        if (modal && openButton && closeButton && copyButton && bibtex) {
+          function openModal() {
+            modal.classList.add("is-open");
+            modal.setAttribute("aria-hidden", "false");
+          }
 
-        function openModal() {
-          modal.classList.add("is-open");
-          modal.setAttribute("aria-hidden", "false");
+          function closeModal() {
+            modal.classList.remove("is-open");
+            modal.setAttribute("aria-hidden", "true");
+          }
+
+          openButton.addEventListener("click", openModal);
+          closeButton.addEventListener("click", closeModal);
+
+          modal.addEventListener("click", function (event) {
+            if (event.target && event.target.hasAttribute("data-close-modal")) {
+              closeModal();
+            }
+          });
+
+          document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && modal.classList.contains("is-open")) {
+              closeModal();
+            }
+          });
+
+          copyButton.addEventListener("click", function () {
+            if (!navigator.clipboard) return;
+            navigator.clipboard.writeText(bibtex.textContent).then(function () {
+              var original = copyButton.textContent;
+              copyButton.textContent = "Copied";
+              window.setTimeout(function () {
+                copyButton.textContent = original;
+              }, 1200);
+            });
+          });
         }
 
-        function closeModal() {
-          modal.classList.remove("is-open");
-          modal.setAttribute("aria-hidden", "true");
+        function renderPostMath() {
+          if (!window.renderMathInElement) return;
+          var body = document.querySelector(".writing-post-body");
+          if (!body || body.hasAttribute("data-math-rendered")) return;
+          window.renderMathInElement(body, {
+            delimiters: [
+              { left: "\\\\[", right: "\\\\]", display: true },
+              { left: "\\\\(", right: "\\\\)", display: false },
+              { left: "$$", right: "$$", display: true }
+            ],
+            throwOnError: false
+          });
+          body.setAttribute("data-math-rendered", "true");
         }
 
-        openButton.addEventListener("click", openModal);
-        closeButton.addEventListener("click", closeModal);
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", renderPostMath);
+        } else {
+          renderPostMath();
+        }
 
-        modal.addEventListener("click", function (event) {
-          if (event.target && event.target.hasAttribute("data-close-modal")) {
-            closeModal();
+        var footnoteCalls = Array.prototype.slice.call(
+          document.querySelectorAll(".writing-footnote-call")
+        );
+        var activeFootnoteCall = null;
+
+        function positionFootnotePopover(call) {
+          var popover = call ? call.querySelector(".writing-footnote-popover") : null;
+          if (!popover) return;
+
+          call.removeAttribute("data-footnote-align");
+          var rect = popover.getBoundingClientRect();
+          var gutter = 12;
+
+          if (rect.left < gutter) {
+            call.setAttribute("data-footnote-align", "left");
+          } else if (rect.right > window.innerWidth - gutter) {
+            call.setAttribute("data-footnote-align", "right");
           }
-        });
+        }
 
-        document.addEventListener("keydown", function (event) {
-          if (event.key === "Escape" && modal.classList.contains("is-open")) {
-            closeModal();
-          }
-        });
-
-        copyButton.addEventListener("click", function () {
-          if (!navigator.clipboard) return;
-          navigator.clipboard.writeText(bibtex.textContent).then(function () {
-            var original = copyButton.textContent;
-            copyButton.textContent = "Copied";
-            window.setTimeout(function () {
-              copyButton.textContent = original;
-            }, 1200);
+        footnoteCalls.forEach(function (call) {
+          call.addEventListener("mouseenter", function () {
+            activeFootnoteCall = call;
+            positionFootnotePopover(call);
+          });
+          call.addEventListener("mouseleave", function () {
+            if (activeFootnoteCall === call) activeFootnoteCall = null;
+          });
+          call.addEventListener("focusin", function () {
+            activeFootnoteCall = call;
+            positionFootnotePopover(call);
+          });
+          call.addEventListener("focusout", function () {
+            if (activeFootnoteCall === call) activeFootnoteCall = null;
           });
         });
 
@@ -243,7 +309,10 @@ function renderPage(metadata, rendered) {
 
         updateActiveToc();
         window.addEventListener("scroll", updateActiveToc, { passive: true });
-        window.addEventListener("resize", updateActiveToc);
+        window.addEventListener("resize", function () {
+          updateActiveToc();
+          if (activeFootnoteCall) positionFootnotePopover(activeFootnoteCall);
+        });
       }());
     </script>
   </body>
@@ -316,6 +385,16 @@ function renderMarkdown(markdown, metadata) {
       return;
     }
 
+    const displayMathMatch =
+      block.match(/^\$\$\s*([\s\S]+?)\s*\$\$$/) ||
+      block.match(/^\\\[\s*([\s\S]+?)\s*\\\]$/);
+    if (displayMathMatch) {
+      htmlParts.push(
+        `<div class="writing-math-block">\\[${escapeHtml(displayMathMatch[1].trim())}\\]</div>`
+      );
+      return;
+    }
+
     const imageMatch = block.match(/^!\[[^\]]*\]\[([^\]]+)\]$/);
     if (imageMatch) {
       const figureKey = imageMatch[1];
@@ -361,12 +440,20 @@ function renderMarkdown(markdown, metadata) {
   };
 }
 
-function renderInline(text, footnoteDefinitions, footnoteOrder, footnoteLookup) {
+function renderInline(text, footnoteDefinitions, footnoteOrder, footnoteLookup, options = {}) {
   let html = escapeHtml(text);
+  const includeFootnotePopovers = options.includeFootnotePopovers !== false;
 
   // Support \* and \_ escapes (replace with placeholders, restore at end)
   html = html.replace(/\\\*/g, "\u0001ASTERISK\u0001");
   html = html.replace(/\\_/g, "\u0001UNDERSCORE\u0001");
+  html = html.replace(/\\\$/g, "\u0001DOLLAR\u0001");
+  html = html.replace(/\\\[/g, "\u0001LBRACKET\u0001");
+  html = html.replace(/\\\]/g, "\u0001RBRACKET\u0001");
+  html = html.replace(
+    /\$\$([^$]+?)\$\$/g,
+    '<span class="writing-math-inline">\\($1\\)</span>'
+  );
 
   html = html.replace(/\[\^([^\]]+)\]/g, function (_, key) {
     if (!footnoteLookup[key]) {
@@ -375,7 +462,17 @@ function renderInline(text, footnoteDefinitions, footnoteOrder, footnoteLookup) 
     }
 
     const index = footnoteLookup[key];
-    return `<sup class="writing-footnote-call"><a href="#note-${index}" id="note-ref-${index}">${index}</a></sup>`;
+    const rawFootnote = footnoteDefinitions[key] || "";
+    const popover = includeFootnotePopovers && rawFootnote
+      ? `<span class="writing-footnote-popover" id="note-preview-${index}" role="tooltip"><span class="writing-footnote-popover-label mono-font">Note ${index}</span><span class="writing-footnote-popover-content">${renderInline(
+          rawFootnote,
+          footnoteDefinitions,
+          footnoteOrder,
+          footnoteLookup,
+          { includeFootnotePopovers: false }
+        )}</span></span>`
+      : "";
+    return `<sup class="writing-footnote-call"><a href="#note-${index}" id="note-ref-${index}" aria-describedby="note-preview-${index}">${index}</a>${popover}</sup>`;
   });
 
   html = html.replace(
@@ -389,8 +486,18 @@ function renderInline(text, footnoteDefinitions, footnoteOrder, footnoteLookup) 
   // Restore escaped characters
   html = html.replace(/\u0001ASTERISK\u0001/g, "*");
   html = html.replace(/\u0001UNDERSCORE\u0001/g, "_");
+  html = html.replace(/\u0001DOLLAR\u0001/g, "$");
+  html = html.replace(/\u0001LBRACKET\u0001/g, "[");
+  html = html.replace(/\u0001RBRACKET\u0001/g, "]");
 
   return html;
+}
+
+function renderInlineText(text) {
+  return escapeHtml(text)
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>");
 }
 
 function renderNotes(footnoteOrder, footnoteLookup, footnoteDefinitions) {
@@ -454,6 +561,9 @@ function shortTitle(title) {
 }
 
 function imageCaptionFor(key) {
+  if (key === "jailbreak-delay-heatmap") {
+    return "Attackers should wait to use their jailbreaks when model capability growth is fast and jailbreaks remain useful for a long time. The x-axis is the model capability doubling time \\(\\tau\\), the y-axis is the jailbreak half-life \\(h\\), and the color shows the attacker's optimal delay. The red line marks the post-2023 METR time-horizon doubling time.";
+  }
   if (key === "image1") {
     return "Distribution of extracted conjectures across mathematical subfields.";
   }
@@ -477,6 +587,9 @@ function imageCaptionFor(key) {
 }
 
 function altTextFor(key) {
+  if (key === "jailbreak-delay-heatmap") {
+    return "Heatmap showing the attacker's optimal jailbreak delay as a function of capability doubling time and jailbreak half-life.";
+  }
   if (key === "image1") {
     return "Histogram showing the number of extracted conjectures by mathematical subfield.";
   }
