@@ -1,5 +1,5 @@
 {
-  "slug": "jailbreak-timing-simple-model",
+  "slug": "overestimating-safeguards",
   "title": "Attackers are not burning their best jailbreaks (yet)",
   "dek": "**TLDR:** We might be overestimating current model safeguards, because attackers may strategically withhold their best jailbreaks until the release of more capable models.",
   "type": "Essay",
@@ -13,8 +13,8 @@
   "shareLinks": [],
   "references": [],
   "citation": {
-    "key": "brown-jailbreak-timing-simple-model-2026",
-    "url": "https://davisrbr.github.io/blog/jailbreak-timing-simple-model.html",
+    "key": "brown-overestimating-safeguards-2026",
+    "url": "https://davisrbr.github.io/blog/overestimating-safeguards.html",
     "year": "2026",
     "month": "05"
   }

@@ -10,7 +10,7 @@ const posts = [
   {
     markdown: path.join(repoRoot, "blog/posts/jailbreak-timing-simple-model.md"),
     metadata: path.join(repoRoot, "blog/posts/jailbreak-timing-simple-model.meta.json"),
-    output: path.join(repoRoot, "blog/jailbreak-timing-simple-model.html")
+    output: path.join(repoRoot, "blog/overestimating-safeguards.html")
   },
   {
     markdown: path.join(repoRoot, "blog/posts/cheating-agents.md"),
