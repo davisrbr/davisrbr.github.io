@@ -257,6 +257,10 @@ function renderPage(metadata, rendered) {
           if (!footnotePopover) return;
           footnotePopover.setAttribute("aria-hidden", "true");
           footnotePopover.classList.remove("is-visible");
+          footnotePopover.style.display = "none";
+          footnotePopover.style.visibility = "hidden";
+          footnotePopover.style.opacity = "0";
+          footnotePopover.style.pointerEvents = "none";
           activeFootnoteLink = null;
         }
 
@@ -303,6 +307,8 @@ function renderPage(metadata, rendered) {
 
           footnotePopover.style.left = Math.round(left) + "px";
           footnotePopover.style.top = Math.round(top) + "px";
+          footnotePopover.style.right = "auto";
+          footnotePopover.style.bottom = "auto";
           footnotePopover.setAttribute("data-placement", placement);
         }
 
@@ -314,6 +320,12 @@ function renderPage(metadata, rendered) {
           clearFootnoteHideTimer();
           activeFootnoteLink = link;
           footnotePopover.innerHTML = html;
+          footnotePopover.style.position = "fixed";
+          footnotePopover.style.display = "block";
+          footnotePopover.style.visibility = "visible";
+          footnotePopover.style.opacity = "1";
+          footnotePopover.style.pointerEvents = "auto";
+          footnotePopover.style.transform = "translateY(0)";
           footnotePopover.setAttribute("aria-hidden", "false");
           footnotePopover.classList.add("is-visible");
           link.setAttribute("aria-describedby", "writing-footnote-popover");
@@ -321,10 +333,11 @@ function renderPage(metadata, rendered) {
         }
 
         footnoteLinks.forEach(function (link) {
-          link.addEventListener("mouseenter", function () {
+          var call = link.closest(".writing-footnote-call") || link;
+          call.addEventListener("mouseenter", function () {
             showFootnotePopover(link);
           });
-          link.addEventListener("mouseleave", scheduleFootnoteHide);
+          call.addEventListener("mouseleave", scheduleFootnoteHide);
           link.addEventListener("focus", function () {
             showFootnotePopover(link);
           });

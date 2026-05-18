@@ -766,7 +766,9 @@
 
 .writing-footnote-call {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   top: -0.42em;
   font-size: 0.82rem;
   line-height: 1;
@@ -774,9 +776,16 @@
 }
 
 .writing-footnote-call a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0.85rem;
+  min-height: 0.85rem;
+  padding: 0 0.08rem;
   color: #b35a1f;
   font-weight: 700;
   text-decoration: none;
+  cursor: help;
 }
 
 .writing-footnote-call a:hover {
@@ -811,6 +820,25 @@
 
 .writing-footnote-popover.is-visible {
   transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.writing-footnote-call .writing-footnote-popover {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.48rem);
+  top: auto;
+  z-index: 100;
+  display: none;
+  transform: translate(-50%, 0.18rem);
+}
+
+.writing-footnote-call:hover .writing-footnote-popover,
+.writing-footnote-call:focus-within .writing-footnote-popover {
+  display: block;
+  transform: translate(-50%, 0);
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
