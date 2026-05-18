@@ -8,9 +8,9 @@ Here, I model two considerations attackers face around when to use new jailbreak
 
 The second concerns model capabilities. As models become more capable, they are juicier targets for misuse. For example, the ability to perform cyberattacks with Claude Mythos is clearly more valuable than with GPT-3.5. Therefore, if an attacker discovers a new jailbreak and they think this jailbreak may work on models down-the-line, they might *defer* using the jailbreak until later, so they can get more useful work out of an agent later without burning their jailbreak now.
 
-A related intuition is that there are probably many competent attackers who are not in the business of jailbreaking, because current models are still too weak for their use cases. These attackers have the essential elements for very strong jailbreaks, like cybersecurity or language model scaffolding expertise, so should generally be thought of as having the ability to create strong jailbreaks. However, these attackers are choosing to wait for stronger models to perform attacks.
+A related intuition is that there are many competent attackers who are not in the business of jailbreaking, because (current) models are still too weak for their use cases. These attackers have the essential elements for very strong jailbreaks, like cybersecurity or language model scaffolding expertise, so should generally be thought of as having the ability to create strong jailbreak attacks. However, as models become more capable, these actors may enter and produce attacks much stronger than the public jailbreaks we currently observe.
 
-So when should an attacker burn the jailbreak, and when should they save it? The following toy model helps make this tradeoff precise.
+So when should an attacker burn jailbreaks, and when should they save them? The following toy model helps make this tradeoff precise.
 
 ## A simple model of attacker timing
 
