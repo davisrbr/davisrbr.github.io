@@ -4,9 +4,11 @@
 
 Attackers use jailbreaks to bypass safeguards and perform harmful tasks with language models. I use *jailbreak* to broadly refer to any technique for extracting harmful work from a model, from single-shot prompts to sophisticated scaffolds that split harmful tasks across agents.[^1] Strong jailbreaks are therefore valuable assets to attackers.
 
-There are two salient considerations attackers face around when to use new jailbreaks. The first concerns the fact that a jailbreak becomes less useful over time, because model safeguards are improving. For example, defenders, researchers, or other attackers may independently discover the same jailbreak, making it more likely to be patched. We should expect that jailbreaks similarly lose value when they are used, because use makes them easier to discover and patch.
+Here, I model two considerations attackers face around when to use new jailbreaks. The first concerns the fact that a jailbreak becomes less useful over time, because model safeguards are improving. For example, defenders, researchers, or other attackers may independently discover the same jailbreak, making it more likely to be patched. We should expect that jailbreaks similarly lose value when they are used, because use makes them easier to discover and patch.
 
 The second concerns model capabilities. As models become more capable, they are juicier targets for misuse. For example, the ability to perform cyberattacks with Claude Mythos is clearly more valuable than with GPT-3.5. Therefore, if an attacker discovers a new jailbreak and they think this jailbreak may work on models down-the-line, they might *defer* using the jailbreak until later, so they can get more useful work out of an agent later without burning their jailbreak now.
+
+Another intuition is that there are probably many competent attackers who are not in the business of jailbreaking, due to models (currently) being too weak for their use case. These attackers have all the essential elements for very strong jailbreaks, so should generally be thought of as having a jailbreak, but are choosing to wait for stronger models to perform attacks.
 
 So when should an attacker burn the jailbreak, and when should they save it? The following toy model helps make this tradeoff precise.
 
@@ -60,7 +62,9 @@ Similar logic may also apply to investment in jailbreak discovery. As models gro
 
 A second assumption we make is that defenders strengthen their safeguards after they discover new attacks. This is potentially false for some models. For example, [new models](https://www.linkedin.com/posts/far-ai_farai-red-teamed-deepseeks-v4-pro-and-almost-activity-7454974818027982849-IhGd) [are sometimes](https://www.aisi.gov.uk/frontier-ai-trends-report#4-safeguards) vulnerable to very common jailbreaks. However, the safeguards from OpenAI/GDM/Anthropic seem to be weakly improving, and I think this will be even more true over time, as model providers take security more seriously.
 
-**Acknowledgements:** Thanks to Bruce Lee, Berkan Ottlik, and Daniel Paleka for useful conversations and feedback, and GPT-5.5 for helping to simplify my initial model.
+**Acknowledgements:** Thanks to Bruce Lee, Xander Davies, Berkan Ottlik, and Daniel Paleka for useful conversations and feedback, and GPT-5.5 for helping to simplify my initial model.
+
+*The opinions in this piece are my own and do not reflect those of any employer.*
 
 [^1]: For example, the [ARTEMIS paper](https://arxiv.org/abs/2512.09882) notes that their scaffolding is "directly responsible for bypassing refusal mechanisms." There is a lot of headroom for far more effective jailbreaks under this definition; the Assumptions section below provides a bit more discussion on this.
 
