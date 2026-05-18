@@ -173,6 +173,7 @@ function renderPage(metadata, rendered) {
         <button type="button" class="writing-modal-copy mono-font" id="citation-copy-button">Copy BibTeX</button>
       </div>
     </div>
+    <div class="writing-footnote-popover" id="writing-footnote-popover" role="tooltip" aria-hidden="true"></div>
     <script>
       (function () {
         var modal = document.getElementById("citation-modal");
@@ -239,41 +240,106 @@ function renderPage(metadata, rendered) {
           renderPostMath();
         }
 
-        var footnoteCalls = Array.prototype.slice.call(
-          document.querySelectorAll(".writing-footnote-call")
+        var footnotePopover = document.getElementById("writing-footnote-popover");
+        var footnoteLinks = Array.prototype.slice.call(
+          document.querySelectorAll(".writing-footnote-call a[data-footnote-ref]")
         );
-        var activeFootnoteCall = null;
+        var activeFootnoteLink = null;
+        var hideFootnoteTimer = null;
 
-        function positionFootnotePopover(call) {
-          var popover = call ? call.querySelector(".writing-footnote-popover") : null;
-          if (!popover) return;
-
-          call.removeAttribute("data-footnote-align");
-          var rect = popover.getBoundingClientRect();
-          var gutter = 12;
-
-          if (rect.left < gutter) {
-            call.setAttribute("data-footnote-align", "left");
-          } else if (rect.right > window.innerWidth - gutter) {
-            call.setAttribute("data-footnote-align", "right");
-          }
+        function clearFootnoteHideTimer() {
+          if (!hideFootnoteTimer) return;
+          window.clearTimeout(hideFootnoteTimer);
+          hideFootnoteTimer = null;
         }
 
-        footnoteCalls.forEach(function (call) {
-          call.addEventListener("mouseenter", function () {
-            activeFootnoteCall = call;
-            positionFootnotePopover(call);
+        function hideFootnotePopover() {
+          if (!footnotePopover) return;
+          footnotePopover.setAttribute("aria-hidden", "true");
+          footnotePopover.classList.remove("is-visible");
+          activeFootnoteLink = null;
+        }
+
+        function scheduleFootnoteHide() {
+          clearFootnoteHideTimer();
+          hideFootnoteTimer = window.setTimeout(hideFootnotePopover, 120);
+        }
+
+        function footnoteContentFor(link) {
+          var noteId = link ? link.getAttribute("data-footnote-ref") : "";
+          var note = noteId ? document.getElementById(noteId) : null;
+          if (!note) return "";
+
+          var clone = note.cloneNode(true);
+          Array.prototype.forEach.call(
+            clone.querySelectorAll(".writing-note-backlink"),
+            function (backlink) {
+              backlink.remove();
+            }
+          );
+
+          return '<span class="writing-footnote-popover-label mono-font">Note ' +
+            link.textContent.trim() +
+            '</span><span class="writing-footnote-popover-content">' +
+            clone.innerHTML.trim() +
+            '</span>';
+        }
+
+        function positionFootnotePopover(link) {
+          if (!footnotePopover || !link) return;
+          var gutter = 12;
+          var anchorRect = link.getBoundingClientRect();
+          var popoverRect = footnotePopover.getBoundingClientRect();
+          var top = anchorRect.top - popoverRect.height - 10;
+          var placement = "above";
+
+          if (top < gutter) {
+            top = anchorRect.bottom + 10;
+            placement = "below";
+          }
+
+          var left = anchorRect.left + anchorRect.width / 2 - popoverRect.width / 2;
+          left = Math.max(gutter, Math.min(left, window.innerWidth - popoverRect.width - gutter));
+
+          footnotePopover.style.left = Math.round(left) + "px";
+          footnotePopover.style.top = Math.round(top) + "px";
+          footnotePopover.setAttribute("data-placement", placement);
+        }
+
+        function showFootnotePopover(link) {
+          if (!footnotePopover) return;
+          var html = footnoteContentFor(link);
+          if (!html) return;
+
+          clearFootnoteHideTimer();
+          activeFootnoteLink = link;
+          footnotePopover.innerHTML = html;
+          footnotePopover.setAttribute("aria-hidden", "false");
+          footnotePopover.classList.add("is-visible");
+          link.setAttribute("aria-describedby", "writing-footnote-popover");
+          positionFootnotePopover(link);
+        }
+
+        footnoteLinks.forEach(function (link) {
+          link.addEventListener("mouseenter", function () {
+            showFootnotePopover(link);
           });
-          call.addEventListener("mouseleave", function () {
-            if (activeFootnoteCall === call) activeFootnoteCall = null;
+          link.addEventListener("mouseleave", scheduleFootnoteHide);
+          link.addEventListener("focus", function () {
+            showFootnotePopover(link);
           });
-          call.addEventListener("focusin", function () {
-            activeFootnoteCall = call;
-            positionFootnotePopover(call);
-          });
-          call.addEventListener("focusout", function () {
-            if (activeFootnoteCall === call) activeFootnoteCall = null;
-          });
+          link.addEventListener("blur", scheduleFootnoteHide);
+        });
+
+        if (footnotePopover) {
+          footnotePopover.addEventListener("mouseenter", clearFootnoteHideTimer);
+          footnotePopover.addEventListener("mouseleave", scheduleFootnoteHide);
+        }
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            hideFootnotePopover();
+          }
         });
 
         var tocLinks = Array.prototype.slice.call(
@@ -311,7 +377,7 @@ function renderPage(metadata, rendered) {
         window.addEventListener("scroll", updateActiveToc, { passive: true });
         window.addEventListener("resize", function () {
           updateActiveToc();
-          if (activeFootnoteCall) positionFootnotePopover(activeFootnoteCall);
+          if (activeFootnoteLink) positionFootnotePopover(activeFootnoteLink);
         });
       }());
     </script>
@@ -440,9 +506,8 @@ function renderMarkdown(markdown, metadata) {
   };
 }
 
-function renderInline(text, footnoteDefinitions, footnoteOrder, footnoteLookup, options = {}) {
+function renderInline(text, footnoteDefinitions, footnoteOrder, footnoteLookup) {
   let html = escapeHtml(text);
-  const includeFootnotePopovers = options.includeFootnotePopovers !== false;
 
   // Support \* and \_ escapes (replace with placeholders, restore at end)
   html = html.replace(/\\\*/g, "\u0001ASTERISK\u0001");
@@ -462,17 +527,7 @@ function renderInline(text, footnoteDefinitions, footnoteOrder, footnoteLookup, 
     }
 
     const index = footnoteLookup[key];
-    const rawFootnote = footnoteDefinitions[key] || "";
-    const popover = includeFootnotePopovers && rawFootnote
-      ? `<span class="writing-footnote-popover" id="note-preview-${index}" role="tooltip"><span class="writing-footnote-popover-label mono-font">Note ${index}</span><span class="writing-footnote-popover-content">${renderInline(
-          rawFootnote,
-          footnoteDefinitions,
-          footnoteOrder,
-          footnoteLookup,
-          { includeFootnotePopovers: false }
-        )}</span></span>`
-      : "";
-    return `<sup class="writing-footnote-call"><a href="#note-${index}" id="note-ref-${index}" aria-describedby="note-preview-${index}">${index}</a>${popover}</sup>`;
+    return `<sup class="writing-footnote-call"><a href="#note-${index}" id="note-ref-${index}" data-footnote-ref="note-${index}" aria-label="Note ${index}">${index}</a></sup>`;
   });
 
   html = html.replace(
