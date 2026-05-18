@@ -10,7 +10,12 @@
       "url": "../index.html"
     }
   ],
-  "shareLinks": [],
+  "shareLinks": [
+    {
+      "label": "Substack",
+      "url": "https://dlscience.substack.com/p/0d2b6f9c-42ce-49ee-9bb8-3e30c709b25a"
+    }
+  ],
   "references": [],
   "citation": {
     "key": "brown-overestimating-safeguards-2026",
