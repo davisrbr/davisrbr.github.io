@@ -485,7 +485,7 @@ function renderMarkdown(markdown, metadata) {
         htmlParts.push(
           `<figure${figureClass}><img src="${escapeAttribute(normalizeAssetPath(source))}" alt="${escapeAttribute(
             altTextFor(figureKey)
-          )}"><figcaption>${escapeHtml(caption)}</figcaption></figure>`
+          )}"><figcaption>${renderCaption(caption)}</figcaption></figure>`
         );
       }
       return;
@@ -568,6 +568,10 @@ function renderInlineText(text) {
     .replace(/\*([^*]+)\*/g, "<em>$1</em>");
 }
 
+function renderCaption(text) {
+  return renderInlineText(text);
+}
+
 function renderNotes(footnoteOrder, footnoteLookup, footnoteDefinitions) {
   const items = footnoteOrder
     .map((key) => {
@@ -630,7 +634,7 @@ function shortTitle(title) {
 
 function imageCaptionFor(key) {
   if (key === "jailbreak-delay-heatmap") {
-    return "Figure: Attackers should wait to use their jailbreaks, in the regime where model capability growth is fast and jailbreaks remain useful for a long time. The x-axis is the model capability doubling time τ, the y-axis is the jailbreak half-life h, and the color shows the attacker’s optimal delay. The red line marks the METR time-horizon doubling time.";
+    return "**Attackers should wait to use their jailbreaks, in the regime where model capability growth is fast and jailbreaks remain useful for a long time.** The x-axis is the model capability doubling time τ, the y-axis is the jailbreak half-life h, and the color shows the attacker’s optimal delay. The red line marks the METR time-horizon doubling time.";
   }
   if (key === "image1") {
     return "Distribution of extracted conjectures across mathematical subfields.";
