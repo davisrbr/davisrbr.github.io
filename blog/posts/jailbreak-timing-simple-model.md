@@ -4,13 +4,13 @@
 
 Attackers use jailbreaks to bypass safeguards and perform harmful tasks with language models. I use *jailbreak* to broadly refer to any technique for extracting harmful work from a model, from single-shot prompts to sophisticated scaffolds that split harmful tasks across agents.[^1] Strong jailbreaks are therefore valuable assets to attackers.
 
-Here, I model two considerations attackers face around when to use new jailbreaks. The first concerns the fact that a jailbreak becomes less useful over time, because model safeguards are improving. For example, defenders, researchers, or other attackers may independently discover the same jailbreak, making it more likely to be patched. We should expect that jailbreaks similarly lose value when they are used, because use makes them easier to discover and patch.
+There are two salient considerations attackers face around when to use new jailbreaks. The first concerns the fact that jailbreaks becomes less useful over time, because model safeguards are improving. For example, defenders, researchers, or other attackers may independently discover the same jailbreak, making it more likely to be patched. We should expect that jailbreaks lose value when they are used, because use makes them easier to discover and patch.
 
 The second concerns model capabilities. As models become more capable, they are juicier targets for misuse. For example, the ability to perform cyberattacks with Claude Mythos is clearly more valuable than with GPT-3.5. Therefore, if an attacker discovers a new jailbreak and they think this jailbreak may work on models down-the-line, they might *defer* using the jailbreak until later, so they can get more useful work out of an agent later without burning their jailbreak now.
 
-A related intuition is that there are many competent attackers who are not in the business of jailbreaking, because (current) models are still too weak for their use cases. These attackers have the essential elements for very strong jailbreaks, like cybersecurity or language model scaffolding expertise, so should generally be thought of as having the ability to create strong jailbreak attacks. However, as models become more capable, these actors may enter and produce attacks much stronger than the public jailbreaks we currently observe.
+A related intuition is that there are many competent attackers who are not currently in the business of jailbreaking, because models are still too weak for their use cases. These attackers have the essential elements for very strong jailbreaks, like cybersecurity or language model scaffolding expertise, so should generally be thought of as having the ability to create strong jailbreak attacks. However, as models become more capable, these actors may enter and produce attacks much stronger than the public jailbreaks we currently observe.
 
-So when should an attacker burn jailbreaks, and when should they save them? The following toy model helps make this tradeoff precise.
+So when should attackers burn their jailbreaks, and when should they save them? The following toy model helps make this tradeoff precise.
 
 ## A simple model of attacker timing
 
@@ -22,7 +22,7 @@ Suppose that the survival probability of the jailbreak is
 T(\Delta)=2^{-\Delta/h},
 \]
 
-which says that the chance the jailbreak remains usable is halved every \(h\) months. A jailbreak might stop working because the provider improves their misuse classifiers, another group discovers it and reports it, or because it fails to transfer to future models. A larger \(h\) means the jailbreak lasts longer. A smaller \(h\) incentivizes the attacker to use the jailbreak before it loses its value.
+which says that the chance the jailbreak remains usable is halved every \(h\) months. A jailbreak might stop working because the provider improves their misuse classifiers, or another group discovers it and reports it, or because it fails to transfer to future models. A larger \(h\) means the jailbreak lasts longer. A smaller \(h\) incentivizes the attacker to use the jailbreak before it loses its value.
 
 Next, suppose the utility the attacker obtains from misusing the model grows with model capability. Again, let \(\tau\) be the doubling time in months; for example, [METR](https://metr.org/blog/2026-1-29-time-horizon-1-1/)’s current time-horizon doubling time is roughly 4.3 months. I assume value grows linearly with these doubling intervals. That is, each capability-doubling interval adds an additional unit of misuse value. So, if using the jailbreak today creates 1 unit of value, then using it after one doubling interval creates 2 units, after two intervals creates 3 units, and so on.[^2]
 
@@ -40,7 +40,7 @@ Putting these together, the expected value of waiting \(\Delta\) months is
 U(\Delta)=2^{-\Delta/h}\bigl(1 + \Delta / \tau\bigr).
 \]
 
-And that's the model. The first term says that the jailbreak is less likely to work over time, and the second term says that the value of using the jailbreak increases as models become more capable. A rational attacker chooses the delay \(\Delta^*\) that maximizes \(U(\Delta)\), so that they maximize the value of their jailbreak.
+And that's the model. The first term says that jailbreaks are less likely to work over time, and the second term says that the value of using a jailbreak increases as models become more capable. A rational attacker chooses the delay \(\Delta^*\) that maximizes \(U(\Delta)\), so that they maximize the value of their jailbreak.
 
 We can compute the solution for when to optimally use the jailbreak, by differentiating \(U(\Delta)\) with respect to \(\Delta\) and setting the derivative equal to zero:
 
@@ -54,7 +54,7 @@ where I cap at 0 because the attacker cannot wait a negative amount of time. Wai
 
 ## Assumptions and implications
 
-This figure shows that, near the current METR doubling time, a jailbreak may rationally be held for months or years before it is used. In general, if there are rational attackers, it seems like we may be overestimating the strength of model safeguards. This is because the attacks we observe are only the attacks people are willing to reveal today, and the strongest attacks will appear only once models become more capable.
+This figure shows that near the current METR doubling time, a jailbreak may strategically be held for months or years before it is used. In general then, if there are strategic attackers, it seems like we may be overestimating the strength of model safeguards. This is because the attacks we observe are only the attacks people are willing to reveal today, and the strongest attacks will appear only once models become more capable.
 
 I want to highlight two assumptions we make. First, we assume that attackers are strategic about when to use their jailbreaks. I think it’s reasonably likely that there are some very well-funded groups who are stockpiling jailbreaks, akin to how software exploits are stockpiled, and are waiting to use them (or at least limiting their use) until more capable models are released. This includes attacks with sophisticated agent scaffolds like [AI-orchestrated cyber espionage](https://www.anthropic.com/news/disrupting-AI-espionage); we have work coming out on this class of attacks soon. As noted in the introduction, there are also probably groups who have all the tools to perform sophisticated jailbreaks (e.g. advanced cybersecurity capabilities), but won’t use them until better models are released.
 
