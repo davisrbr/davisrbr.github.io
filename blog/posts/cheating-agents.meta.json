@@ -30,6 +30,10 @@
   ],
   "shareLinks": [
     {
+      "label": "Paper",
+      "url": "https://arxiv.org/abs/2604.11806"
+    },
+    {
       "label": "GitHub",
       "url": "https://github.com/BrachioLab/Meerkat"
     },
@@ -40,7 +44,7 @@
   ],
   "references": [
     {
-      "label": "Meerkat: Scalable Agentic Auditing of Agent Benchmarks",
+      "label": "Meerkat: Scalable Agentic Auditing of Agent Benchmarks (codebase)",
       "url": "https://github.com/BrachioLab/Meerkat"
     },
     {
