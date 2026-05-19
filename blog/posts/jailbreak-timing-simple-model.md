@@ -22,9 +22,9 @@ Suppose that the survival probability of the jailbreak is
 T(\Delta)=2^{-\Delta/h},
 \]
 
-which says that the chance the jailbreak remains usable is halved every \(h\) months. A jailbreak might stop working because the provider improves their misuse classifiers, or another group discovers it and reports it, or because it fails to transfer to future models. A larger \(h\) means the jailbreak lasts longer. A smaller \(h\) incentivizes the attacker to use the jailbreak before it loses its value.
+which says that the chance the jailbreak remains usable is halved every \(h\) months.[^2] A jailbreak might stop working because the provider improves their misuse classifiers, or another group discovers it and reports it, or because it fails to transfer to future models. A larger \(h\) means the jailbreak lasts longer. A smaller \(h\) incentivizes the attacker to use the jailbreak before it loses its value.
 
-Next, suppose the utility the attacker obtains from misusing the model grows with model capability. Again, let \(\tau\) be the doubling time in months; for example, [METR](https://metr.org/blog/2026-1-29-time-horizon-1-1/)’s current time-horizon doubling time is roughly 4.3 months. I assume value grows linearly with these doubling intervals. That is, each capability-doubling interval adds an additional unit of misuse value. So, if using the jailbreak today creates 1 unit of value, then using it after one doubling interval creates 2 units, after two intervals creates 3 units, and so on.[^2]
+Next, suppose the utility the attacker obtains from misusing the model grows with model capability. Again, let \(\tau\) be the doubling time in months; for example, [METR](https://metr.org/blog/2026-1-29-time-horizon-1-1/)’s current time-horizon doubling time is roughly 4.3 months. I assume value grows linearly with these doubling intervals. That is, each capability-doubling interval adds an additional unit of misuse value. So, if using the jailbreak today creates 1 unit of value, then using it after one doubling interval creates 2 units, after two intervals creates 3 units, and so on.[^3]
 
 For example, if an attacker can use a jailbreak to get a model to exploit software vulnerabilities for $100 in illicit profit, then after one capability-doubling interval I assume the same jailbreak would enable $200 in illicit profit. Waiting \(\Delta\) months therefore multiplies the value of a working jailbreak by
 
@@ -58,18 +58,20 @@ This figure shows that near the current METR doubling time, a jailbreak may stra
 
 I want to highlight two assumptions we make. First, we assume that attackers are strategic about when to use their jailbreaks. I think it’s reasonably likely that there are some very well-funded groups who are stockpiling jailbreaks, akin to how software exploits are stockpiled, and are waiting to use them (or at least limiting their use) until more capable models are released. This includes attacks with sophisticated agent scaffolds like [AI-orchestrated cyber espionage](https://www.anthropic.com/news/disrupting-AI-espionage); we have work coming out on this class of attacks soon. As noted in the introduction, there are also probably groups who have all the tools to perform sophisticated jailbreaks (e.g. advanced cybersecurity capabilities), but won’t use them until better models are released.
 
-Similar logic may also apply to investment in jailbreak discovery. As models grow more capable, attackers will have more confidence that acquiring jailbreaks is worth the cost. This could shift effort towards building and maintaining a portfolio of attacks that remain useful as models improve. This is akin to how security researchers think about zero-day stockpiling, where attackers manage a portfolio of offensive assets based on their expected lifetime, development cost, and the future value of the target.[^3]
+Similar logic may also apply to investment in jailbreak discovery. As models grow more capable, attackers will have more confidence that acquiring jailbreaks is worth the cost. This could shift effort towards building and maintaining a portfolio of attacks that remain useful as models improve. This is akin to how security researchers think about zero-day stockpiling, where attackers manage a portfolio of offensive assets based on their expected lifetime, development cost, and the future value of the target.[^4]
 
 A second assumption we make is that defenders strengthen their safeguards after they discover new attacks. This is potentially false for some models. For example, [new models](https://www.linkedin.com/posts/far-ai_farai-red-teamed-deepseeks-v4-pro-and-almost-activity-7454974818027982849-IhGd) [are sometimes](https://www.aisi.gov.uk/frontier-ai-trends-report#4-safeguards) vulnerable to very common jailbreaks. However, the safeguards from OpenAI/GDM/Anthropic seem to be improving over time, and I think this will be even more true as model providers take security more seriously.
 
-**Acknowledgements:** Thanks to Bruce Lee, Xander Davies, Berkan Ottlik, and Daniel Paleka for useful conversations and feedback, and GPT-5.5 for helping to simplify my initial model.
+**Acknowledgements:** Thanks to Bruce Lee, Xander Davies, Berkan Ottlik, Daniel Paleka, and Eric Wong for useful conversations and feedback, and GPT-5.5 for helping to simplify my initial model.
 
 *The opinions in this piece are my own and do not reflect those of any employer.*
 
 [^1]: For example, the [ARTEMIS paper](https://arxiv.org/abs/2512.09882) notes that their scaffolding is "directly responsible for bypassing refusal mechanisms." There is a lot of headroom for far more effective jailbreaks under this definition; the Assumptions section below provides a bit more discussion on this.
 
-[^2]: This assumes the misuse value grows linearly with exponentially increasing capability, so after the first doubling, the saved jailbreak is worth twice as much as it would be today, and each additional doubling adds another unit of value, rather than compounding exponentially. This may be wrong in either direction. For example, the misuse value may saturate in some domains, or it may be more convex and grow more than linearly as capabilities increase.
+[^2]: For software zero-day exploits, [Ablon and Bogart](https://www.rand.org/pubs/research_reports/RR1751.html) estimate a median survival time of about five years before vulnerabilities are discovered and disclosed.
 
-[^3]: For example, see [Ablon and Bogart](https://www.rand.org/pubs/research_reports/RR1751.html) or [Wang et al.](https://www.mdpi.com/2073-4336/11/4/64?).
+[^3]: This assumes the misuse value grows linearly with exponentially increasing capability, so after the first doubling, the saved jailbreak is worth twice as much as it would be today, and each additional doubling adds another unit of value, rather than compounding exponentially. This may be wrong in either direction. For example, the misuse value may saturate in some domains, or it may be more convex and grow more than linearly as capabilities increase.
+
+[^4]: For example, see [Wang et al.](https://www.mdpi.com/2073-4336/11/4/64?) or [Ablon and Bogart](https://www.rand.org/pubs/research_reports/RR1751.html).
 
 [jailbreak-delay-heatmap]: /assets/blog/fig1_attacker_delay_heatmap_simple_model.png
