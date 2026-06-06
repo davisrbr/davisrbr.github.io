@@ -269,6 +269,13 @@
             </li>
 
             <li class="paper-item">
+              <a href="https://arxiv.org/abs/2605.22769" target="_blank" style="color:#191970">
+                Understanding Data Temporality Impact on Large Language Models Pre-training
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Hippolyte Pilchen, Romain Fabre, Franck Signe Talla, Patrick Perez, Edouard Grave (2026)</span>
+            </li>
+
+            <li class="paper-item">
               <a href="https://arxiv.org/abs/2605.22821" target="_blank" style="color:#191970">
                 Tokenisation via Convex Relaxations
               </a><br/>
@@ -299,7 +306,9 @@
                 Some notes
               </div>
               <div id="descSubliminalLoRAArtifact" class="paper-description">
-                To see subliminal learning, one needs to fine-tune within a relatively narrow band of specific LoRA ranks. Why? The authors aren't sure, but speculate that too low a rank cannot capture how the teacher and student split their confidence across divergent digits. For the higher LoRA ranks where subliminal learning declines, my guess is that the model now has enough capacity to just faithfully fit the digit distribution from the teacher, and the entangled / subliminal behavior no longer occurs.
+                To see subliminal learning in models, one seems to need to fine-tune within a relatively narrow band of specific LoRA ranks. Why? The authors aren't sure, but speculate that too low a rank cannot capture how the teacher and student split their confidence across divergent digits. For the higher LoRA ranks where subliminal learning declines, my guess is that the model now has enough capacity to just faithfully fit the digit distribution from the teacher, and the entangled / subliminal behavior no longer occurs.
+                <br/><br/>
+                Although Owain Evans notes that they showed subliminal learning across FWFTing in the original paper, see eg <a href="https://www.nature.com/articles/s41586-026-10319-8/figures/7" target="_blank" style="color:#191970">https://www.nature.com/articles/s41586-026-10319-8/figures/7</a>.
               </div>
             </li>
 
