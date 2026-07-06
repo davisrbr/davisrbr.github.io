@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<title>Paper Feed</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Ctext y=%2250%22 x=%2250%25%22 text-anchor=%22middle%22 font-size=%2250%22%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-color: #191970;
+    --accent-color: #4169e1;
+    --highlight-color: #fff3b0;
+    --light-bg: #f9f9f9;
+    --border-color: #e0e0e0;
+  }
+
+  body {
+    font-family: 'Lora', serif;
+    line-height: 1.6;
+    color: #222;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .mono-font { font-family: 'IBM Plex Mono', monospace; font-weight: 400; }
+
+  a       { color: var(--accent-color); transition: color .3s, text-decoration .3s; text-decoration: none; }
+  a:hover { color: var(--primary-color); text-decoration: none; }
+
+  .sidebar {
+    background-color: var(--light-bg);
+    box-shadow: 0 0 10px rgba(0,0,0,.03);
+    border-right: 1px solid var(--border-color);
+  }
+
+  .highlight {
+    background-color: var(--highlight-color);
+    padding: .2rem .5rem;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  .nav-links a       { display:block; padding:8px 0; transition:transform .2s; }
+  .nav-links a:hover { transform:translateX(5px); }
+  .nav-links a.active{ font-weight:700; color:var(--primary-color); }
+
+  .paper-item { margin-bottom:0; padding-bottom:0; }
+
+  .description-toggle {
+    color:var(--accent-color); cursor:pointer; font-size:.95rem; font-weight:500;
+    opacity:.9; margin-top:5px; display:inline-block; transition:color .3s;
+  }
+  .description-toggle:hover { color:var(--primary-color); text-decoration:none; }
+
+  .paper-description {
+    font-size:.95rem; margin-top:5px; overflow:hidden; max-height:0; opacity:0;
+    transition:max-height .3s ease-out, opacity .3s, padding .3s;
+    background:rgba(240,240,240,.3); border-radius:3px;
+    padding-left:5px; padding-right:5px; line-height:1.4;
+  }
+  .paper-description.visible { max-height:800px; opacity:1; padding:10px; }
+
+  .versions-container { margin-top:15px; margin-bottom:10px; }
+
+  @media screen and (min-width:793px){
+    .sidebar       { position:sticky; top:0; height:100vh; overflow-y:auto; flex:0 0 20%; width:20%; }
+    .w3-twothird   { flex:0 0 80%; width:80%; }
+  }
+
+  @media screen and (max-width:792px){
+    .sidebar{ position:static; height:auto; width:100%; overflow:visible; padding-bottom:1.5rem; }
+  }
+</style>
+
+<body class="w3-content" style="max-width:2500px">
+
+  <div class="w3-row">
+    <div class="w3-third sidebar w3-container w3-center">
+      <div class="w3-padding-24"><h4 class="mono-font">Paper Feed</h4></div>
+
+      <div class="versions-container">
+        <div class="mono-font" style="font-size:1.15rem;">Versions</div>
+        <div class="nav-links versions-nav-links">
+          <!-- Navigation will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <div style="margin-top:30px;"></div>
+      <div class="nav-links"><a href="../index.html" class="mono-font">Home</a></div>
+    </div>
+
+    <div class="w3-twothird w3-white w3-container">
+      <div class="w3-padding-64 w3-center">
+        <div class="w3-left-align w3-padding-small">
+          <h3 class="mono-font">Paper Feed: July 2026</h3>
+
+          <div class="intro-note mono-font" style="margin-top:0.85rem;margin-right:80px;margin-bottom:0.35rem;padding:0 0 0.25rem 0;color:#555;font-size:0.95rem;">
+            <p style="margin:0 0 .5rem 0;font-size:1rem;">
+              Highlighting research I find interesting and think may deserve more attention (as of 07/06/26).
+            </p>
+          </div>
+
+          <!-- =====================  ALIGNMENT AND CONTROL  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Alignment and Control</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2606.08892" target="_blank" style="color:#191970">
+                Diffuse AI Control on Fuzzy Tasks
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Mikhail Terekhov, Caglar Gulcehre, Vivek Hebbar, Joe Benton (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.lesswrong.com/posts/98GvRu78jTXJgz9gA/sub-agent-delegation-chaining" target="_blank" style="color:#191970">
+                Sub-agent delegation chaining
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">David Rein (2026)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  AI ECONOMICS AND FORECASTING  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">AI Economics and Forecasting</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://epochai.substack.com/p/toward-an-onet-for-ai-r-and-d" target="_blank" style="color:#191970">
+                Toward an O*NET for AI R&amp;D
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Jean-Stanislas Denain, Joe Kwon, Anson Ho (2026)</span>
+              <br/>
+              <span style="font-size:.9em;color:#666;">See also:
+                <a href="https://docs.google.com/document/d/1mDZyulXNojM5uAna-HzSeAEnE0tUNqNOTmBCfPx_M78/edit?tab=t.1vmae3wc1s25#heading=h.7wvqnm3lxi7x" target="_blank" style="color:#191970">task taxonomy writeup</a>
+              </span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://www.anthropic.com/research/economic-index-june-2026-report" target="_blank" style="color:#191970">
+                Anthropic Economic Index report: Cadences
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Maxim Massenkoff, Eva Lyubich, Szymon Sacher, Zoe Hitzig, Shaoyi Zhang, Ryan Heller, Peter McCrory (2026)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  EVALUATIONS AND AGENTS  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Evaluations and Agents</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://mechanizework.substack.com/p/how-bad-data-teaches-models-to-write" target="_blank" style="color:#191970">
+                How bad data teaches models to write terrible code
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Max Niederman, Stephen Yang, Ege Erdil (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://matharena.ai/optimizing_agents/" target="_blank" style="color:#191970">
+                Smarter Spending: Dynamic Compute Allocation for Lean Theorem Provers
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Kari Rognvaldsson, Chenhao Sun, Jasper Dekoninck, Martin Vechev (2026)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  INTERPRETABILITY  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Interpretability</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://www.lesswrong.com/posts/3qEDD8Sn7XoNGeGhm/to-what-extent-is-qwen3-32b-predicting-its-persona" target="_blank" style="color:#191970">
+                To what extent is Qwen3-32B predicting its persona?
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Arjun Khandelwal, Ryan Greenblatt, Alex Mallen (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://openreview.net/forum?id=x9MbM7QmQN&referrer=%5Bthe%20profile%20of%20Neel%20Nanda%5D(%2Fprofile%3Fid%3D~Neel_Nanda1)" target="_blank" style="color:#191970">
+                LoRAcles: Self-Supervised Weight-Space Interpretability at Scale
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Celeste De Schamphelaere, Jan Philipp Bauer, Neel Nanda, Euan Ong (2026)</span>
+            </li>
+          </ul>
+
+          <!-- =====================  TRAINING AND GENERALIZATION  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Training and Generalization</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://vaishnavh.github.io/blog/lth/" target="_blank" style="color:#191970">
+                A (dis)analogy for (mis)understanding the lottery ticket hypothesis
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Vaishnavh Nagarajan (2026)</span>
+            </li>
+
+            <li class="paper-item">
+              <a href="https://akyrillidis.github.io/aiowls/stochastic_self_stabilization.html" target="_blank" style="color:#191970">
+                Why Stochastic Gradient Descent Stops Just Short of the Edge
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Fangshuo Liao, Afroditi Kolomvaki, Anastasios Kyrillidis (2026)</span>
+              <br/>
+              <span style="font-size:.9em;color:#666;">Paper:
+                <a href="https://arxiv.org/abs/2604.21016" target="_blank" style="color:#191970">Stochastic Self-Stabilization</a>
+              </span>
+            </li>
+          </ul>
+
+          <!-- =====================  MISCELLANEOUS  ===================== -->
+          <p class="mono-font" style="margin-right:80px"><span class="highlight">Miscellaneous</span></p>
+          <ul style="padding-left:20px;">
+            <li class="paper-item">
+              <a href="https://arxiv.org/abs/2602.17655" target="_blank" style="color:#191970">
+                What Language is This? Ask Your Tokenizer
+              </a><br/>
+              <span style="font-size:.9em;color:#666;">Clara Meister, Ahmetcan Yavuz, Pietro Lesci, Tiago Pimentel (2026)</span>
+            </li>
+          </ul>
+
+        </div><!-- /w3-left-align -->
+      </div><!-- /w3-padding-64 -->
+    </div><!-- /w3-twothird -->
+  </div><!-- /w3-row -->
+
+  <script src="shared-nav.js"></script>
+  <script>
+    initializeNavigation('july26');
+
+    document.querySelectorAll('.description-toggle').forEach(t => {
+      t.addEventListener('click', function(){
+        const id = this.getAttribute('data-target');
+        const desc = document.getElementById(id);
+        desc.classList.toggle('visible');
+        this.textContent = desc.classList.contains('visible') ? 'Hide details'
+                                                              : 'Some notes';
+      });
+    });
+  </script>
+</body>
+</html>

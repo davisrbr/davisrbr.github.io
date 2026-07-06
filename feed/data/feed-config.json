@@ -4,6 +4,12 @@
   "author": "Davis Brown",
   "versions": [
     {
+      "id": "july26",
+      "label": "July '26",
+      "file": "july26_papers.html",
+      "status": "published"
+    },
+    {
       "id": "june26",
       "label": "June '26",
       "file": "june26_papers.html",
